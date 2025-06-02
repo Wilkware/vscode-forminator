@@ -1,0 +1,83 @@
+{
+    "name": "forminator",
+    "displayName": "%displayName%",
+    "description": "%description%",
+    "version": "1.0.0",
+    "author": {
+        "name": "Wilkware",
+        "url": "https://wilkware.de"
+    },
+    "license": "CC BY-NC-SA 4.0",
+    "repository": {
+        "url": "https://github.com/Wilkware/vscode-forminator"
+    },
+    "bugs": {
+        "url": "https://github.com/Wilkware/vscode-forminator/issues",
+        "email": "heiko@wilkware.de"
+    },
+    "categories": [
+        "Snippets",
+        "Visualization",
+        "Other"
+    ],
+    "engines": {
+        "vscode": "^1.72.0"
+    },
+    "activationEvents": [
+        "onStartupFinished",
+        "onLanguage:json"
+    ],
+    "main": "./dist/extension.js",
+    "icon": "resources/icon.png",
+    "contributes": {
+        "viewsContainers": {
+            "activitybar": [
+                {
+                    "id": "symconForm",
+                    "title": "%activityBarTitle%",
+                    "icon": "resources/sidebar.svg"
+                }
+            ]
+        },
+        "views": {
+            "symconForm": [
+                {
+                    "type": "webview",
+                    "id": "symconForm.sidebar",
+                    "name": "%sidebarViewName%",
+                    "icon": "resources/sidebar.svg"
+                }
+            ]
+        },
+        "configuration": {
+            "title": "Forminator",
+            "properties": {
+                "emptyNames": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "%config.emptyNames%"
+                },
+                "defaultWidth": {
+                    "type": "string",
+                    "default": "100px",
+                    "description": "%config.defaultWidth%"
+                }
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "tsc -p ./",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "build:elements-css": "node scripts/build-elements-lite-css.js"
+    },
+    "devDependencies": {
+        "@types/vscode": "^1.72.0",
+        "@vscode/test-electron": "^2.2.3",
+        "typescript": "^5.3.3"
+    },
+    "dependencies": {
+        "@vscode-elements/elements-lite": "^0.3.0",
+        "@vscode/codicons": "^0.0.36"
+    }
+}

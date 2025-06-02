@@ -1,0 +1,8 @@
+{
+  "displayName": "Symcon Formular Helfer",
+  "description": "Einfaches Einfügen von Symcon Konfigurationsformular Elementen (form.json) über die Sidebar.",
+  "activityBarTitle": "Forminator",
+  "sidebarViewName": "Konfigurationsformulare",
+  "config.emptyNames": "Eigenschaften mit leeren Namen erstellen!",
+  "config.defaultWidth": "Standardbreite für Eigenschaften (px bzw. %)."
+}

@@ -1,0 +1,8 @@
+{
+  "displayName": "Symcon Form Helper",
+  "description": "Simple insertion of Symcon configuration form elements (form.json) via the sidebar.",
+  "activityBarTitle": "Forminator",
+  "sidebarViewName": "Configuration Forms",
+  "config.emptyNames": "Create properties with empty names!",
+  "config.defaultWidth": "Default width for properties (px or %)."
+}
