@@ -1,0 +1,2 @@
+# vscode-forminator
+VSCode Extension
