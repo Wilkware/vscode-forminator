@@ -50,8 +50,8 @@ function getWebviewContent(webview: vscode.Webview, extensionUri: vscode.Uri): s
         vscode.Uri.joinPath(extensionUri, 'resources', 'elements-lite.css')
     );
 
-    const codiconsUri = webview.asWebviewUri(
-        vscode.Uri.joinPath(extensionUri, 'node_modules', '@vscode/codicons', 'dist', 'codicon.css')
+    const codiconsCssUri = webview.asWebviewUri(
+        vscode.Uri.joinPath(extensionUri, 'resources', 'codicon.css')
     );
 
     const buttonsHtml = Object.keys(items)
@@ -68,7 +68,7 @@ function getWebviewContent(webview: vscode.Webview, extensionUri: vscode.Uri): s
 <head>
     <meta charset="UTF-8">
     <link href="${elementsCssUri}" rel="stylesheet" />
-    <link href="${codiconsUri}" rel="stylesheet" />
+    <link href="${codiconsCssUri}" rel="stylesheet" />
     <style>
         html,
         body {

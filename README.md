@@ -11,7 +11,10 @@ Eine Visual Studio Code Erweiterung zur Unterstützung bei der Erstellung von `f
 
 ```bash
 npm install
-npm build:elements-css
+# (optional start)
+npm run build:elements-css
+npm run build:codicons-css
+# (optional end)
 ```
 
 Dann F5 drücken, um im Extension Development Host zu starten.

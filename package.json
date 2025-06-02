@@ -2,9 +2,10 @@
     "name": "forminator",
     "displayName": "%displayName%",
     "description": "%description%",
-    "version": "1.0.0",
+    "version": "1.0.1",
+    "publisher": "Wilkware",
     "author": {
-        "name": "Wilkware",
+        "name": "Heiko Wilknitz",
         "url": "https://wilkware.de"
     },
     "license": "CC BY-NC-SA 4.0",
@@ -69,7 +70,9 @@
         "vscode:prepublish": "tsc -p ./",
         "compile": "tsc -p ./",
         "watch": "tsc -watch -p ./",
-        "build:elements-css": "node scripts/build-elements-lite-css.js"
+        "build:elements-css": "node scripts/build-elements-lite-css.js",
+        "build:codicons-css": "node scripts/build-codicons-css.js",
+        "postinstall": "node scripts/build-elements-lite-css.js && node scripts/build-codicons-css.js"
     },
     "devDependencies": {
         "@types/vscode": "^1.72.0",
