@@ -70,12 +70,16 @@ function getWebviewContent(webview: vscode.Webview, extensionUri: vscode.Uri): s
     <link href="${elementsCssUri}" rel="stylesheet" />
     <link href="${codiconsCssUri}" rel="stylesheet" />
     <style>
-        html,
-        body {
+        html, body {
             height: 100%;
-            padding: 0;
             margin: 0;
+            padding: 0;
             font-family: sans-serif;
+            box-sizing: border-box;
+        }
+
+        *, *::before, *::after {
+            box-sizing: inherit;
         }
 
         #container {
@@ -84,10 +88,23 @@ function getWebviewContent(webview: vscode.Webview, extensionUri: vscode.Uri): s
             height: 100%;
         }
 
-        #toolbar {
-            flex: 1 auto;
-            overflow-y: auto;
+        #toolbar, #settings {
+            overflow: auto;
+            flex: none;
             padding: 10px;
+        }
+
+        #resizer {
+            background-color: var(--vscode-widget-border);
+            border: 0;
+            display: block;
+            height: 2px;
+            cursor: row-resize;
+        }
+
+        #resizer:active {
+            height: 4px;
+            background-color: var(--vscode-focusBorder);
         }
 
         button.vscode-button.card {
@@ -98,21 +115,6 @@ function getWebviewContent(webview: vscode.Webview, extensionUri: vscode.Uri): s
             text-align: center;
             min-width: 28vW;
             font-size: 9px;
-        }
-
-        #resizer {
-            cursor: row-resize;
-        }
-
-        #resizer:active {
-            height: 4px;
-            background-color: var(--vscode-focusBorder);
-        }
-
-        #settings {
-            height: 400px;
-            overflow-y: auto;
-            padding: 10px;
         }
 
         label {
@@ -135,6 +137,7 @@ function getWebviewContent(webview: vscode.Webview, extensionUri: vscode.Uri): s
         .vscode-check input[type="checkbox"]:focus {
             border-color: var(--vscode-focusBorder);
         }
+
         .vscode-check label {
             cursor: pointer;
             display: contents;
@@ -151,7 +154,7 @@ function getWebviewContent(webview: vscode.Webview, extensionUri: vscode.Uri): s
         <div id="toolbar">
             ${buttonsHtml}
         </div>
-        <div id="resizer" class="vscode-divider"></div>
+        <div id="resizer"></div>
         <div id="settings">
             <em>${t.prompt}</em>
         </div>
@@ -161,25 +164,50 @@ function getWebviewContent(webview: vscode.Webview, extensionUri: vscode.Uri): s
         const vscode = acquireVsCodeApi();
         const items = ${ JSON.stringify(items)};
 
+        const toolbar = document.getElementById('toolbar');
+        const settings = document.getElementById('settings');
+        const resizer = document.getElementById('resizer');
+        const container = document.getElementById('container');
+
+        // Resizing-Logik
         let isResizing = false;
         let startY = 0;
-        let startHeight = 0;
-        const toolbar = document.getElementById('toolbar');
-        const resizer = document.getElementById('resizer');
-        const settings = document.getElementById('settings');
+        let startSettingsHeight = 0;
+
+        // Initialhöhe in px setzen (60/40 Aufteilung)
+        window.addEventListener('load', () => {
+            const containerHeight = container.offsetHeight;
+            const resizerHeight = resizer.offsetHeight;
+
+            const toolbarHeight = Math.floor(containerHeight * 0.6);
+            const settingsHeight = containerHeight - toolbarHeight - resizerHeight;
+
+            toolbar.style.height = toolbarHeight + 'px';
+            settings.style.height = settingsHeight + 'px';
+        });
 
         resizer.addEventListener('mousedown', e => {
             isResizing = true;
             startY = e.clientY;
-            startHeight = settings.offsetHeight;
+            startSettingsHeight = settings.offsetHeight;
             document.body.style.cursor = 'row-resize';
             e.preventDefault();
         });
 
         document.addEventListener('mousemove', e => {
             if (!isResizing) return;
-            const delta = startY - e.clientY;
-            settings.style.height = (startHeight + delta) + 'px';
+            const delta = e.clientY - startY;
+            const newSettingsHeight = startSettingsHeight - delta;
+
+            const containerHeight = container.offsetHeight;
+            const resizerHeight = resizer.offsetHeight;
+            const maxSettingsHeight = containerHeight - resizerHeight - 50; // mind. 50px für toolbar
+
+            // Begrenzung
+            if (newSettingsHeight < 50 || newSettingsHeight > maxSettingsHeight) return;
+
+            settings.style.height = newSettingsHeight + 'px';
+            toolbar.style.height = (containerHeight - resizerHeight - newSettingsHeight) + 'px';
         });
 
         document.addEventListener('mouseup', () => {

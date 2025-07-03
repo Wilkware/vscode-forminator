@@ -16,5 +16,21 @@ npm run build:elements-css
 npm run build:codicons-css
 # (optional end)
 ```
-
 Dann F5 drücken, um im Extension Development Host zu starten.
+
+## VSIX-Paket erstellen
+
+```bash
+vsce package
+# forminator-x.y.z.vsix
+```
+
+## Die VSIX installieren
+
+In VS Code: Öffne die Command Palette (Strg+Shift+P oder F1)
+
+```vbnet
+Extensions: Install from VSIX...
+' oder 
+Erweiterung: Aus VSIX installieren...
+```
