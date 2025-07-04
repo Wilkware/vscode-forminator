@@ -5,8 +5,10 @@ node_modules/
 src/
 scripts/
 test/
+media/
 *.ts
 *.map
+DEVELOPMENT.md
 tsconfig.json
 package-lock.json
 vscode-forminator.code-workspace

@@ -2,7 +2,7 @@
     "name": "forminator",
     "displayName": "%displayName%",
     "description": "%description%",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "publisher": "Wilkware",
     "author": {
         "name": "Heiko Wilknitz",
