@@ -2,7 +2,7 @@
     "name": "forminator",
     "displayName": "%displayName%",
     "description": "%description%",
-    "version": "1.0.3",
+    "version": "1.1.0",
     "publisher": "wilkware-vscode",
     "author": {
         "name": "Heiko Wilknitz",
@@ -20,6 +20,14 @@
         "Snippets",
         "Visualization",
         "Other"
+    ],
+    "keywords": [
+        "symcon",
+        "module",
+        "form.json",
+        "smart home",
+        "ips",
+        "php"
     ],
     "engines": {
         "vscode": "^1.72.0"
@@ -53,15 +61,29 @@
         "configuration": {
             "title": "Forminator",
             "properties": {
-                "emptyNames": {
+                "forminator.alwaysIncludes": {
+                    "title": "%config.alwaysIncludesTitle%",
+                    "type": "string",
+                    "default": "name,caption",
+                    "description": "%config.alwaysIncludesDesc%"
+                },
+                "forminator.emptyValues": {
+                    "title": "%config.emptyValuesTitle%",
                     "type": "boolean",
                     "default": true,
-                    "description": "%config.emptyNames%"
+                    "description": "%config.emptyValuesDesc%"
                 },
-                "defaultWidth": {
+                "forminator.deleteDefaults": {
+                    "title": "%config.deleteDefaultsTitle%",
+                    "type": "boolean",
+                    "default": false,
+                    "description": "%config.deleteDefaultsDesc%"
+                },
+                "forminator.defaultWidth": {
+                    "title": "%config.defaultWidthTitle%",
                     "type": "string",
-                    "default": "100px",
-                    "description": "%config.defaultWidth%"
+                    "default": "",
+                    "description": "%config.defaultWidthDesc%"
                 }
             }
         }

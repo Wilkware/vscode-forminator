@@ -1,10 +1,12 @@
 # Forminator — Symcon Formular Helfer / Form Helper
 
-[![Version](https://img.shields.io/badge/Version-1.0.3-orange.svg?style=flat-square)](https://github.com/Wilkware/vscode-forminator)
+[![Publisher](https://img.shields.io/badge/Publisher-Wilkware-orange?style=flat-square)](https://marketplace.visualstudio.com/publishers/wilkware-vscode)
+[![Version](https://img.shields.io/badge/Version-1.0.3-yellow.svg?style=flat-square)](https://github.com/Wilkware/vscode-forminator)
+[![Installs](https://img.shields.io/visual-studio-marketplace/i/wilkware-vscode.forminator?color=green&label=Installs&style=flat-square)](https://marketplace.visualstudio.com/items?itemName=wilkware-vscode.forminator)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-blue.svg?style=flat-square)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8816166)
 [![License](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-green.svg?style=flat-square)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
-[![German](https://img.shields.io/badge/Deutsch-DE-red.svg?style=flat-square)](#deutsch-de)
-[![English](https://img.shields.io/badge/English-EN-red.svg?style=flat-square)](#english-en)
+[![German](https://img.shields.io/badge/Deutsch-DE-blueviolet.svg?style=flat-square)](#deutsch-de)
+[![English](https://img.shields.io/badge/English-EN-blueviolet.svg?style=flat-square)](#english-en)
 
 ## Deutsch DE
 

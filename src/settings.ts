@@ -1,3 +1,4 @@
+import * as vscode from 'vscode';
 import { items } from './items';
 
 // Optional: Custom renderers for complex elements like Tree
@@ -69,8 +70,8 @@ function renderParameter(parameter: any): string {
 
 // Renderer for forms.json
 export function renderFormData(data: any): any {
-    const item = data.type;
-    switch (item) {
+    const type = data.type;
+    switch (type) {
         case 'HorizontalSlider':
         case 'SelectCategory':
         case 'SelectColor':
@@ -82,7 +83,7 @@ export function renderFormData(data: any): any {
         case 'SelectModule':
         case 'SelectObject':
         case 'SelectScript':
-            data.value = Number(data.value); 
+            data.value = Number(data.value);
             break;
         case 'ColumnLayout':
         case 'ExpansionPanel':
@@ -91,9 +92,9 @@ export function renderFormData(data: any): any {
                 data.items = [];
             } else {
                 data.items = [
-                    {type: 'SelectLocation', name: 'Location', caption: 'My Location'},
-                    {type: 'Label', caption: 'Title'},
-                    {type: 'Button', caption: 'Test', onClick: 'TM_Update($id);'}
+                    { type: 'SelectLocation', name: 'Location', caption: 'My Location' },
+                    { type: 'Label', caption: 'Title' },
+                    { type: 'Button', caption: 'Test', onClick: 'TM_Update($id);' }
                 ];
             }
             break;
@@ -101,29 +102,29 @@ export function renderFormData(data: any): any {
             if (data.sort === 'no') {
                 delete data.sort;
             } else {
-                data.sort = { column: 'name', direction: 'ascending'};
+                data.sort = { column: 'name', direction: 'ascending' };
             }
             if (data.columns === 'no') {
                 delete data.columns;
             } else if (data.columns === 'yes') {
-                data.columns =  [];
+                data.columns = [];
             } else {
                 data.columns = [
-                    {caption: 'Id', name: 'id', width: '75px'},
-                    {caption: 'Name', name: 'name', width: 'auto'},
-                    {caption: 'Type', name: 'type', width: '100px'},
-                    {caption: 'Model', name: 'model', width: '175px'},
+                    { caption: 'Id', name: 'id', width: '75px' },
+                    { caption: 'Name', name: 'name', width: 'auto' },
+                    { caption: 'Type', name: 'type', width: '100px' },
+                    { caption: 'Model', name: 'model', width: '175px' },
                 ];
             }
             if (data.values === 'no') {
                 delete data.values;
             } else if (data.values === 'yes') {
-                data.values =  [];
+                data.values = [];
             } else {
                 data.values = [
-                    {id: 1, name: 'One', type: 'TypeOne', model: 'ModelOne'},
-                    {id: 2, name: 'Two', type: 'TypeTwo', model: 'ModelTwo'},
-                    {id: 3, name: 'Three', type: 'TypeThree', model: 'ModelThree'},
+                    { id: 1, name: 'One', type: 'TypeOne', model: 'ModelOne' },
+                    { id: 2, name: 'Two', type: 'TypeTwo', model: 'ModelTwo' },
+                    { id: 3, name: 'Three', type: 'TypeThree', model: 'ModelThree' },
                 ];
             }
             break;
@@ -131,94 +132,94 @@ export function renderFormData(data: any): any {
             if (data.mediaID === 'no') {
                 delete data.mediaID;
             } else {
-                data.mediaID = Number(0); 
+                data.mediaID = Number(0);
             }
             break;
         case 'List':
             if (data.sort === 'no') {
                 delete data.sort;
             } else {
-                data.sort = { column: 'name', direction: 'ascending'};
+                data.sort = { column: 'name', direction: 'ascending' };
             }
             if (data.columns === 'no') {
                 delete data.columns;
             } else if (data.columns === 'yes') {
-                data.columns =  [];
+                data.columns = [];
             } else {
                 data.columns = [
-                    {caption: 'InstanceID', name: 'InstanceID', width: '75px', add : 0,edit: {type: 'SelectInstance'}}, 
-                    {caption: 'Name', name: 'Name', width: 'auto', add: ''},
-                    {caption: 'State',name: 'State', width: '40px', add: 'New!'},
-                    {caption: 'Temperature', name: 'Temperature', width: '75px', add: 20.0, edit: {type: 'NumberSpinner', digits: 2}}
+                    { caption: 'InstanceID', name: 'InstanceID', width: '75px', add: 0, edit: { type: 'SelectInstance' } },
+                    { caption: 'Name', name: 'Name', width: 'auto', add: '' },
+                    { caption: 'State', name: 'State', width: '40px', add: 'New!' },
+                    { caption: 'Temperature', name: 'Temperature', width: '75px', add: 20.0, edit: { type: 'NumberSpinner', digits: 2 } }
                 ];
             }
             if (data.values === 'no') {
                 delete data.values;
             } else if (data.values === 'yes') {
-                data.values =  [];
+                data.values = [];
             } else {
                 data.values = [
-                    {InstanceID: 12435, Name: 'ABCD', State: 'OK!', Temperature: 23.31, rowColor: '#ff0000'}
+                    { InstanceID: 12435, Name: 'ABCD', State: 'OK!', Temperature: 23.31, rowColor: '#ff0000' }
                 ];
             }
             break;
         case 'NumberSpinner':
-            data.minimum = Number(data.minimum); 
-            data.maximum = Number(data.maximum); 
-            data.value = Number(data.value); 
+            data.minimum = Number(data.minimum);
+            data.maximum = Number(data.maximum);
+            data.value = Number(data.value);
             break;
         case 'PopupAlert':
-            switch(data.popup) {
+            switch (data.popup) {
                 case 'items':
                     data.popup = {
-                        items: [{type: 'SelectVariable', name: 'VariableActionTest', caption: 'Some Action Variable'}]
+                        items: [{ type: 'SelectVariable', name: 'VariableActionTest', caption: 'Some Action Variable' }]
                     }
                     break;
                 case 'close':
                     data.popup = {
                         closeCaption: 'I understand',
-                        items: [{type: 'SelectVariable', name: 'VariableActionTest', caption: 'Some Action Variable'}],
+                        items: [{ type: 'SelectVariable', name: 'VariableActionTest', caption: 'Some Action Variable' }],
                     }
                     break;
                 case 'buttons':
                     data.popup = {
-                        items: [{type: 'SelectVariable', name: 'VariableActionTest', caption: 'Some Action Variable'}],
-                        buttons: [{caption: "Start", onClick: 'TM_Start();'}]
+                        items: [{ type: 'SelectVariable', name: 'VariableActionTest', caption: 'Some Action Variable' }],
+                        buttons: [{ caption: "Start", onClick: 'TM_Start();' }]
                     }
                     break;
                 default:
                     data.popup = {
                         closeCaption: 'I understand',
-                        items: [{type: 'SelectVariable', name: 'VariableActionTest', caption: 'Some Action Variable'}],
-                        buttons: [{caption: "Start", onClick: 'TM_Start();'}]
+                        items: [{ type: 'SelectVariable', name: 'VariableActionTest', caption: 'Some Action Variable' }],
+                        buttons: [{ caption: "Start", onClick: 'TM_Start();' }]
                     }
             }
             break;
         case 'PopupButton':
-            switch(data.popup) {
+            switch (data.popup) {
                 case 'items':
                     data.popup = {
-                        items: [{type: 'SelectVariable', name: 'VariableActionTest', caption: 'Some Action Variable'}]
+                        items: [{ type: 'SelectVariable', name: 'VariableActionTest', caption: 'Some Action Variable' }]
                     }
                     break;
                 case 'caption':
                     data.popup = {
                         caption: 'My Element Popup',
-                        items: [{type: 'SelectVariable', name: 'VariableActionTest', caption: 'Some Action Variable'}],
+                        items: [{ type: 'SelectVariable', name: 'VariableActionTest', caption: 'Some Action Variable' }],
                     }
                     break;
                 case 'buttons':
                     data.popup = {
-                        items: [{type: 'SelectVariable', name: 'VariableActionTest', caption: 'Some Action Variable'}],
-                        buttons: [{caption: "Start", onClick: 'TM_Start();'}]
+                        items: [{ type: 'SelectVariable', name: 'VariableActionTest', caption: 'Some Action Variable' }],
+                        buttons: [{ caption: "Start", onClick: 'TM_Start();' }]
                     }
                     break;
                 default:
                     data.popup = {
                         caption: 'My Element Popup',
                         closeCaption: 'I understand',
-                        items: [{type: 'SelectVariable', name: 'VariableActionTest', caption: 'Some Action Variable'}],
-                        buttons: [{caption: "Start", onClick: 'TM_Start();'}]
+                        items: [{ type: 'SelectVariable', name: 'VariableActionTest', caption: 'Some Action Variable' }],
+                        buttons: [{ caption: "Start", onClick: 'TM_Start();' }]
                     }
             }
             break;
@@ -235,9 +236,9 @@ export function renderFormData(data: any): any {
             }
             break;
         case 'SelectVariable':
-            data.requiredAction =  Number(data.requiredAction);
+            data.requiredAction = Number(data.requiredAction);
             data.requiredLogging = Number(data.requiredLogging);
-            data.value = Number(data.value); 
+            data.value = Number(data.value);
             break;
         case 'StatusMessage':
             delete data.type;
@@ -246,51 +247,102 @@ export function renderFormData(data: any): any {
             if (data.sort === 'no') {
                 delete data.sort;
             } else {
-                data.sort = { column: 'name', direction: 'ascending'};
+                data.sort = { column: 'name', direction: 'ascending' };
             }
             if (data.columns === 'no') {
                 delete data.columns;
             } else if (data.columns === 'yes') {
-                data.columns =  [];
+                data.columns = [];
             } else {
                 data.columns = [
-                    {caption: 'InstanceID', name: 'InstanceID', width: '75px', add : 0,edit: {type: 'SelectInstance'}}, 
-                    {caption: 'Name', name: 'Name', width: 'auto', add: ''},
-                    {caption: 'State',name: 'State', width: '40px', add: 'New!'},
-                    {caption: 'Temperature', name: 'Temperature', width: '75px', add: 20.0, edit: {type: 'NumberSpinner', digits: 2}}
+                    { caption: 'InstanceID', name: 'InstanceID', width: '75px', add: 0, edit: { type: 'SelectInstance' } },
+                    { caption: 'Name', name: 'Name', width: 'auto', add: '' },
+                    { caption: 'State', name: 'State', width: '40px', add: 'New!' },
+                    { caption: 'Temperature', name: 'Temperature', width: '75px', add: 20.0, edit: { type: 'NumberSpinner', digits: 2 } }
                 ];
             }
             if (data.values === 'no') {
                 delete data.values;
             } else if (data.values === 'yes') {
-                data.values =  [];
+                data.values = [];
             } else {
                 data.values = [
-                    {id: 1, InstanceID: 0, Name: 'Category', State: '', Temperature: 0},
-                    {id: 2, parent: 1, InstanceID: 12435, Name: 'ABCD', State: 'Ok!', Temperature: 23.31, rowColor: '#ff0000'}
+                    { id: 1, InstanceID: 0, Name: 'Category', State: '', Temperature: 0 },
+                    { id: 2, parent: 1, InstanceID: 12435, Name: 'ABCD', State: 'Ok!', Temperature: 23.31, rowColor: '#ff0000' }
                 ];
             }
             break;
         default:
     }
+
+    // Config settings
+    const config = vscode.workspace.getConfiguration('forminator');
+    const allowEmptyValues = config.get<boolean>('emptyValues', true);
+    const deleteDefaultValues = config.get<boolean>('deleteDefaults', false);
+    const overwriteDefaultWidth = config.get<string>('defaultWidth', '');
+    const alwaysIncludesRaw = config.get<string>('alwaysIncludes', '');
+    const alwaysIncludes = alwaysIncludesRaw.split(',').map(key => key.trim()).filter(Boolean);
+
+    console.log('emptyValues: ' + allowEmptyValues);
+    console.log('deleteDefaults: ' + deleteDefaultValues);
+    console.log('defaultWidth: ' + overwriteDefaultWidth);
+    console.log('alwaysIncludes:', alwaysIncludes);
+
+    // Create lookup table for defaults
+    const item = items[type];
+    const defaults: Record<string, any> = {};
+    if (item?.parameters) {
+        for (const param of item.parameters) {
+            defaults[param.key] = param.default;
+        }
+    }
+
+    // string -> number conversion (if applicable)
+    const numbers = [
+        'color', 'current', 'code', 'discoveryInterval', 'digits', 'objectID', 'targetID', 'variableID',
+        'maximum', 'minimum', 'profileType', 'rowCount', 'stepSize'
+    ];
+
     // Generel typ translation
     for (const key in data) {
         if (!data.hasOwnProperty(key)) continue;
-        const value = data[key];
+        let value = data[key];
+
         // 'true' / 'false' as bool
-        if (value === 'true') {
-            data[key] = true;
-        } else if (value === 'false') {
-            data[key] = false;
+        if (value === 'true') value = true;
+        else if (value === 'false') value = false;
+
+        // overwrite default width
+        if (overwriteDefaultWidth != '' && key == 'width' && key in defaults && value === defaults[key]) {
+            value = overwriteDefaultWidth;
         }
-        // string to number
-        if ((key === 'color') || (key === 'current') || (key === 'code') ||
-            (key === 'discoveryInterval') || (key === 'digits') ||
-            (key === 'objectID') || (key === 'targetID') || (key === 'variableID') ||
-            (key === 'maximum') || (key === 'minimum') || 
-            (key === 'profileType') || (key === 'rowCount') || (key === 'stepSize')) {
-            data[key] = Number(value);
+
+        // If key is in alwaysInclude, always keep
+        if (alwaysIncludes.includes(key)) {
+            if (numbers.includes(key)) {
+                data[key] = value;
+            } else {
+                data[key] = value;
+            }
+            continue;
         }
+
+        // If value is empty and ‘emptyNames’ is deactivated => remove field
+        if (value === '' && !allowEmptyValues) {
+            delete data[key];
+            continue;
+        }
+
+        // Delete default value (if activated)
+        if (deleteDefaultValues && key in defaults && value === defaults[key]) {
+            delete data[key];
+            continue;
+        }
+        if (numbers.includes(key)) {
+            value = Number(value);
+        }
+        // Write the converted value back again
+        data[key] = value;
     }
     return data;
 }
