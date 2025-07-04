@@ -3,7 +3,7 @@
     "displayName": "%displayName%",
     "description": "%description%",
     "version": "1.0.3",
-    "publisher": "Wilkware",
+    "publisher": "wilkware-vscode",
     "author": {
         "name": "Heiko Wilknitz",
         "url": "https://wilkware.de"
