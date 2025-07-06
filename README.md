@@ -39,7 +39,7 @@ Forminator ist eine Visual Studio Code Extension, die das einfache Einfügen von
 
 4. Wähle in der Sidebar ein Formular-Element aus  
 
-   ![Formular-Eigenschaften](./media/form-settings.png)  
+   ![Formular-Eigenschaften](./media/form-properties.png)  
    <!-- Screenshot: Formular zur Eingabe der Eigenschaften -->
 
 5. Fülle die Eigenschaften im Formular aus  
