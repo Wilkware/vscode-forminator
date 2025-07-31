@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.2.0] - Feature (2025-07-31)
+
+- _NEW_: Add Context menu for translating text values directly from form.json into locale.json
+
 ## [1.1.0] - Feature (2025-07-04)
 
 - _NEW_: Setting `Transfer empty values` to include fields with empty values when inserting form elements.

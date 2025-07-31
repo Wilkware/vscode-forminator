@@ -1,0 +1,9 @@
+{
+    "Translation for \"{0}\" has been added.": "Übersetzung für \"{0}\" wurde eingetragen.",
+    "Error writing locale.json: {0}": "Fehler beim Schreiben der locale.json: {0}",
+    "Translation for \"{0}\"": "Übersetzung für \"{0}\"",
+    "e.g. My label": "z. B. Meine Beschriftung",
+    "No active editor.": "Kein aktiver Editor.",
+    "Please select some text!": "Bitte einen Text markieren!",
+    "No workspace open.": "Kein Arbeitsbereich geöffnet."
+}

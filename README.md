@@ -21,6 +21,7 @@ Forminator ist eine Visual Studio Code Extension, die das einfache Einfügen von
 - Anzeige und Bearbeitung aller Eigenschaften des ausgewählten Elements im Sidebar-Formular  
 - Unterstützung aller Standard-Elementtypen aus dem Symcon PHP SDK  
 - Einfaches Handling der Formulardaten ohne manuelles Tippen
+- Kontextmenü-Erweiterung zum Übersetzen von Texten direkt aus der form.json in die locale.json
 
 ### Installation
 
@@ -51,6 +52,20 @@ Forminator ist eine Visual Studio Code Extension, die das einfache Einfügen von
    ![Eingefügtes Element](./media/inserted-element.png)  
    <!-- Screenshot: Beispiel JSON nach dem Einfügen -->
 
+8. Markiere den zu übersetzenden Text in der form.json Datei und aktiviere das Kontext-Menü (rechte Maustaste)  
+
+   ![Eingefügtes Element](./media/context-menu.png)  
+   <!-- Screenshot: Beispiel JSON nach dem Einfügen -->
+
+9. Klicke auf "Übersetzung zur locale.json hinzufügen"  
+
+10. Gib deine Übersetzung in den Dialog ein ...
+
+   ![Eingefügtes Element](./media/input-box.png)  
+   <!-- Screenshot: Beispiel JSON nach dem Einfügen -->
+
+11. Fertig — eine neue Zeile wurde zur locale.json hinzugefügt!  
+
 ### Zielgruppe
 
 Diese Extension richtet sich an Entwickler von Symcon Modulen, die das PHP SDK nutzen.
@@ -70,6 +85,7 @@ Forminator is a Visual Studio Code extension for easily inserting Symcon configu
 - Sidebar form to display and edit all properties of the selected element  
 - Support for many standard element types from the Symcon PHP SDK  
 - Easy handling of form data without manual typing
+- Context menu extension for translating text values directly from form.json into locale.json
 
 ### Installation
 
@@ -99,6 +115,21 @@ Forminator is a Visual Studio Code extension for easily inserting Symcon configu
 
    ![Inserted Element](./media/inserted-element.png)  
    <!-- Screenshot: Example JSON after insertion -->
+
+8. Select the text you want to translate in the form.json file and open the context menu (right-click)  
+
+   ![Inserted Element](./media/context-menu.png)  
+   <!-- Screenshot: Context menu -->
+
+
+9. Click on "Add translation to locale.json"  
+
+10. Enter your translation in the input dialog ...
+
+   ![Inserted Element](./media/input-box.png)  
+   <!-- Screenshot: Enter translation text -->
+
+11. Done — a new line has been added to locale.json!  
 
 ### Target Audience
 

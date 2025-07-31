@@ -2,7 +2,7 @@
     "name": "forminator",
     "displayName": "%displayName%",
     "description": "%description%",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "publisher": "wilkware-vscode",
     "author": {
         "name": "Heiko Wilknitz",
@@ -30,7 +30,7 @@
         "php"
     ],
     "engines": {
-        "vscode": "^1.72.0"
+        "vscode": "^1.73.0"
     },
     "activationEvents": [
         "onStartupFinished",
@@ -38,6 +38,7 @@
     ],
     "main": "./dist/extension.js",
     "icon": "resources/icon.png",
+    "l10n" : "./l10n" , 
     "contributes": {
         "viewsContainers": {
             "activitybar": [
@@ -55,6 +56,22 @@
                     "id": "symconForm.sidebar",
                     "name": "%sidebarViewName%",
                     "icon": "resources/sidebar.svg"
+                }
+            ]
+        },
+        "commands": [
+            {
+                "command": "symconForm.addTranslationToLocale",
+                "title": "%addTranslationTitle%",
+                "category": "Symcon"
+            }
+        ],
+        "menus": {
+            "editor/context": [
+                {
+                    "command": "symconForm.addTranslationToLocale",
+                    "when": "resourceFilename == form.json",
+                    "group": "navigation"
                 }
             ]
         },
@@ -86,7 +103,19 @@
                     "description": "%config.defaultWidthDesc%"
                 }
             }
-        }
+        },
+        "localizations": [
+            {
+                "languageId": "de",
+                "languageName": "Deutsch",
+                "translations": [
+                    {
+                        "id": "vscode",
+                        "path": "./l10n/vscode-language.de.json"
+                    }
+                ]
+            }
+        ]
     },
     "scripts": {
         "vscode:prepublish": "tsc -p ./",
@@ -97,12 +126,15 @@
         "postinstall": "node scripts/build-elements-lite-css.js && node scripts/build-codicons-css.js"
     },
     "devDependencies": {
+        "@types/node": "^24.1.0",
         "@types/vscode": "^1.72.0",
+        "@vscode/l10n-dev": "^0.0.35",
         "@vscode/test-electron": "^2.2.3",
         "typescript": "^5.3.3"
     },
     "dependencies": {
         "@vscode-elements/elements-lite": "^0.3.0",
-        "@vscode/codicons": "^0.0.36"
+        "@vscode/codicons": "^0.0.36",
+        "@vscode/l10n": "^0.0.18"
     }
 }

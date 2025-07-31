@@ -1,14 +1,15 @@
 {
-  "displayName": "Symcon Formular Helfer",
-  "description": "Einfaches Einfügen von Symcon Konfigurationsformular Elementen (form.json) über die Sidebar.",
-  "activityBarTitle": "Forminator",
-  "sidebarViewName": "Konfigurationsformulare",
-  "config.emptyValuesTitle": "Leere Werte übernehmen",
-  "config.emptyValuesDesc": "Wenn aktiviert, werden auch Felder mit leerem Wert in das Formular übernommen.",
-  "config.deleteDefaultsTitle": "Lösche Standardwerte",
-  "config.deleteDefaultsDesc": "Wenn aktiviert, werden Felder mit Stanbdardwerten nicht in das Formular übernommen.",
-  "config.defaultWidthTitle": "Standardbreite überschreiben",
-  "config.defaultWidthDesc": "Wenn nicht leer, wird die Standardbreite mit hinterlegtem Wert überschreiben (px bzw. %).",
-  "config.alwaysIncludesTitle": "Verpflichtende Schlüssel schreiben",
-  "config.alwaysIncludesDesc": "Liste der Parameterschlüssel, die immer geschrieben werden sollen, auch wenn sie leer oder voreingestellt sind (durch Komma getrennt)."
+    "displayName": "Symcon Formular Helfer",
+    "description": "Einfaches Einfügen von Symcon Konfigurationsformular Elementen (form.json) über die Sidebar.",
+    "activityBarTitle": "Forminator",
+    "sidebarViewName": "Konfigurationsformulare",
+    "addTranslationTitle": "Übersetzung zur locale.json hinzufügen",
+    "config.emptyValuesTitle": "Leere Werte übernehmen",
+    "config.emptyValuesDesc": "Wenn aktiviert, werden auch Felder mit leerem Wert in das Formular übernommen.",
+    "config.deleteDefaultsTitle": "Lösche Standardwerte",
+    "config.deleteDefaultsDesc": "Wenn aktiviert, werden Felder mit Stanbdardwerten nicht in das Formular übernommen.",
+    "config.defaultWidthTitle": "Standardbreite überschreiben",
+    "config.defaultWidthDesc": "Wenn nicht leer, wird die Standardbreite mit hinterlegtem Wert überschreiben (px bzw. %).",
+    "config.alwaysIncludesTitle": "Verpflichtende Schlüssel schreiben",
+    "config.alwaysIncludesDesc": "Liste der Parameterschlüssel, die immer geschrieben werden sollen, auch wenn sie leer oder voreingestellt sind (durch Komma getrennt)."
 }

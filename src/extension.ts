@@ -1,4 +1,6 @@
 import * as vscode from 'vscode';
+import * as fs from 'fs';
+import * as path from 'path';
 import { translations } from './translations';
 import { items } from './items';
 import { icons } from './icons';
@@ -39,6 +41,60 @@ export function activate(context: vscode.ExtensionContext) {
     if (activeFile && activeFile.endsWith("form.json")) {
         vscode.commands.executeCommand("workbench.view.extension.symconForm");
     }
+
+    context.subscriptions.push(
+        vscode.commands.registerCommand('symconForm.addTranslationToLocale', async () => {
+            const editor = vscode.window.activeTextEditor;
+            if (!editor) {
+                vscode.window.showInformationMessage(vscode.l10n.t('No active editor.'));
+                return;
+            }
+
+            const selection = editor.selection;
+            const selectedText = editor.document.getText(selection).replace(/^"|"$/g, ''); // remove quotes
+
+            if (!selectedText) {
+                vscode.window.showWarningMessage(vscode.l10n.t('Please select some text!'));
+                return;
+            }
+
+            const translation = await vscode.window.showInputBox({
+                prompt: vscode.l10n.t('Translation for "{0}"', selectedText),
+                placeHolder: vscode.l10n.t('e.g. My label')
+            });
+
+            if (!translation) return;
+
+            const workspaceFolders = vscode.workspace.workspaceFolders;
+            if (!workspaceFolders) {
+                vscode.window.showErrorMessage(vscode.l10n.t('No workspace open.'));
+                return;
+            }
+
+            const currentFile = editor.document.uri.fsPath;
+            const folderPath = path.dirname(currentFile);
+            const localePath = path.join(folderPath, 'locale.json');
+
+            let locale: any = { translations: { de: {} } };
+
+            try {
+                const content = await fs.promises.readFile(localePath, 'utf-8');
+                locale = JSON.parse(content);
+            } catch {
+                // Datei existiert nicht – neu anlegen
+            }
+
+            locale.translations ??= {};
+            locale.translations.de ??= {};
+            locale.translations.de[selectedText] = translation;
+
+            try {
+                await fs.promises.writeFile(localePath, JSON.stringify(locale, null, 4), 'utf-8');
+                vscode.window.showInformationMessage(vscode.l10n.t('Translation for \"{0}\" has been added.', selectedText));
+            } catch (err: any) {
+                vscode.window.showErrorMessage(vscode.l10n.t('Error writing locale.json: {0}', err.message));
+            }
+        }));
 }
 
 function getWebviewContent(webview: vscode.Webview, extensionUri: vscode.Uri): string {
@@ -58,7 +114,7 @@ function getWebviewContent(webview: vscode.Webview, extensionUri: vscode.Uri): s
         .map(key => {
             const title = t[key] || key;
             const icon = icons[key] ?? "question"; // fallback für unbekannte Keys
-            return `            <button class="vscode-button card" onclick="selectItem('${key}')" title="${title}"><i class="codicon codicon-${icon}"></i>${key}</button>`;
+            return `<button class="vscode-button card" onclick="selectItem('${key}')" title="${title}"><i class="codicon codicon-${icon}"></i>${key}</button>`;
         })
         .join('\n');
 
@@ -162,7 +218,7 @@ function getWebviewContent(webview: vscode.Webview, extensionUri: vscode.Uri): s
 
     <script>
         const vscode = acquireVsCodeApi();
-        const items = ${ JSON.stringify(items)};
+        const items = ${JSON.stringify(items)};
 
         const toolbar = document.getElementById('toolbar');
         const settings = document.getElementById('settings');

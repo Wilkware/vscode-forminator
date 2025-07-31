@@ -1,14 +1,15 @@
 {
-  "displayName": "Symcon Form Helper",
-  "description": "Simple insertion of Symcon configuration form elements (form.json) via the sidebar.",
-  "activityBarTitle": "Forminator",
-  "sidebarViewName": "Configuration Forms",
-  "config.emptyValuesTitle": "Transfer empty values",
-  "config.emptyValuesDesc": "If activated, fields with empty values are also transferred to the form.",
-  "config.deleteDefaultsTitle": "Delete default values",
-  "config.deleteDefaultsDesc": "If activated, fields with default values are not transferred to the form.",
-  "config.defaultWidthTitle": "Overwrite default width",
-  "config.defaultWidthDesc": "If not empty, the default width is overwritten with the stored value (px or %).",
-  "config.alwaysIncludesTitle": "Write mandatory keys",
-  "config.alwaysIncludesDesc": "List of parameter keys that should always be written, even if empty or default (comma-separated)."
+    "displayName": "Symcon Form Helper",
+    "description": "Simple insertion of Symcon configuration form elements (form.json) via the sidebar.",
+    "activityBarTitle": "Forminator",
+    "sidebarViewName": "Configuration Forms",
+    "addTranslationTitle": "Add translation to locale.json",
+    "config.emptyValuesTitle": "Transfer empty values",
+    "config.emptyValuesDesc": "If activated, fields with empty values are also transferred to the form.",
+    "config.deleteDefaultsTitle": "Delete default values",
+    "config.deleteDefaultsDesc": "If activated, fields with default values are not transferred to the form.",
+    "config.defaultWidthTitle": "Overwrite default width",
+    "config.defaultWidthDesc": "If not empty, the default width is overwritten with the stored value (px or %).",
+    "config.alwaysIncludesTitle": "Write mandatory keys",
+    "config.alwaysIncludesDesc": "List of parameter keys that should always be written, even if empty or default (comma-separated)."
 }
