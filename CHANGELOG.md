@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.2.1] - Patch (2025-08-05)
+
+- _FIX_: Correct wrong localisation settings in package.json
+
 ## [1.2.0] - Feature (2025-07-31)
 
 - _NEW_: Add Context menu for translating text values directly from form.json into locale.json

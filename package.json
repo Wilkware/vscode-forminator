@@ -2,7 +2,7 @@
     "name": "forminator",
     "displayName": "%displayName%",
     "description": "%description%",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "publisher": "wilkware-vscode",
     "author": {
         "name": "Heiko Wilknitz",
@@ -38,7 +38,7 @@
     ],
     "main": "./dist/extension.js",
     "icon": "resources/icon.png",
-    "l10n" : "./l10n" , 
+    "l10n" : "./l10n", 
     "contributes": {
         "viewsContainers": {
             "activitybar": [
@@ -103,19 +103,7 @@
                     "description": "%config.defaultWidthDesc%"
                 }
             }
-        },
-        "localizations": [
-            {
-                "languageId": "de",
-                "languageName": "Deutsch",
-                "translations": [
-                    {
-                        "id": "vscode",
-                        "path": "./l10n/vscode-language.de.json"
-                    }
-                ]
-            }
-        ]
+        }
     },
     "scripts": {
         "vscode:prepublish": "tsc -p ./",
