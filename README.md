@@ -1,7 +1,7 @@
 # Forminator — Symcon Formular Helfer / Form Helper
 
 [![Publisher](https://img.shields.io/badge/Publisher-Wilkware-orange?style=flat-square)](https://marketplace.visualstudio.com/publishers/wilkware-vscode)
-[![Version](https://img.shields.io/badge/Version-1.0.3-yellow.svg?style=flat-square)](https://github.com/Wilkware/vscode-forminator)
+[![Version](https://img.shields.io/badge/Version-1.3.0-yellow.svg?style=flat-square)](https://github.com/Wilkware/vscode-forminator)
 [![Installs](https://img.shields.io/visual-studio-marketplace/i/wilkware-vscode.forminator?color=green&label=Installs&style=flat-square)](https://marketplace.visualstudio.com/items?itemName=wilkware-vscode.forminator)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-blue.svg?style=flat-square)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8816166)
 [![License](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-green.svg?style=flat-square)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
@@ -22,6 +22,7 @@ Forminator ist eine Visual Studio Code Extension, die das einfache Einfügen von
 - Unterstützung aller Standard-Elementtypen aus dem Symcon PHP SDK  
 - Einfaches Handling der Formulardaten ohne manuelles Tippen
 - Kontextmenü-Erweiterung zum Übersetzen von Texten direkt aus der form.json in die locale.json
+- Befehl (Strg + Umschalt + P) zum Auslesen aller Property-Variablen aus der form.json und registrieren in der Create()-Methode der module.php 
 
 ### Installation
 
@@ -55,16 +56,22 @@ Forminator ist eine Visual Studio Code Extension, die das einfache Einfügen von
 8. Markiere den zu übersetzenden Text in der form.json Datei und aktiviere das Kontext-Menü (rechte Maustaste)  
 
    ![Eingefügtes Element](./media/context-menu.png)  
-   <!-- Screenshot: Beispiel JSON nach dem Einfügen -->
+   <!-- Screenshot: Context Menü für Übersetzung -->
 
 9. Klicke auf "Übersetzung zur locale.json hinzufügen"  
 
 10. Gib deine Übersetzung in den Dialog ein ...
 
    ![Eingefügtes Element](./media/input-box.png)  
-   <!-- Screenshot: Beispiel JSON nach dem Einfügen -->
+   <!-- Screenshot: Eingabe der Übersewtzung -->
 
-11. Fertig — eine neue Zeile wurde zur locale.json hinzugefügt!  
+11. Fertig — eine neue Zeile wurde zur locale.json hinzugefügt!
+
+12. Wechseln zurück in die module.php Datei und Drücke (Strg + Umschalt + P)
+
+   ![Eingefügtes Element](./media/command-register.png)  
+   <!-- Screenshot: Aufruf Befehlspalette -->
+
 
 ### Zielgruppe
 
@@ -86,6 +93,7 @@ Forminator is a Visual Studio Code extension for easily inserting Symcon configu
 - Support for many standard element types from the Symcon PHP SDK  
 - Easy handling of form data without manual typing
 - Context menu extension for translating text values directly from form.json into locale.json
+- Command (Ctrl + Shift + P) to read all property variables from form.json and register them in the Create() method of module.php
 
 ### Installation
 
@@ -130,6 +138,12 @@ Forminator is a Visual Studio Code extension for easily inserting Symcon configu
    <!-- Screenshot: Enter translation text -->
 
 11. Done — a new line has been added to locale.json!  
+
+
+12. Switch back to the module.php file and press (Ctrl + Shift + P).
+
+   ![Inserted Element](./media/command-register.png)  
+   <!-- Screenshot: Call up the command palette -->
 
 ### Target Audience
 

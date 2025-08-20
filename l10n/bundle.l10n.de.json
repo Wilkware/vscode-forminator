@@ -5,5 +5,12 @@
     "e.g. My label": "z. B. Meine Beschriftung",
     "No active editor.": "Kein aktiver Editor.",
     "Please select some text!": "Bitte einen Text markieren!",
-    "No workspace open.": "Kein Arbeitsbereich geöffnet."
+    "No workspace open.": "Kein Arbeitsbereich geöffnet.",
+    "Please open the module PHP file (module.php) before running this command.": "Bitte öffnen Sie die PHP-Datei des Moduls (module.php), bevor Sie diesen Befehl ausführen.",
+    "No form.json found in the same folder as the PHP module.": "Keine Datei form.json im selben Ordner wie das PHP-Modul gefunden.",
+    "Could not parse form json: ": "Formular-JSON konnte nicht geparst werden:",
+    "No RegisterProperty calls generated from form.json.": "Keine RegisterProperty-Aufrufe aus form.json generiert.",
+    "Inserted {0} RegisterProperty call(s) into Create().": "{0} RegisterProperty-Aufruf(e) in Create() eingefügt.",
+    "No new RegisterProperty calls inserted (all already present).": "Keine neuen RegisterProperty-Aufrufe eingefügt (alle bereits vorhanden).",
+    "Unexpected error: ": "Unerwarteter Fehler:"
 }
