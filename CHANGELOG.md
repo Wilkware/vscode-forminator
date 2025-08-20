@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.3.0] - Feature (2025-08-20)
+
+- _NEW_: Add Command for insert RegisterProperty calls into Create().
+
 ## [1.2.1] - Patch (2025-08-05)
 
 - _FIX_: Correct wrong localisation settings in package.json
