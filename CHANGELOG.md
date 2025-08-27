@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.3.1] - Patch (2025-08-27)
+
+- _FIX_: Text containing $ characters is now correctly escaped.
+- _NEW_: Intelligent cursor position management.
+
 ## [1.3.0] - Feature (2025-08-20)
 
 - _NEW_: Add Command for insert RegisterProperty calls into Create().

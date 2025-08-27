@@ -15,12 +15,9 @@ export function activate(context: vscode.ExtensionContext) {
                 webviewView.webview.onDidReceiveMessage(async (message) => {
                     if (message.command === 'insertItem') {
                         const editor = vscode.window.activeTextEditor;
-                        if (editor) {
-                            const rendered = renderFormData(message.data);
-                            const formatted = JSON.stringify(rendered, null, 4);
-                            const snippet = new vscode.SnippetString(',\n' + formatted + '$0');
-                            editor.insertSnippet(snippet);
-                        }
+                        if (!editor) return;
+                        const rendered = renderFormData(message.data);
+                        insertElement(editor, rendered);
                     }
                     if (message.command === 'requestSettings') {
                         const html = renderSettingsForm(message.item);
@@ -237,6 +234,91 @@ async function insertIntoCreate(phpEditor: vscode.TextEditor, phpCalls: string[]
 
     return callsToInsert.length;
 }
+
+// Intelligente Einfügefunktion für Elemente (JSON-Arrays)
+function insertElement(editor: vscode.TextEditor, newElement: object) {
+    const doc = editor.document;
+    const pos = editor.selection.active;
+    const text = doc.getText();
+    const offset = doc.offsetAt(pos);
+
+    // Hilfsfunktion: Array-Grenzen finden
+    function findArrayAtPosition(text: string, offset: number): { start: number; end: number } | null {
+        const stack: number[] = [];
+        for (let i = 0; i < text.length; i++) {
+            if (text[i] === '[') stack.push(i);
+            if (text[i] === ']') {
+                const start = stack.pop();
+                if (start !== undefined && start <= offset && offset <= i) {
+                    return { start, end: i };
+                }
+            }
+        }
+        return null;
+    }
+
+    const arrayRange = findArrayAtPosition(text, offset);
+    if (!arrayRange) {
+        vscode.window.showErrorMessage('Kein gültiges Array an der Cursor-Position gefunden.');
+        return;
+    }
+
+    const arrayText = text.substring(arrayRange.start, arrayRange.end + 1);
+
+    let arrayData: any[];
+    try {
+        arrayData = JSON.parse(arrayText);
+    } catch (err) {
+        vscode.window.showErrorMessage('Fehler beim Parsen des Arrays.');
+        return;
+    }
+
+    // Einrückung der aktuellen Zeile ermitteln
+    const arrayLine = doc.positionAt(arrayRange.start).line;
+    const lineText = doc.lineAt(arrayLine).text;
+    const baseIndentMatch = lineText.match(/^(\s*)/);
+    const baseIndent = baseIndentMatch ? baseIndentMatch[1] : '';
+    const indent = baseIndent + '    ';
+
+    // Cursorposition relativ zum Array
+    const cursorOffsetInArray = offset - arrayRange.start;
+
+    // Position im Array finden
+    let insertIndex = arrayData.length; // Standard: ans Ende
+    let currentOffset = 1; // Start nach der '['
+    for (let i = 0; i < arrayData.length; i++) {
+        const elementString = JSON.stringify(arrayData[i], null, 4);
+        const elementLength = elementString.length;
+        if (cursorOffsetInArray <= currentOffset + elementLength / 2) {
+            insertIndex = i;
+            break;
+        }
+        currentOffset += elementLength + 1; // +1 für das Komma
+    }
+
+    // Neues Element einfügen
+    arrayData.splice(insertIndex, 0, newElement);
+
+    // Neu formatieren
+    const formattedArray =
+        '[\n' +
+        arrayData
+            .map(el => indent + JSON.stringify(el, null, 4).replace(/\n/g, '\n' + indent))
+            .join(',\n') +
+        '\n' +
+        baseIndent +
+        ']';
+
+    const range = new vscode.Range(
+        doc.positionAt(arrayRange.start),
+        doc.positionAt(arrayRange.end + 1)
+    );
+
+    editor.edit(editBuilder => {
+        editBuilder.replace(range, formattedArray);
+    });
+}
+
 
 function generateRegisterPropertyCalls(formJson: any): string[] {
     const calls: { ident: string; code: string }[] = [];
@@ -665,7 +747,7 @@ function getWebviewContent(webview: vscode.Webview, extensionUri: vscode.Uri): s
                     data[key] = field.value;
                 }
             });
-            console.log(data);
+            console.log('Insert:', data);
             vscode.postMessage({ command: 'insertItem', data });
         }
 
