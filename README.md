@@ -23,6 +23,7 @@ Forminator ist eine Visual Studio Code Extension, die das einfache Einfügen von
 - Einfaches Handling der Formulardaten ohne manuelles Tippen
 - Kontextmenü-Erweiterung zum Übersetzen von Texten direkt aus der form.json in die locale.json
 - Befehl (Strg + Umschalt + P) zum Auslesen aller Property-Variablen aus der form.json und registrieren in der Create()-Methode der module.php 
+- Live Preview: Direkte Visualisierung der Kachel/Module im Webview während der Bearbeitung – Änderungen am HTML, JSON oder Theme werden sofort übernommen.
 
 ### Installation
 
@@ -31,47 +32,78 @@ Forminator ist eine Visual Studio Code Extension, die das einfache Einfügen von
 
 ### Verwendung
 
-1. Öffne eine `forms.json` Datei im Projekt  
-2. Die Forminator Sidebar wird automatisch angezeigt  
+1. [Formulare](#user-content-1-formulare)
+2. [Übersetzungen](#user-content-2-uebersetzungen)
+3. [Registrierungen](#user-content-3-Registrierungen)
+4. [Live Vorschau](#user-content-8-livevorschau)
+
+#### 1. Formulare
+
+* Öffne eine `forms.json` Datei im Projekt  
+* Die Forminator Sidebar wird automatisch angezeigt  
 
    ![Sidebar Übersicht](./media/sidebar-overview.png)  
    <!-- Screenshot: Sidebar mit Liste der Formular-Elemente -->
 
-3. Positioniere den Cursor an die gewünschte Stelle im JSON (z.B. nach einer schließenden Klammer eines Elements)  
+* Positioniere den Cursor an die gewünschte Stelle im JSON (z.B. nach einer schließenden Klammer eines Elements)  
 
-4. Wähle in der Sidebar ein Formular-Element aus  
+* Wähle in der Sidebar ein Formular-Element aus  
 
    ![Formular-Eigenschaften](./media/form-properties.png)  
    <!-- Screenshot: Formular zur Eingabe der Eigenschaften -->
 
-5. Fülle die Eigenschaften im Formular aus  
+* Fülle die Eigenschaften im Formular aus  
 
-6. Klicke auf „Element einfügen“  
+* Klicke auf „Element einfügen“  
 
-7. Fertig — das Element wird korrekt und formatiert im JSON eingefügt  
+* Fertig — das Element wird korrekt und formatiert im JSON eingefügt  
 
    ![Eingefügtes Element](./media/inserted-element.png)  
    <!-- Screenshot: Beispiel JSON nach dem Einfügen -->
 
-8. Markiere den zu übersetzenden Text in der form.json Datei und aktiviere das Kontext-Menü (rechte Maustaste)  
+#### 2. Übersetzungen
 
-   ![Eingefügtes Element](./media/context-menu.png)  
+* Markiere den zu übersetzenden Text in der form.json Datei und aktiviere das Kontext-Menü (rechte Maustaste)  
+
+   ![Kontext Menu](./media/context-menu.png)  
    <!-- Screenshot: Context Menü für Übersetzung -->
 
-9. Klicke auf "Übersetzung zur locale.json hinzufügen"  
+* Klicke auf "Übersetzung zur locale.json hinzufügen"  
 
-10. Gib deine Übersetzung in den Dialog ein ...
+* Gib deine Übersetzung in den Dialog ein ...
 
-   ![Eingefügtes Element](./media/input-box.png)  
+   ![Eingabe Feld](./media/input-box.png)  
    <!-- Screenshot: Eingabe der Übersewtzung -->
 
-11. Fertig — eine neue Zeile wurde zur locale.json hinzugefügt!
+* Fertig — eine neue Zeile wurde zur locale.json hinzugefügt!
 
-12. Wechseln zurück in die module.php Datei und Drücke (Strg + Umschalt + P)
+#### 3. Registrierungen
 
-   ![Eingefügtes Element](./media/command-register.png)  
+* Wechseln in die module.php Datei und drücke (Strg + Umschalt + P)
+
+   ![Kommando Register](./media/command-register.png)  
    <!-- Screenshot: Aufruf Befehlspalette -->
 
+* Wähle "Füge RegisterProperty-Aufrufe in Create() ein." aus!  
+
+* Fertig – für alle in form.json definierten Eigenschaften wird ein RegisterProperty-Aufruf in die create-Methode von module.php eingefügt!
+
+#### 4. Live Preview
+
+* Wechseln zur Datei „module.html“ und drücken (Strg + Umschalt + P).
+
+   ![Command Preview](./media/command-preview.png)  
+   <!-- Screenshot: Call up the command palette -->
+
+* Oder öffnen Sie das Kontextmenü (Rechtsklick)
+
+   ![Context Preview](./media/context-preview.png)  
+   <!-- Screenshot: Context menu -->
+
+* Fertig – die Symcon-Live-Vorschau wurde angezeigt.
+
+   ![Live Preview](./media/vscode-preview.png)  
+   <!-- Screenshot: Live preview -->
 
 ### Zielgruppe
 
@@ -94,6 +126,7 @@ Forminator is a Visual Studio Code extension for easily inserting Symcon configu
 - Easy handling of form data without manual typing
 - Context menu extension for translating text values directly from form.json into locale.json
 - Command (Ctrl + Shift + P) to read all property variables from form.json and register them in the Create() method of module.php
+- Live Preview: Immediate visualization of the tile/module in the Webview while editing – changes to HTML, JSON, or theme are applied instantly.
 
 ### Installation
 
@@ -102,48 +135,59 @@ Forminator is a Visual Studio Code extension for easily inserting Symcon configu
 
 ### Usage
 
-1. Open a `forms.json` file in your project  
-2. The Forminator sidebar appears automatically  
+1. [Forms](#user-content-1-forms)
+2. [Translation](#user-content-2-translation)
+3. [Registration](#user-content-3-registration)
+4. [Live Preview](#user-content-8-livepreview)
+
+#### 1. Forms
+
+* Open a `forms.json` file in your project  
+* The Forminator sidebar appears automatically  
 
    ![Sidebar Overview](./media/sidebar-overview.png)  
    <!-- Screenshot: Sidebar with list of form elements -->
 
-3. Place the cursor where you want to insert a new element (e.g., after a closing brace of the previous element)  
+* Place the cursor where you want to insert a new element (e.g., after a closing brace of the previous element)  
 
-4. Select a form element in the sidebar  
+* Select a form element in the sidebar  
 
    ![Form Properties](./media/form-properties.png)  
    <!-- Screenshot: Form for entering element properties -->
 
-5. Fill out the properties in the form  
+* Fill out the properties in the form  
 
-6. Click the "Insert Element" button  
+* Click the "Insert Element" button  
 
-7. Done — the element is inserted correctly formatted in the JSON  
+* Done — the element is inserted correctly formatted in the JSON  
 
    ![Inserted Element](./media/inserted-element.png)  
    <!-- Screenshot: Example JSON after insertion -->
 
-8. Select the text you want to translate in the form.json file and open the context menu (right-click)  
+#### 2. Translation
 
-   ![Inserted Element](./media/context-menu.png)  
+* Select the text you want to translate in the form.json file and open the context menu (right-click)  
+
+   ![Context Menu](./media/context-menu.png)  
    <!-- Screenshot: Context menu -->
 
 
-9. Click on "Add translation to locale.json"  
+* Click on "Add translation to locale.json"  
 
-10. Enter your translation in the input dialog ...
+* Enter your translation in the input dialog ...
 
-   ![Inserted Element](./media/input-box.png)  
+   ![Input Box](./media/input-box.png)  
    <!-- Screenshot: Enter translation text -->
 
-11. Done — a new line has been added to locale.json!  
+* Done — a new line has been added to locale.json!  
 
+#### 3. Registration
 
-12. Switch back to the module.php file and press (Ctrl + Shift + P).
+* Switch to the module.php file and press (Ctrl + Shift + P).
 
-   ![Inserted Element](./media/command-register.png)  
+   ![Command Register](./media/command-register.png)  
    <!-- Screenshot: Call up the command palette -->
+
 
 ### Target Audience
 

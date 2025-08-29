@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.0] - Release (2025-08-29)
+
+- _NEW_: Symcon TileVisu Live Preview (module.html)
+- _NEW_: Add Command and menu for preview.
+- _NEW_: Setting `Server IP` and `Server Port` to load resources form symcon server.
+- _NEW_: Setting `Themes` for storing different designs for live preview.
+- _FIX_: Complete code refactoring
+
 ## [1.3.1] - Patch (2025-08-27)
 
 - _FIX_: Text containing $ characters is now correctly escaped.

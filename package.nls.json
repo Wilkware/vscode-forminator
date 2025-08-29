@@ -5,6 +5,7 @@
     "sidebarViewName": "Configuration Forms",
     "addTranslationTitle": "Add translation to locale.json.",
     "insertRegisterTitle": "Insert RegisterProperty calls into Create().",
+    "openPreviewTitle": "Open preview of visualisation",
     "config.emptyValuesTitle": "Transfer empty values",
     "config.emptyValuesDesc": "If activated, fields with empty values are also transferred to the form.",
     "config.deleteDefaultsTitle": "Delete default values",
@@ -12,5 +13,11 @@
     "config.defaultWidthTitle": "Overwrite default width",
     "config.defaultWidthDesc": "If not empty, the default width is overwritten with the stored value (px or %).",
     "config.alwaysIncludesTitle": "Write mandatory keys",
-    "config.alwaysIncludesDesc": "List of parameter keys that should always be written, even if empty or default (comma-separated)."
+    "config.alwaysIncludesDesc": "List of parameter keys that should always be written, even if empty or default (comma-separated).",
+    "config.serverIPTitle": "Symcon Server IP",
+    "config.serverIPDesc": "IP address under which the tile visualisation runs.",
+    "config.serverPortTitle": "Symcon Server Port",
+    "config.serverPortDesc": "Port under which the server delivers the tile visualisation.",
+    "config.themesTitle": "Themes",
+    "config.themesDesc": "Themes configuration (line-based). Use: theme-name: bg-color, accent-color, card-color, content-color."
 }

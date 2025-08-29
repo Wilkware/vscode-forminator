@@ -1,0 +1,106 @@
+    :root {
+        --bg-color: #111C2D;
+        --accent-color: #00CDAB;
+        --card-color: #FFFFFF;
+        --text-color: #000000;
+        --card-height: 244px;
+        --card-width: 244px;
+    }
+
+    html,
+    body {
+        background: var(--bg-color);
+        color: #fff;
+        font-family: "Poppins", sans-serif;
+        padding: 10px 10px;
+    }
+    h2 {
+        color: var(--accent-color);
+        margin-top: 0;
+    }
+    form label {
+        margin-right: 10px;
+    }
+    select {
+        padding: 6px 10px;
+        margin-right: 10px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+    }
+    
+    button {
+        background-color: var(--accent-color);
+        color: #fff;
+        border: none;
+        padding: 8px 14px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+    button:hover {
+        opacity: 0.85;
+    }
+    .card {
+        background: var(--card-color);
+        border-radius: 8px;
+        box-shadow: 1px 1px 1px rgba(0,0,0,0.9);
+        width: var(--card-width);
+        height: var(--card-height);
+        margin-top: 25px;
+        position: relative;
+        overflow: hidden;
+    }
+
+
+    #header {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        width: calc(100% - 60px);
+        font-weight: 600;
+        font-size: 16px;
+        color: var(--text-color);
+        user-select: none;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        box-sizing: border-box;
+    }
+
+    #expand {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        color: var(--text-color);
+        user-select: none;
+        box-sizing: border-box;
+        cursor: pointer;
+    }
+
+    .frame {
+        height: 100%; /* calc(100% - 60px - 20px); */
+        width: 100%; /* calc(100% - 20px - 15px); */
+        box-sizing: border-box;
+    }
+    .clearfix::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+    #code {
+        margin-top: 25px;
+        background-color: #2e3440;
+        color: #d8dee9;
+        font-family: 'Courier New', monospace;
+        padding: 16px;
+        border-radius: 8px;
+        white-space: pre;
+        overflow-x: auto;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    }
+
+    #code:focus {
+        outline: none;
+    }
+

@@ -1,5 +1,3 @@
-//src: items.ts
-
 export interface Items {
     parameters: Parameter[];
 }

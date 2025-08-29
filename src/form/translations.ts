@@ -1,5 +1,3 @@
-import { ProgressLocation } from "vscode";
-
 export const translations: Record<string, Record<string, string>> = {
     en: {
         headline: "Symcon Forms Elements",

@@ -5,6 +5,7 @@
     "sidebarViewName": "Konfigurationsformulare",
     "addTranslationTitle": "Übersetzung zur locale.json hinzufügen.",
     "insertRegisterTitle": "Füge RegisterProperty-Aufrufe in Create() ein.",
+    "openPreviewTitle": "Vorschau der Visualisierung öffnen",
     "config.emptyValuesTitle": "Leere Werte übernehmen",
     "config.emptyValuesDesc": "Wenn aktiviert, werden auch Felder mit leerem Wert in das Formular übernommen.",
     "config.deleteDefaultsTitle": "Lösche Standardwerte",
@@ -12,5 +13,12 @@
     "config.defaultWidthTitle": "Standardbreite überschreiben",
     "config.defaultWidthDesc": "Wenn nicht leer, wird die Standardbreite mit hinterlegtem Wert überschreiben (px bzw. %).",
     "config.alwaysIncludesTitle": "Verpflichtende Schlüssel schreiben",
-    "config.alwaysIncludesDesc": "Liste der Parameterschlüssel, die immer geschrieben werden sollen, auch wenn sie leer oder voreingestellt sind (durch Komma getrennt)."
+    "config.alwaysIncludesDesc": "Liste der Parameterschlüssel, die immer geschrieben werden sollen, auch wenn sie leer oder voreingestellt sind (durch Komma getrennt).",
+    "config.serverIPTitle": "Symcon Server IP",
+    "config.serverIPDesc": "IP Adresse unter welchem die Kachel-Visualisierung läuft.",
+    "config.serverPortTitle": "Symcon Server Port",
+    "config.serverPortDesc": "Port unter welchem der Server die Kachel-Visualisierung ausliefert.",
+    "config.themesTitle": "Themes",
+    "config.themesDesc": "Themes-Konfiguration (zeilenbasiert). Verwendung: Theme-Name: Hintergrundfarbe, Akzentfarbe, Kartenfarbe, Inhaltsfarbe."
+
 }

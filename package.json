@@ -2,7 +2,7 @@
     "name": "forminator",
     "displayName": "%displayName%",
     "description": "%description%",
-    "version": "1.3.1",
+    "version": "2.0.0",
     "publisher": "wilkware-vscode",
     "author": {
         "name": "Heiko Wilknitz",
@@ -16,6 +16,11 @@
         "url": "https://github.com/Wilkware/vscode-forminator/issues",
         "email": "heiko@wilkware.de"
     },
+    "homepage": "https://github.com/Wilkware/vscode-forminator/blob/main/README.md",
+    "galleryBanner": {
+        "color": "#ff9800",
+        "theme": "dark"
+    },
     "categories": [
         "Snippets",
         "Visualization",
@@ -24,6 +29,7 @@
     "keywords": [
         "symcon",
         "module",
+        "preview",
         "form.json",
         "smart home",
         "ips",
@@ -38,7 +44,7 @@
     ],
     "main": "./dist/extension.js",
     "icon": "resources/icon.png",
-    "l10n" : "./l10n", 
+    "l10n": "./l10n",
     "contributes": {
         "viewsContainers": {
             "activitybar": [
@@ -69,6 +75,11 @@
                 "command": "symconForm.insertRegisterProperties",
                 "title": "%insertRegisterTitle%",
                 "category": "Symcon"
+            },
+            {
+                "command": "symconForm.openPreviewVisualisation",
+                "title": "%openPreviewTitle%",
+                "category": "Symcon"
             }
         ],
         "menus": {
@@ -76,6 +87,11 @@
                 {
                     "command": "symconForm.addTranslationToLocale",
                     "when": "resourceFilename == form.json",
+                    "group": "navigation"
+                },
+                {
+                    "command": "symconForm.openPreviewVisualisation",
+                    "when": "resourceFilename == module.html",
                     "group": "navigation"
                 }
             ]
@@ -106,6 +122,25 @@
                     "type": "string",
                     "default": "",
                     "description": "%config.defaultWidthDesc%"
+                },
+                "forminator.serverIP": {
+                    "title": "%config.serverIPTitle%",
+                    "type": "string",
+                    "default": "127.0.0.1",
+                    "description": "%config.serverIPDesc%"
+                },
+                "forminator.serverPort": {
+                    "title": "%config.serverPortTitle%",
+                    "type": "string",
+                    "default": "3777",
+                    "description": "%config.serverPortDesc%"
+                },
+                "forminator.themes": {
+                    "title": "%config.themesTitle%",
+                    "type": "string",
+                    "editPresentation": "multilineText",
+                    "default": "light: #111C2D, #00CDAB, #FFFFFF, #000000\ndark: #000000, #00CDAB, #333438, #FFFFFF",
+                    "description": "%config.themesDesc%"
                 }
             }
         }

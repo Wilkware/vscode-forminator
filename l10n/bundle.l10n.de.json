@@ -7,10 +7,21 @@
     "Please select some text!": "Bitte einen Text markieren!",
     "No workspace open.": "Kein Arbeitsbereich geöffnet.",
     "Please open the module PHP file (module.php) before running this command.": "Bitte öffnen Sie die PHP-Datei des Moduls (module.php), bevor Sie diesen Befehl ausführen.",
+    "Please open the module HTML file (module.html) before running this command.": "Bitte öffnen Sie die HTML-Datei des Moduls (module.html), bevor Sie diesen Befehl ausführen.",
     "No form.json found in the same folder as the PHP module.": "Keine Datei form.json im selben Ordner wie das PHP-Modul gefunden.",
     "Could not parse form json: ": "Formular-JSON konnte nicht geparst werden:",
     "No RegisterProperty calls generated from form.json.": "Keine RegisterProperty-Aufrufe aus form.json generiert.",
     "Inserted {0} RegisterProperty call(s) into Create().": "{0} RegisterProperty-Aufruf(e) in Create() eingefügt.",
     "No new RegisterProperty calls inserted (all already present).": "Keine neuen RegisterProperty-Aufrufe eingefügt (alle bereits vorhanden).",
-    "Unexpected error: ": "Unerwarteter Fehler:"
+    "Unexpected error: ": "Unerwarteter Fehler:",
+    "Preview Tile Visualisation": "Vorschau Kachel Visualisierung",
+    "Enlarge tile": "Kachel vergrößern",
+    "Save": "Speichern",
+    "Height": "'Höhe",
+    "Width": "Breite",
+    "Update": "Anpassen",
+    "Theme": "Design",
+    "Just a dummy ;-)": "Nur Attrappe ;-)",
+    "❌ Save failed: ": "❌ Speichern fehlgeschlagen: ",
+    "💾 Saved.": "💾 Gespeichert."
 }
