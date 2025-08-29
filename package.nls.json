@@ -1,6 +1,6 @@
 {
     "displayName": "Symcon Form Helper",
-    "description": "Simple insertion of Symcon configuration form elements (form.json) via the sidebar.",
+    "description": "Build Symcon configuration forms faster in VS Code: sidebar editor, translation tools, auto property registration, and live preview.",
     "activityBarTitle": "Forminator",
     "sidebarViewName": "Configuration Forms",
     "addTranslationTitle": "Add translation to locale.json.",

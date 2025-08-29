@@ -1,6 +1,6 @@
 {
     "displayName": "Symcon Formular Helfer",
-    "description": "Einfaches Einfügen von Symcon Konfigurationsformular Elementen (form.json) über die Sidebar.",
+    "description": "Erstellt Symcon-Konfigurationsformulare schneller in VS Code: Sidebar-Editor für Formulare, Übersetzungs-Tools, automatische Property-Registrierung und Live-Preview.",
     "activityBarTitle": "Forminator",
     "sidebarViewName": "Konfigurationsformulare",
     "addTranslationTitle": "Übersetzung zur locale.json hinzufügen.",

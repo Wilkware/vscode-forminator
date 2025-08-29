@@ -12,18 +12,19 @@
 
 ### Was ist Forminator?
 
-Forminator ist eine Visual Studio Code Extension, die das einfache Einfügen von Symcon Konfigurationsformular-Elementen (`form.json`) direkt über die Sidebar ermöglicht. Sie richtet sich an Symcon Modul Entwickler, die ihre Formulare effizienter erstellen und bearbeiten wollen.
+Forminator ist eine Visual Studio Code Extension für Symcon-Modulentwicklung, die das Erstellen, Testen und Pflegen von form.json-Konfigurationen massiv beschleunigt. Sie bietet: schnelles Einfügen von Formular-Elementen und automatisch generierte JSON-Snippets mit korrekter Syntax, eine Sidebar zur Anzeige und Bearbeitung aller Eigenschaften eines ausgewählten Elements, Unterstützung der Standard-Elementtypen des Symcon PHP-SDK sowie komfortables Handling der Formulardaten (Live-Bearbeitung ohne viel Tipparbeit). Zusätzlich enthält Forminator eine Echtzeit-Vorschau (Live Preview) – Theme, Größe, HTML und Payload werden sofort in einem eingebetteten Webview aktualisiert — inklusive persistenter Preview-Einstellungen pro Workspace, Inline-Patch des Module-HTMLs und sicherer CSP-/Ressourcensteuerung. Ergänzende Features: Kontextmenü-Erweiterung zum Übersetzten von Texten aus form.json in locale.json, ein Kommando zum Auslesen und Registrieren aller Property-Variablen in der Create()-Methode der module.php, sowie einfache Speicherung und Wiederherstellung von Preview-JSON.
 
 ### Hauptfunktionen
 
-- Schnelles Einfügen von Symcon Formular-Elementen per Klick  
-- Automatisches Einfügen passender JSON-Snippets mit korrekter Syntax  
-- Anzeige und Bearbeitung aller Eigenschaften des ausgewählten Elements im Sidebar-Formular  
-- Unterstützung aller Standard-Elementtypen aus dem Symcon PHP SDK  
-- Einfaches Handling der Formulardaten ohne manuelles Tippen
-- Kontextmenü-Erweiterung zum Übersetzen von Texten direkt aus der form.json in die locale.json
-- Befehl (Strg + Umschalt + P) zum Auslesen aller Property-Variablen aus der form.json und registrieren in der Create()-Methode der module.php 
-- Live Preview: Direkte Visualisierung der Kachel/Module im Webview während der Bearbeitung – Änderungen am HTML, JSON oder Theme werden sofort übernommen.
+- Schnelles Einfügen von Symcon Formular-Elementen per Klick
+- Automatisch erzeugte, korrekt formatierte JSON-Snippets
+- Sidebar-Editor: alle Eigenschaften eines Elements anzeigen & bearbeiten
+- Unterstützung aller Standard-Elementtypen des Symcon PHP-SDK
+- Live Preview: sofortige Visualisierung von HTML, JSON, Theme und Größe im Webview
+- Persistente Preview-Einstellungen (Theme, Breite, Höhe) pro Workspace
+- Preview-JSON speichern/laden, live an das iFrame senden (postMessage)
+- Kontextmenü zum Übersetzen direkt aus form.json in locale.json
+- Kommando zum Extrahieren von Property-Variablen und Registrieren in Create()
 
 ### Installation
 
@@ -115,18 +116,25 @@ Diese Extension richtet sich an Entwickler von Symcon Modulen, die das PHP SDK n
 
 ### What is Forminator?
 
-Forminator is a Visual Studio Code extension for easily inserting Symcon configuration form elements (`form.json`) directly from the sidebar. It is designed for Symcon module developers who want to build and edit their forms more efficiently.
+Forminator is a Visual Studio Code extension for Symcon module development that makes creating, testing, and maintaining form.json configuration files faster and more convenient.
+It allows you to quickly insert form elements with a single click, generates correctly formatted JSON snippets automatically, and provides a sidebar editor to view and edit the properties of any selected element.
+
+It supports all standard element types from the Symcon PHP SDK and simplifies handling form data without tedious manual typing.
+Forminator also includes a real-time live preview — instantly updating your Webview as you modify HTML, JSON, themes, or dimensions. Preview settings (theme, width, height) are saved per workspace for a consistent workflow.
+
+Additional features include inline HTML patching with secure CSP handling, context menu integration to translate texts from form.json to locale.json, and commands to extract and register property variables in the Create() method of your module.php.
 
 ### Main Features
 
-- Quick insertion of Symcon form elements with a click  
-- Automatic insertion of proper JSON snippets with correct syntax  
-- Sidebar form to display and edit all properties of the selected element  
-- Support for many standard element types from the Symcon PHP SDK  
-- Easy handling of form data without manual typing
-- Context menu extension for translating text values directly from form.json into locale.json
-- Command (Ctrl + Shift + P) to read all property variables from form.json and register them in the Create() method of module.php
-- Live Preview: Immediate visualization of the tile/module in the Webview while editing – changes to HTML, JSON, or theme are applied instantly.
+- One-click insertion of Symcon form elements
+- Automatically generated and properly formatted JSON snippets
+- Sidebar editor to view and modify all properties of selected elements
+- Full support for all standard element types from the Symcon PHP SDK
+- Live Preview: real-time visualization of HTML, JSON, theme, and dimensions in the Webview
+- Persistent preview settings (theme, width, height) stored per workspace
+- Save and load preview payloads, with instant postMessage updates to the preview frame
+- Context menu option to translate text from form.json into locale.json
+- Command to extract property variables and register them in the Create() method
 
 ### Installation
 
