@@ -33,8 +33,8 @@ Forminator ist eine Visual Studio Code Extension, die das einfache Einfügen von
 ### Verwendung
 
 1. [Formulare](#user-content-1-formulare)
-2. [Übersetzungen](#user-content-2-uebersetzungen)
-3. [Registrierungen](#user-content-3-Registrierungen)
+2. [Übersetzungen](#user-content-2-übersetzungen)
+3. [Registrierungen](#user-content-3-registrierungen)
 4. [Live Vorschau](#user-content-8-livevorschau)
 
 #### 1. Formulare
@@ -88,7 +88,7 @@ Forminator ist eine Visual Studio Code Extension, die das einfache Einfügen von
 
 * Fertig – für alle in form.json definierten Eigenschaften wird ein RegisterProperty-Aufruf in die create-Methode von module.php eingefügt!
 
-#### 4. Live Preview
+#### 4. Live Vorschau
 
 * Wechseln zur Datei „module.html“ und drücken (Strg + Umschalt + P).
 
@@ -100,7 +100,7 @@ Forminator ist eine Visual Studio Code Extension, die das einfache Einfügen von
    ![Context Preview](./media/context-preview.png)  
    <!-- Screenshot: Context menu -->
 
-* Fertig – die Symcon-Live-Vorschau wurde angezeigt.
+* Fertig – die Symcon-Live-Vorschau wird angezeigt.
 
    ![Live Preview](./media/vscode-preview.png)  
    <!-- Screenshot: Live preview -->
@@ -187,6 +187,23 @@ Forminator is a Visual Studio Code extension for easily inserting Symcon configu
 
    ![Command Register](./media/command-register.png)  
    <!-- Screenshot: Call up the command palette -->
+
+#### 4. Live Preview
+
+* Switch to the file ‘module.html’ and press (Ctrl + Shift + P).
+
+   ![Command Preview](./media/command-preview.png)  
+   <!-- Screenshot: Call up the command palette -->
+
+* Or open the context menu (right-click)  
+
+   ![Context Preview](./media/context-preview.png)  
+   <!-- Screenshot: Context menu -->
+
+* Done – the Symcon live preview is displayed.  
+
+   ![Live Preview](./media/vscode-preview.png)  
+   <!-- Screenshot: Live preview -->
 
 
 ### Target Audience
