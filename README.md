@@ -12,7 +12,11 @@
 
 ### Was ist Forminator?
 
-Forminator ist eine Visual Studio Code Extension für Symcon-Modulentwicklung, die das Erstellen, Testen und Pflegen von form.json-Konfigurationen massiv beschleunigt. Sie bietet: schnelles Einfügen von Formular-Elementen und automatisch generierte JSON-Snippets mit korrekter Syntax, eine Sidebar zur Anzeige und Bearbeitung aller Eigenschaften eines ausgewählten Elements, Unterstützung der Standard-Elementtypen des Symcon PHP-SDK sowie komfortables Handling der Formulardaten (Live-Bearbeitung ohne viel Tipparbeit). Zusätzlich enthält Forminator eine Echtzeit-Vorschau (Live Preview) – Theme, Größe, HTML und Payload werden sofort in einem eingebetteten Webview aktualisiert — inklusive persistenter Preview-Einstellungen pro Workspace, Inline-Patch des Module-HTMLs und sicherer CSP-/Ressourcensteuerung. Ergänzende Features: Kontextmenü-Erweiterung zum Übersetzten von Texten aus form.json in locale.json, ein Kommando zum Auslesen und Registrieren aller Property-Variablen in der Create()-Methode der module.php, sowie einfache Speicherung und Wiederherstellung von Preview-JSON.
+Forminator ist eine Visual Studio Code Extension für Symcon-Modulentwicklung, die das Erstellen, Testen und Pflegen von form.json-Konfigurationen massiv beschleunigt. Sie bietet: schnelles Einfügen von Formular-Elementen und automatisch generierte JSON-Snippets mit korrekter Syntax, eine Sidebar zur Anzeige und Bearbeitung aller Eigenschaften eines ausgewählten Elements, Unterstützung der Standard-Elementtypen des Symcon PHP-SDK sowie komfortables Handling der Formulardaten (Live-Bearbeitung ohne viel Tipparbeit).
+
+Zusätzlich enthält Forminator eine Echtzeit-Vorschau (Live Preview) – Theme, Größe, HTML und Payload werden sofort in einem eingebetteten Webview aktualisiert — inklusive persistenter Preview-Einstellungen pro Workspace, Inline-Patch des Module-HTMLs und sicherer CSP-/Ressourcensteuerung.
+
+Ergänzende Features: Kontextmenü-Erweiterung zum Übersetzten von Texten aus form.json in locale.json, ein Kommando zum Auslesen und Registrieren aller Property-Variablen in der Create()-Methode der module.php, sowie einfache Speicherung und Wiederherstellung von Preview-JSON.
 
 ### Hauptfunktionen
 
