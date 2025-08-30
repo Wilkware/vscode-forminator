@@ -22,7 +22,16 @@ export function registerFormSidebar(context: vscode.ExtensionContext) {
                     switch (message.command) {
                         case 'insertItem': {
                             const editor = vscode.window.activeTextEditor;
-                            if (!editor) return;
+                            if (!editor) {
+                                vscode.window.showInformationMessage(vscode.l10n.t('No active editor.'));
+                                return;
+                            }
+                            const file = editor.document.fileName;
+                            if (!file.endsWith('form.json')) {
+                                vscode.window.showWarningMessage(vscode.l10n.t('Please open the form JSON file (form.json) before adding an element.'));
+                                return;
+                            }
+                           
                             const rendered = renderFormData(message.data);
                             insertElement(editor, rendered);
                             break;
@@ -37,7 +46,7 @@ export function registerFormSidebar(context: vscode.ExtensionContext) {
                             break;
                         }
                         default:
-                            console.warn(`Unbekannter Befehl empfangen: ${message.command}`);
+                            console.warn(`Unknown command received: ${message.command}`);
                     }
                 });
             }
@@ -85,7 +94,7 @@ function insertElement(editor: vscode.TextEditor, newElement: object) {
 
     const arrayRange = findArrayAtPosition(text, offset);
     if (!arrayRange) {
-        vscode.window.showErrorMessage('Kein gültiges Array an der Cursor-Position gefunden.');
+        vscode.window.showErrorMessage(vscode.l10n.t('No valid array found at the cursor position.'));
         return;
     }
 
@@ -95,7 +104,7 @@ function insertElement(editor: vscode.TextEditor, newElement: object) {
     try {
         arrayData = JSON.parse(arrayText);
     } catch (err) {
-        vscode.window.showErrorMessage('Fehler beim Parsen des Arrays.');
+        vscode.window.showErrorMessage(vscode.l10n.t('Error parsing the array.'));
         return;
     }
 

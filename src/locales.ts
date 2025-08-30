@@ -9,7 +9,7 @@ import * as path from 'path';
   */
 export function registerAddTranslation(context: vscode.ExtensionContext) {
     context.subscriptions.push(
-        vscode.commands.registerCommand('symconForm.addTranslationToLocale', async () => {
+        vscode.commands.registerCommand('addTranslationToLocale', async () => {
             const editor = vscode.window.activeTextEditor;
             if (!editor) {
                 vscode.window.showInformationMessage(vscode.l10n.t('No active editor.'));

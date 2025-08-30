@@ -20,9 +20,11 @@ export function getWorkspaceName(): string | undefined {
   * @return string
   */
 export function getBaseTag(): string {
-    const config = vscode.workspace.getConfiguration('forminator');
-    const ip = config.get<string>('serverIP', '127.0.0.1');
-    const port = config.get<string>('serverPort', '3777');
+    const config = vscode.workspace.getConfiguration('symcon');
+    const ip = config.get<string>('preview.serverIP', '127.0.0.1');
+    const port = config.get<string>('preview.serverPort', '3777');
+    console.log('serverIP: ' + ip);
+    console.log('serverPort: ' + port);
 
     return `http://${ip}:${port}`;
 }

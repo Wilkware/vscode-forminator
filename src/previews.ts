@@ -10,7 +10,7 @@ import { loadThemes } from './preview/themes';
  */
 export function registerPreviewPanel(context: vscode.ExtensionContext) {
     context.subscriptions.push(
-        vscode.commands.registerCommand('symconForm.openPreviewVisualisation', () => {
+        vscode.commands.registerCommand('openPreviewVisualisation', () => {
             const activeEditor = vscode.window.activeTextEditor;
             if (!activeEditor) {
                 vscode.window.showErrorMessage(vscode.l10n.t('No active editor.'));
@@ -112,7 +112,7 @@ class PreviewPanel {
         );
 
         // Card title
-        const title = html.getWorkspaceName() ?? 'Forminator';
+        const title = html.getWorkspaceName() ?? 'Title/Titel';
 
         // Load actual editor content
         const editor = vscode.window.activeTextEditor;
@@ -123,9 +123,11 @@ class PreviewPanel {
 
         // Theme config data
         const themes = loadThemes();
+        console.log('Themes: ', themes);
 
         // Preview settings
         const preview = await this.loadPreview();
+        console.log('Preview: ', preview);
 
         // Base tag
         const baseTag = html.getBaseTag();

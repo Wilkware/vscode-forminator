@@ -18,7 +18,7 @@
     },
     "homepage": "https://github.com/Wilkware/vscode-forminator/blob/main/README.md",
     "galleryBanner": {
-        "color": "#ff9800",
+        "color": "#24625B",
         "theme": "dark"
     },
     "categories": [
@@ -50,7 +50,7 @@
             "activitybar": [
                 {
                     "id": "symconForm",
-                    "title": "%activityBarTitle%",
+                    "title": "%sidebar.viewTitle%",
                     "icon": "resources/sidebar.svg"
                 }
             ]
@@ -60,82 +60,87 @@
                 {
                     "type": "webview",
                     "id": "symconForm.sidebar",
-                    "name": "%sidebarViewName%",
+                    "name": "%sidebar.viewName%",
                     "icon": "resources/sidebar.svg"
                 }
             ]
         },
         "commands": [
             {
-                "command": "symconForm.addTranslationToLocale",
-                "title": "%addTranslationTitle%",
+                "command": "addTranslationToLocale",
+                "title": "%command.addTranslationTitle%",
                 "category": "Symcon"
             },
             {
-                "command": "symconForm.insertRegisterProperties",
-                "title": "%insertRegisterTitle%",
+                "command": "insertRegisterProperties",
+                "title": "%command.insertRegisterTitle%",
                 "category": "Symcon"
             },
             {
-                "command": "symconForm.openPreviewVisualisation",
-                "title": "%openPreviewTitle%",
+                "command": "openPreviewVisualisation",
+                "title": "%command.openPreviewTitle%",
                 "category": "Symcon"
             }
         ],
         "menus": {
             "editor/context": [
                 {
-                    "command": "symconForm.addTranslationToLocale",
+                    "command": "addTranslationToLocale",
                     "when": "resourceFilename == form.json",
                     "group": "navigation"
                 },
                 {
-                    "command": "symconForm.openPreviewVisualisation",
+                    "command": "insertRegisterProperties",
+                    "when": "resourceFilename == module.php",
+                    "group": "navigation"
+                },
+                {
+                    "command": "openPreviewVisualisation",
                     "when": "resourceFilename == module.html",
                     "group": "navigation"
                 }
             ]
         },
         "configuration": {
-            "title": "Forminator",
+            "title": "%displayName%",
             "properties": {
-                "forminator.alwaysIncludes": {
+                "symcon.form.alwaysIncludes": {
                     "title": "%config.alwaysIncludesTitle%",
                     "type": "string",
                     "default": "name,caption",
                     "description": "%config.alwaysIncludesDesc%"
                 },
-                "forminator.emptyValues": {
+                "symcon.form.emptyValues": {
                     "title": "%config.emptyValuesTitle%",
                     "type": "boolean",
                     "default": true,
                     "description": "%config.emptyValuesDesc%"
                 },
-                "forminator.deleteDefaults": {
+                "symcon.form.deleteDefaults": {
                     "title": "%config.deleteDefaultsTitle%",
                     "type": "boolean",
                     "default": false,
                     "description": "%config.deleteDefaultsDesc%"
                 },
-                "forminator.defaultWidth": {
+                "symcon.form.defaultWidth": {
                     "title": "%config.defaultWidthTitle%",
                     "type": "string",
                     "default": "",
                     "description": "%config.defaultWidthDesc%"
                 },
-                "forminator.serverIP": {
+                "symcon.preview.serverIP": {
                     "title": "%config.serverIPTitle%",
                     "type": "string",
                     "default": "127.0.0.1",
                     "description": "%config.serverIPDesc%"
                 },
-                "forminator.serverPort": {
+                "symcon.preview.serverPort": {
                     "title": "%config.serverPortTitle%",
                     "type": "string",
                     "default": "3777",
                     "description": "%config.serverPortDesc%"
                 },
-                "forminator.themes": {
+                "symcon.preview.themes": {
                     "title": "%config.themesTitle%",
                     "type": "string",
                     "editPresentation": "multilineText",

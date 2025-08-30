@@ -276,16 +276,16 @@ export function renderFormData(data: any): any {
     }
 
     // Config settings
-    const config = vscode.workspace.getConfiguration('forminator');
-    const allowEmptyValues = config.get<boolean>('emptyValues', true);
-    const deleteDefaultValues = config.get<boolean>('deleteDefaults', false);
-    const overwriteDefaultWidth = config.get<string>('defaultWidth', '');
-    const alwaysIncludesRaw = config.get<string>('alwaysIncludes', '');
+    const config = vscode.workspace.getConfiguration('symcon');
+    const allowEmptyValues = config.get<boolean>('form.emptyValues', true);
+    const deleteDefaultValues = config.get<boolean>('form.deleteDefaults', false);
+    const overwriteDefaultWidth = config.get<string>('form.defaultWidth', '');
+    const alwaysIncludesRaw = config.get<string>('form.alwaysIncludes', '');
     const alwaysIncludes = alwaysIncludesRaw.split(',').map(key => key.trim()).filter(Boolean);
 
-    console.log('emptyValues: ' + allowEmptyValues);
-    console.log('deleteDefaults: ' + deleteDefaultValues);
-    console.log('defaultWidth: ' + overwriteDefaultWidth);
+    console.log('emptyValues: ', allowEmptyValues);
+    console.log('deleteDefaults: ', deleteDefaultValues);
+    console.log('defaultWidth: ', overwriteDefaultWidth);
     console.log('alwaysIncludes:', alwaysIncludes);
 
     // Create lookup table for defaults

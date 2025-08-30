@@ -8,8 +8,8 @@ export interface ThemeColors {
 }
 
 export function loadThemes(): Record<string, ThemeColors> {
-    const config = vscode.workspace.getConfiguration('forminator');
-    const themesString = config.get<string>('themes') || 'light: #111C2D, #00CDAB, #FFFFFF, #000000';
+    const config = vscode.workspace.getConfiguration('symcon');
+    const themesString = config.get<string>('preview.themes') || 'light: #111C2D, #00CDAB, #FFFFFF, #000000';
 
     // Fallback colors
     const defaultColors: ThemeColors = {

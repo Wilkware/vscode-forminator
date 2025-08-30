@@ -9,7 +9,7 @@ import * as path from 'path';
   */
 export function registerInsertProperties(context: vscode.ExtensionContext) {
     context.subscriptions.push(
-        vscode.commands.registerCommand('symconForm.insertRegisterProperties', async () => {
+        vscode.commands.registerCommand('insertRegisterProperties', async () => {
             const activeEditor = vscode.window.activeTextEditor;
             if (!activeEditor) {
                 vscode.window.showErrorMessage(vscode.l10n.t('No active editor.'));

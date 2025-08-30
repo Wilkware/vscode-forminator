@@ -1,20 +1,19 @@
-# Forminator — Symcon Formular Helfer / Form Helper
+# ⚙️ Symcon Modul Helfer (Symcon Module Helper)
 
 [![Publisher](https://img.shields.io/badge/Publisher-Wilkware-orange?style=flat-square)](https://marketplace.visualstudio.com/publishers/wilkware-vscode)
-[![Version](https://img.shields.io/badge/Version-1.3.1-yellow.svg?style=flat-square)](https://github.com/Wilkware/vscode-forminator)
+[![Version](https://img.shields.io/badge/Version-2.0.0-yellow.svg?style=flat-square)](https://github.com/Wilkware/vscode-forminator)
 [![Installs](https://img.shields.io/visual-studio-marketplace/i/wilkware-vscode.forminator?color=green&label=Installs&style=flat-square)](https://marketplace.visualstudio.com/items?itemName=wilkware-vscode.forminator)
-[![Donate](https://img.shields.io/badge/Donate-PayPal-blue.svg?style=flat-square)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8816166)
 [![License](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-green.svg?style=flat-square)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 [![German](https://img.shields.io/badge/Deutsch-DE-blueviolet.svg?style=flat-square)](#deutsch-de)
 [![English](https://img.shields.io/badge/English-EN-blueviolet.svg?style=flat-square)](#english-en)
 
 ## Deutsch DE
 
-### Was ist Forminator?
+### Symcon Modul Helfer
 
-Forminator ist eine Visual Studio Code Extension für Symcon-Modulentwicklung, die das Erstellen, Testen und Pflegen von form.json-Konfigurationen massiv beschleunigt. Sie bietet: schnelles Einfügen von Formular-Elementen und automatisch generierte JSON-Snippets mit korrekter Syntax, eine Sidebar zur Anzeige und Bearbeitung aller Eigenschaften eines ausgewählten Elements, Unterstützung der Standard-Elementtypen des Symcon PHP-SDK sowie komfortables Handling der Formulardaten (Live-Bearbeitung ohne viel Tipparbeit).
+Der Symcon Module Helper ist eine Visual Studio Code Extension für Symcon-Modulentwicklung, die das Erstellen, Testen und Pflegen von form.json-Konfigurationen massiv beschleunigt. Sie bietet: schnelles Einfügen von Formular-Elementen und automatisch generierte JSON-Snippets mit korrekter Syntax, eine Sidebar zur Anzeige und Bearbeitung aller Eigenschaften eines ausgewählten Elements, Unterstützung der Standard-Elementtypen des Symcon PHP-SDK sowie komfortables Handling der Formulardaten (Live-Bearbeitung ohne viel Tipparbeit).
 
-Zusätzlich enthält Forminator eine Echtzeit-Vorschau (Live Preview) – Theme, Größe, HTML und Payload werden sofort in einem eingebetteten Webview aktualisiert — inklusive persistenter Preview-Einstellungen pro Workspace, Inline-Patch des Module-HTMLs und sicherer CSP-/Ressourcensteuerung.
+Zusätzlich enthält der Symcon Modul Helfer eine Echtzeit-Vorschau (Live Preview) – Theme, Größe, HTML und Payload werden sofort in einem eingebetteten Webview aktualisiert — inklusive persistenter Preview-Einstellungen pro Workspace, Inline-Patch des Module-HTMLs und sicherer CSP-/Ressourcensteuerung.
 
 Ergänzende Features: Kontextmenü-Erweiterung zum Übersetzten von Texten aus form.json in locale.json, ein Kommando zum Auslesen und Registrieren aller Property-Variablen in der Create()-Methode der module.php, sowie einfache Speicherung und Wiederherstellung von Preview-JSON.
 
@@ -45,7 +44,7 @@ Ergänzende Features: Kontextmenü-Erweiterung zum Übersetzten von Texten aus f
 #### 1. Formulare
 
 * Öffne eine `forms.json` Datei im Projekt  
-* Die Forminator Sidebar wird automatisch angezeigt  
+* Die Symcon Form Sidebar wird automatisch angezeigt  
 
    ![Sidebar Übersicht](./media/sidebar-overview.png)  
    <!-- Screenshot: Sidebar mit Liste der Formular-Elemente -->
@@ -95,6 +94,11 @@ Ergänzende Features: Kontextmenü-Erweiterung zum Übersetzten von Texten aus f
 
 #### 4. Live Vorschau
 
+* Öffne die Erweiterungseinstellungen nimm die entsprechenden Einstellungen vor
+
+   ![Settings Preview](./media/settings-preview.png)  
+   <!-- Screenshot: Settings for live preview -->
+
 * Wechseln zur Datei „module.html“ und drücken (Strg + Umschalt + P).
 
    ![Command Preview](./media/command-preview.png)  
@@ -118,13 +122,13 @@ Diese Extension richtet sich an Entwickler von Symcon Modulen, die das PHP SDK n
 
 ## English EN
 
-### What is Forminator?
+### Symcon Module Helper
 
-Forminator is a Visual Studio Code extension for Symcon module development that makes creating, testing, and maintaining form.json configuration files faster and more convenient.
+The Symcon Module Helper is a Visual Studio Code extension for Symcon module development that makes creating, testing, and maintaining form.json configuration files faster and more convenient.
 It allows you to quickly insert form elements with a single click, generates correctly formatted JSON snippets automatically, and provides a sidebar editor to view and edit the properties of any selected element.
 
 It supports all standard element types from the Symcon PHP SDK and simplifies handling form data without tedious manual typing.
-Forminator also includes a real-time live preview — instantly updating your Webview as you modify HTML, JSON, themes, or dimensions. Preview settings (theme, width, height) are saved per workspace for a consistent workflow.
+The Symcon Module Helper also includes a real-time live preview — instantly updating your Webview as you modify HTML, JSON, themes, or dimensions. Preview settings (theme, width, height) are saved per workspace for a consistent workflow.
 
 Additional features include inline HTML patching with secure CSP handling, context menu integration to translate texts from form.json to locale.json, and commands to extract and register property variables in the Create() method of your module.php.
 
@@ -155,7 +159,7 @@ Additional features include inline HTML patching with secure CSP handling, conte
 #### 1. Forms
 
 * Open a `forms.json` file in your project  
-* The Forminator sidebar appears automatically  
+* The Symcon form sidebar appears automatically  
 
    ![Sidebar Overview](./media/sidebar-overview.png)  
    <!-- Screenshot: Sidebar with list of form elements -->
@@ -202,6 +206,11 @@ Additional features include inline HTML patching with secure CSP handling, conte
 
 #### 4. Live Preview
 
+* Open the extension settings and configure the appropriate settings.
+
+   ![Settings Preview](./media/settings-preview.png)  
+   <!-- Screenshot: Settings for live preview -->
+
 * Switch to the file ‘module.html’ and press (Ctrl + Shift + P).
 
    ![Command Preview](./media/command-preview.png)  
@@ -230,6 +239,26 @@ Contributions and feedback are very welcome! Feel free to open issues or pull re
 
 ---
 
-## License
+## 👨‍💻 About me
 
-CC BY--NC--SA 4.0 © Wilkware
+I’ve been passionate about home automation for over 10 years.
+Lately, I’ve been actively contributing to the IP-Symcon community with various scripts and modules.
+You can find me there under @pitti ;-)
+
+This extension is a small way for me to share some of that experience with the community.
+
+[![GitHub](https://img.shields.io/badge/GitHub-@wilkware-181717.svg?style=for-the-badge&logo=github)](https://wilkware.github.io/)
+
+## 💰 Donate
+
+This software is free to use for non-commercial purposes.
+If you enjoy using it and would like to support ongoing development, a small donation would be sincerely appreciated.
+
+[![PayPal](https://img.shields.io/badge/PayPal-spenden-00457C.svg?style=for-the-badge&logo=paypal)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8816166)
+
+## ©️ Lizenz
+
+© Wilkware, 2025. Licensed under CC BY-NC-SA 4.0.  
+You may share and adapt this work non-commercially with attribution and under the same license. 
+
+[![Licence](https://img.shields.io/badge/License-CC_BY--NC--SA_4.0-EF9421.svg?style=for-the-badge&logo=creativecommons)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
