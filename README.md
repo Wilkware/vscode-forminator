@@ -39,7 +39,7 @@ Ergänzende Features: Kontextmenü-Erweiterung zum Übersetzten von Texten aus f
 1. [Formulare](#user-content-1-formulare)
 2. [Übersetzungen](#user-content-2-übersetzungen)
 3. [Registrierungen](#user-content-3-registrierungen)
-4. [Live Vorschau](#user-content-8-livevorschau)
+4. [Live Vorschau](#user-content-8-live-vorschau)
 
 #### 1. Formulare
 
@@ -154,7 +154,7 @@ Additional features include inline HTML patching with secure CSP handling, conte
 1. [Forms](#user-content-1-forms)
 2. [Translation](#user-content-2-translation)
 3. [Registration](#user-content-3-registration)
-4. [Live Preview](#user-content-8-livepreview)
+4. [Live Preview](#user-content-8-live-preview)
 
 #### 1. Forms
 
