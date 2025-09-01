@@ -169,7 +169,7 @@ class PreviewPanel {
     <meta charset="utf-8" />
     <meta http-equiv="Content-Security-Policy"
         content="default-src 'none';
-            img-src ${webview.cspSource} ${baseTag};
+            img-src ${webview.cspSource} ${baseTag} data:;
             style-src ${webview.cspSource} 'unsafe-inline';
             script-src 'unsafe-inline' ${baseTag} ${webview.cspSource};
             font-src ${webview.cspSource} ${baseTag};

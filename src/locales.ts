@@ -60,7 +60,6 @@ export function registerAddTranslation(context: vscode.ExtensionContext) {
             } catch (err: any) {
                 vscode.window.showErrorMessage(vscode.l10n.t('Error writing locale.json: {0}', err.message));
             }
-        }
-        )
+        })
     );
 }

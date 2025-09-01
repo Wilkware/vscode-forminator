@@ -2,7 +2,7 @@
     "name": "forminator",
     "displayName": "%displayName%",
     "description": "%description%",
-    "version": "2.0.0",
+    "version": "2.1.0",
     "publisher": "wilkware-vscode",
     "author": {
         "name": "Heiko Wilknitz",
@@ -59,8 +59,15 @@
             "symconForm": [
                 {
                     "type": "webview",
-                    "id": "symconForm.sidebar",
-                    "name": "%sidebar.viewName%",
+                    "id": "symconForm.elements",
+                    "name": "%sidebar.elementsName%",
+                    "icon": "resources/sidebar.svg"
+
+                },
+                {
+                    "type": "webview",
+                    "id": "symconForm.properties",
+                    "name": "%sidebar.propertiesName%",
                     "icon": "resources/sidebar.svg"
                 }
             ]
@@ -80,6 +87,11 @@
                 "command": "openPreviewVisualisation",
                 "title": "%command.openPreviewTitle%",
                 "category": "Symcon"
+            },
+            {
+                "command": "insertGuidAtPosition",
+                "title": "%config.insertGUIDTitle%",
+                "category": "Symcon"
             }
         ],
         "menus": {
@@ -97,6 +109,11 @@
                 {
                     "command": "openPreviewVisualisation",
                     "when": "resourceFilename == module.html",
+                    "group": "navigation"
+                },
+                {
+                    "command": "insertGuidAtPosition",
+                    "when": "editorLangId == json || editorLangId == php",
                     "group": "navigation"
                 }
             ]

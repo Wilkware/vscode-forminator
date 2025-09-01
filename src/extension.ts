@@ -5,6 +5,7 @@ import { registerFormSidebar } from './forms';
 import { registerAddTranslation } from './locales';
 import { registerPreviewPanel } from './previews';
 import { registerInsertProperties } from './properties';
+import { registerInsertGuid} from './util';
 
  /**
   * activate - This method is called when your extension is activated
@@ -13,7 +14,7 @@ import { registerInsertProperties } from './properties';
   * @param context: vscode.ExtensionContext
   */
 export function activate(context: vscode.ExtensionContext) {
-    console.log('Symcon Forminator Extension aktiviert.');
+    console.log('Symcon Modul Helper Extension aktiviert.');
 
     // Sidebar initialise
     registerFormSidebar(context);
@@ -26,6 +27,9 @@ export function activate(context: vscode.ExtensionContext) {
 
     // Command:insertRegisterProperties initialise
     registerInsertProperties(context);
+
+    // Command:registerInsertGuid initialise
+    registerInsertGuid(context);
 }
 
  /**
@@ -33,5 +37,5 @@ export function activate(context: vscode.ExtensionContext) {
   *
   */
 export function deactivate() { 
-    console.log('Symcon Forminator Extension deaktiviert.');
+    console.log('Symcon Modul Helper Extension deaktiviert.');
 }

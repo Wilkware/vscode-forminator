@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.1.0] - Feature (2025-09-01)
+
+- **NEW**: Seperate Form elemets and properties in real two views, better decider and scrollbar behaivior
+- **NEW**: Added command and context menu for generate and insert a GUID
+- **FIX**: iframe allow now data urls for images
+- **FIX**: HTML form for element propertie have now the right width
+- **FIX**: Seperate sidebar css from the HTML code
+
 ## [2.0.0] - Release (2025-08-29)
 
 - **NEW**: Renamed the extension to `Symcon Module Helper`
