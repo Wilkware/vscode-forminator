@@ -2,6 +2,7 @@ import * as vscode from 'vscode';
 import * as fs from 'fs/promises';
 import * as html from './preview/html';
 import { loadThemes } from './preview/themes';
+import { getWorkspaceName} from './util';
 
 /**
  * registerPreviewPanel - Registers the command for RegisterProperty functions in Create.
@@ -112,7 +113,7 @@ class PreviewPanel {
         );
 
         // Card title
-        const title = html.getWorkspaceName() ?? 'Title/Titel';
+        const title = getWorkspaceName() ?? 'Title/Titel';
 
         // Load actual editor content
         const editor = vscode.window.activeTextEditor;
@@ -246,7 +247,7 @@ class PreviewPanel {
             const msg=ev.data;
             console.log('msg', msg);
             if(msg.cmd==='init'){
-                if (code) code.textContent = JSON.stringify(msg.payload ?? {}, null, 2);
+                if (code) code.textContent = JSON.stringify(msg.payload ?? {}, null, 4);
                 try {
                     const updatedData = JSON.parse(code.textContent);
                     iframe.contentWindow?.postMessage(JSON.stringify(updatedData), '*');

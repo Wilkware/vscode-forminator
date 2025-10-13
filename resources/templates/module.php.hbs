@@ -1,0 +1,815 @@
+<?php
+
+declare(strict_types=1);
+
+// CLASS {{moduleClass}}
+class {{moduleClass}} extends {{codingClass}}
+{
+{{#if moduleIsStrict}}
+    /**
+     * In contrast to Construct, this function is called only once when creating the instance and starting IP-Symcon.
+     * Therefore, status variables and module properties which the module requires permanently should be created here.
+     *
+     * @return void
+     */
+    public function Create(): void
+{{else}}
+    /**
+     * In contrast to Construct, this function is called only once when creating the instance and starting IP-Symcon.
+     * Therefore, status variables and module properties which the module requires permanently should be created here.
+     */
+    public function Create()
+{{/if}}
+    {
+        //Never delete this line!
+        parent::Create();
+{{#if moduleHasDataflow}}
+
+{{#if moduleIsSplitter}}
+        $this->ConnectParent('{{moduleDataflowID}}');
+{{/if}}
+{{#if moduleIsDevice}}
+        $this->RequireParent('{{moduleDataflowID}}');
+{{/if}}
+{{/if}}
+{{#if codingVisuSupport}}
+
+         // Set visualization type to 1, as we want to offer HTML
+        $this->SetVisualizationType(1);
+{{/if}}
+    }
+
+{{#if moduleIsStrict}}
+    /**
+     * This function is called when deleting the instance during operation and when updating via "Module Control".
+     * The function is not called when exiting IP-Symcon.
+     *
+     * @return void
+     */
+    public function Destroy(): void
+{{else}}
+    /**
+     * This function is called when deleting the instance during operation and when updating via "Module Control".
+     * The function is not called when exiting IP-Symcon.
+     */
+    public function Destroy()
+{{/if}}
+    {
+        parent::Destroy();
+    }
+
+{{#if codingConfigForm}}
+{{#if moduleIsStrict}}
+    /**
+     * The content can be overwritten in order to transfer a self-created configuration page.
+     * This way, content can be generated dynamically.
+     * In this case, the "form.json" on the file system is completely ignored.
+     *
+     * @return string Content of the configuration page.
+     */
+    public function GetConfigurationForm(): string
+{{else}}
+    /**
+     * The content can be overwritten in order to transfer a self-created configuration page.
+     * This way, content can be generated dynamically.
+     * In this case, the "form.json" on the file system is completely ignored.
+     */
+    public function GetConfigurationForm()
+{{/if}}
+    {
+        // Get Form
+        $form = json_decode(file_get_contents(__DIR__ . '/form.json'), true);
+
+        // Debug output
+        $this->SendDebug(__FUNCTION__, $form, 0);
+        return json_encode($form);
+    }
+{{/if}}
+
+{{#if moduleIsStrict}}
+    /**
+     * Is executed when "Apply" is pressed on the configuration page and immediately after the instance has been created.
+     *
+     * @return void
+     */
+    public function ApplyChanges(): void
+{{else}}
+    /**
+     * Is executed when "Apply" is pressed on the configuration page and immediately after the instance has been created.
+     */
+    public function ApplyChanges()
+{{/if}}
+    {
+        parent::ApplyChanges();
+
+        // Set status
+        $this->SetStatus(102);
+    }
+
+{{#if moduleIsIO}}
+{{#if moduleIsStrict}}
+    /**
+     * This function is called by IP-Symcon and processes sent data and forwards it to the parent instance.
+     * Data can be sent using the SendDataToParent function.
+     * Further information on data forwarding can be found under Dataflow.
+     *
+     * @param string $json Data packet in JSON format
+     *
+     * @return string Result of the function, which is returned to the calling child instance
+     */
+    public function ForwardData(string $json): string
+{{else}}
+    /**
+     * This function is called by IP-Symcon and processes sent data and forwards it to the parent instance.
+     * Data can be sent using the SendDataToParent function.
+     * Further information on data forwarding can be found under Dataflow.
+     *
+     * @param string $json Data packet in JSON format
+     */
+    public function ForwardData($json)
+{{/if}}
+    {
+        $data = json_decode($json);
+        IPS_LogMessage('IO FRWD', utf8_decode($data->Buffer));
+        return '';
+    }
+
+{{#if moduleIsStrict}}
+    /**
+     * This function sends the text message to all of his children.
+     *
+     * @param string $text Text message
+     *
+     * @return void
+     */
+    public function Send(string $text): void
+{{else}}
+    /**
+     * This function sends the text message to all of his children.
+     *
+     * @param string $text Text message
+     */
+    public function Send(string $text)
+{{/if}}
+    {
+        $this->SendDataToChildren(json_encode(['DataID' => '{{moduleChilds}}' , 'Buffer' => $text]));
+    }
+{{/if}}
+{{#if moduleIsSplitter}}
+{{#if moduleHasDataflow}}
+
+{{#if moduleIsStrict}}
+    /**
+     * This function is called by IP-Symcon and processes sent data and forwards it to the parent instance.
+     * Data can be sent using the SendDataToParent function.
+     * Further information on data forwarding can be found under Dataflow.
+     *
+     * @param string $json Data packet in JSON format
+     *
+     * @return string Result of the function, which is returned to the calling child instance
+     */
+    public function ForwardData(string $json): string
+{{else}}
+    /**
+     * This function is called by IP-Symcon and processes sent data and forwards it to the parent instance.
+     * Data can be sent using the SendDataToParent function.
+     * Further information on data forwarding can be found under Dataflow.
+     *
+     * @param string $json Data packet in JSON format
+     */
+    public function ForwardData($json)
+{{/if}}
+    {
+        $data = json_decode($json);
+{{#if dataflowIsHID}}
+        IPS_LogMessage('Splitter FRWD', utf8_decode($data->Buffer . ' - ' . $data->EventID));
+{{/if}}
+{{#if dataflowIsHTTPClient}}
+        IPS_LogMessage('Splitter FRWD', utf8_decode($data->Buffer . ' - ' . $data->RequestMethod . ' - ' . $data->RequestURL . ' - ' . $data->RequestData . ' - ' . $data->Timeout));
+{{/if}}
+{{#if dataflowIsServerSocket}}
+        IPS_LogMessage('Splitter FRWD', utf8_decode($data->Buffer . ' - ' . $data->ClientIP . ' - ' . $data->ClientPort));
+{{/if}}
+{{#if dataflowIsUDPSocket}}
+        IPS_LogMessage('Splitter FRWD', utf8_decode($data->Buffer . ' - ' . $data->ClientIP . ' - ' . $data->ClientPort));
+{{/if}}
+{{#if dataflowIsMulticast}}
+        IPS_LogMessage('Splitter FRWD', utf8_decode($data->Buffer . ' - ' . $data->ClientIP . ' - ' . $data->ClientPort));
+{{/if}}
+{{#if dataflowIsClientSocket}}
+        IPS_LogMessage('Splitter FRWD', utf8_decode($data->Buffer));
+{{/if}}
+{{#if dataflowIsSerialPort}}
+        IPS_LogMessage('Splitter FRWD', utf8_decode($data->Buffer));
+{{/if}}
+{{#if dataflowIsSSEClient}}
+        IPS_LogMessage('Splitter FRWD', utf8_decode($data->Buffer));
+{{/if}}
+{{#if dataflowIsVirtualIO}}
+        IPS_LogMessage('Splitter FRWD', utf8_decode($data->Buffer));
+{{/if}}
+{{#if dataflowIsWSClient}}
+        IPS_LogMessage('Splitter FRWD', utf8_decode($data->Buffer));
+{{/if}}
+
+{{#if dataflowIsHID}}
+        $this->SendDataToParent(json_encode(['DataID' => '{{moduleParents}}', 'Buffer' => $data->Buffer, $data->EventID]));
+{{/if}}
+{{#if dataflowIsHTTPClient}}
+        $this->SendDataToParent(json_encode(['DataID' => '{{moduleParents}}', 'Buffer' => $data->Buffer, $data->RequestMethod, $data->RequestURL, $data->RequestData, $data->Timeout]));
+{{/if}}
+{{#if dataflowIsServerSocket}}
+        $this->SendDataToParent(json_encode(['DataID' => '{{moduleParents}}', 'Buffer' => $data->Buffer, $data->ClientIP, $data->ClientPort]));
+{{/if}}
+{{#if dataflowIsUDPSocket}}
+        $this->SendDataToParent(json_encode(['DataID' => '{{moduleParents}}', 'Buffer' => $data->Buffer, $data->ClientIP, $data->ClientPort]));
+{{/if}}
+{{#if dataflowIsMulticast}}
+        $this->SendDataToParent(json_encode(['DataID' => '{{moduleParents}}', 'Buffer' => $data->Buffer, $data->ClientIP, $data->ClientPort]));
+{{/if}}
+{{#if dataflowIsClientSocket}}
+        $this->SendDataToParent(json_encode(['DataID' => '{{moduleParents}}', 'Buffer' => $data->Buffer]));
+{{/if}}
+{{#if dataflowIsSerialPort}}
+        $this->SendDataToParent(json_encode(['DataID' => '{{moduleParents}}', 'Buffer' => $data->Buffer]));
+{{/if}}
+{{#if dataflowIsSSEClient}}
+        $this->SendDataToParent(json_encode(['DataID' => '{{moduleParents}}', 'Buffer' => $data->Buffer]));
+{{/if}}
+{{#if dataflowIsVirtualIO}}
+        $this->SendDataToParent(json_encode(['DataID' => '{{moduleParents}}', 'Buffer' => $data->Buffer]));
+{{/if}}
+{{#if dataflowIsWSClient}}
+        $this->SendDataToParent(json_encode(['DataID' => '{{moduleParents}}', 'Buffer' => $data->Buffer]));
+{{/if}}
+        return 'String data for device instance!';
+    }
+
+{{#if moduleIsStrict}}
+    /**
+     * This function is called by IP-Symcon and processes sent data and, if necessary, forwards it to
+     * all child instances. Data can be sent using the SendDataToChildren function.
+     *
+     * @param string $json Data package in JSON format
+     *
+     * @return string Optional response to the parent instance
+     */
+    public function ReceiveData(string $json): string
+{{else}}
+    /**
+     * This function is called by IP-Symcon and processes sent data and, if necessary, forwards it to
+     * all child instances. Data can be sent using the SendDataToChildren function.
+     *
+     * @param string $json Data package in JSON format
+     */
+    public function ReceiveData($json)
+{{/if}}
+    {
+        $data = json_decode($json);
+{{#if dataflowIsHID}}
+        IPS_LogMessage('Splitter RECV', utf8_decode($data->Buffer . ' - ' . $data->EventID));
+{{/if}}
+{{#if dataflowIsHTTPClient}}
+        IPS_LogMessage('Splitter RECV', utf8_decode($data->Buffer . ' - ' . $data->RequestMethod . ' - ' . $data->RequestURL . ' - ' . $data->RequestData . ' - ' . $data->Timeout));
+{{/if}}
+{{#if dataflowIsServerSocket}}
+        IPS_LogMessage('Splitter RECV', utf8_decode($data->Buffer . ' - ' . $data->ClientIP . ' - ' . $data->ClientPort));
+{{/if}}
+{{#if dataflowIsUDPSocket}}
+        IPS_LogMessage('Splitter RECV', utf8_decode($data->Buffer . ' - ' . $data->ClientIP . ' - ' . $data->ClientPort));
+{{/if}}
+{{#if dataflowIsMulticast}}
+        IPS_LogMessage('Splitter RECV', utf8_decode($data->Buffer . ' - ' . $data->ClientIP . ' - ' . $data->ClientPort));
+{{/if}}
+{{#if dataflowIsClientSocket}}
+        IPS_LogMessage('Splitter RECV', utf8_decode($data->Buffer));
+{{/if}}
+{{#if dataflowIsSerialPort}}
+        IPS_LogMessage('Splitter RECV', utf8_decode($data->Buffer));
+{{/if}}
+{{#if dataflowIsSSEClient}}
+        IPS_LogMessage('Splitter RECV', utf8_decode($data->Buffer));
+{{/if}}
+{{#if dataflowIsVirtualIO}}
+        IPS_LogMessage('Splitter RECV', utf8_decode($data->Buffer));
+{{/if}}
+{{#if dataflowIsWSClient}}
+        IPS_LogMessage('Splitter RECV', utf8_decode($data->Buffer));
+{{/if}}
+
+{{#if dataflowIsHID}}
+        $this->SendDataToChildren(json_encode(['DataID' => '{{moduleChilds}}', 'Buffer' => $data->Buffer, $data->EventID]));
+{{/if}}
+{{#if dataflowIsHTTPClient}}
+        $this->SendDataToChildren(json_encode(['DataID' => '{{moduleChilds}}', 'Buffer' => $data->Buffer, $data->RequestMethod, $data->RequestURL, $data->RequestData, $data->Timeout]));
+{{/if}}
+{{#if dataflowIsServerSocket}}
+        $this->SendDataToChildren(json_encode(['DataID' => '{{moduleChilds}}', 'Buffer' => $data->Buffer, $data->ClientIP, $data->ClientPort]));
+{{/if}}
+{{#if dataflowIsUDPSocket}}
+        $this->SendDataToChildren(json_encode(['DataID' => '{{moduleChilds}}', 'Buffer' => $data->Buffer, $data->ClientIP, $data->ClientPort]));
+{{/if}}
+{{#if dataflowIsMulticast}}
+        $this->SendDataToChildren(json_encode(['DataID' => '{{moduleChilds}}', 'Buffer' => $data->Buffer, $data->ClientIP, $data->ClientPort]));
+{{/if}}
+{{#if dataflowIsClientSocket}}
+        $this->SendDataToChildren(json_encode(['DataID' => '{{moduleChilds}}', 'Buffer' => $data->Buffer]));
+{{/if}}
+{{#if dataflowIsSerialPort}}
+        $this->SendDataToChildren(json_encode(['DataID' => '{{moduleChilds}}', 'Buffer' => $data->Buffer]));
+{{/if}}
+{{#if dataflowIsSSEClient}}
+        $this->SendDataToChildren(json_encode(['DataID' => '{{moduleChilds}}', 'Buffer' => $data->Buffer]));
+{{/if}}
+{{#if dataflowIsVirtualIO}}
+        $this->SendDataToChildren(json_encode(['DataID' => '{{moduleChilds}}', 'Buffer' => $data->Buffer]));
+{{/if}}
+{{#if dataflowIsWSClient}}
+        $this->SendDataToChildren(json_encode(['DataID' => '{{moduleChilds}}', 'Buffer' => $data->Buffer]));
+{{/if}}
+        return '';
+    }
+{{/if}}
+{{/if}}
+{{#if moduleIsDevice}}
+{{#if moduleHasDataflow}}
+
+{{#if moduleIsStrict}}
+    /**
+     * This function sends the text message to all of his children.
+     *
+     * @param string $text Text message
+     *
+     * @return void
+     */
+{{else}}
+    /**
+     * This function sends the text message to all of his children.
+     *
+     * @param string $text Text message
+     */
+{{/if}}
+{{#if moduleIsStrict}}
+{{#if dataflowIsHID}}
+    public function Send(string $Text, int $EventID): void
+{{/if}}
+{{#if dataflowIsHTTPClient}}
+    public function Send(string $Text, string $RequestMethod, string $RequestURL, string $RequestData, int $Timeout): void
+{{/if}}
+{{#if dataflowIsServerSocket}}
+    public function Send(string $Text, string $Text, string $ClientIP, int $ClientPort): void
+{{/if}}
+{{#if dataflowIsUDPSocket}}
+    public function Send(string $Text, string $Text, string $ClientIP, int $ClientPort): void
+{{/if}}
+{{#if dataflowIsMulticast}}
+    public function Send(string $Text, string $Text, string $ClientIP, int $ClientPort): void
+{{/if}}
+{{#if dataflowIsClientSocket}}
+    public function Send(string $Text): void
+{{/if}}
+{{#if dataflowIsSerialPort}}
+    public function Send(string $Text): void
+{{/if}}
+{{#if dataflowIsSSEClient}}
+    public function Send(string $Text): void
+{{/if}}
+{{#if dataflowIsVirtualIO}}
+    public function Send(string $Text): void
+{{/if}}
+{{#if dataflowIsWSClient}}
+    public function Send(string $Text): void
+{{/if}}
+{{else}}
+{{#if dataflowIsHID}}
+    public function Send(string $Text, int $EventID)
+{{/if}}
+{{#if dataflowIsHTTPClient}}
+    public function Send(string $Text, string $RequestMethod, string $RequestURL, string $RequestData, int $Timeout)
+{{/if}}
+{{#if dataflowIsServerSocket}}
+    public function Send(string $Text, string $Text, string $ClientIP, int $ClientPort)
+{{/if}}
+{{#if dataflowIsUDPSocket}}
+    public function Send(string $Text, string $Text, string $ClientIP, int $ClientPort)
+{{/if}}
+{{#if dataflowIsMulticast}}
+    public function Send(string $Text, string $Text, string $ClientIP, int $ClientPort)
+{{/if}}
+{{#if dataflowIsClientSocket}}
+    public function Send(string $Text)
+{{/if}}
+{{#if dataflowIsSerialPort}}
+    public function Send(string $Text)
+{{/if}}
+{{#if dataflowIsSSEClient}}
+    public function Send(string $Text)
+{{/if}}
+{{#if dataflowIsVirtualIO}}
+    public function Send(string $Text)
+{{/if}}
+{{#if dataflowIsWSClient}}
+    public function Send(string $Text)
+{{/if}}
+{{/if}}
+    {
+{{#if dataflowIsHID}}
+        $this->SendDataToParent(json_encode(['DataID' => '{{moduleParents}}', "Buffer" => $Text, "EventID" => $EventID']));
+{{/if}}
+{{#if dataflowIsHTTPClient}}
+        $this->SendDataToParent(json_encode(['DataID' => '{{moduleParents}}', "RequestMethod" => $RequestMethod, "RequestURL" => $RequestURL, "RequestData" => $RequestData, "Timeout" => $Timeout]));
+{{/if}}
+{{#if dataflowIsServerSocket}}
+        $this->SendDataToParent(json_encode(['DataID' => '{{moduleParents}}', "ClientIP" => $ClientIP, "ClientPort" => $ClientPort, "Buffer" => $Text]));
+{{/if}}
+{{#if dataflowIsUDPSocket}}
+        $this->SendDataToParent(json_encode(['DataID' => '{{moduleParents}}', "ClientIP" => $ClientIP, "ClientPort" => $ClientPort, "Buffer" => $Text]));
+{{/if}}
+{{#if dataflowIsMulticast}}
+        $this->SendDataToParent(json_encode(['DataID' => '{{moduleParents}}', "ClientIP" => $ClientIP, "ClientPort" => $ClientPort, "Buffer" => $Text]));
+{{/if}}
+{{#if dataflowIsClientSocket}}
+        $this->SendDataToParent(json_encode(['DataID' => '{{moduleParents}}', 'Buffer' => $Text]));
+{{/if}}
+{{#if dataflowIsSerialPort}}
+        $this->SendDataToParent(json_encode(['DataID' => '{{moduleParents}}', 'Buffer' => $Text]));
+{{/if}}
+{{#if dataflowIsSSEClient}}
+        $this->SendDataToParent(json_encode(['DataID' => '{{moduleParents}}', 'Buffer' => $Text]));
+{{/if}}
+{{#if dataflowIsVirtualIO}}
+        $this->SendDataToParent(json_encode(['DataID' => '{{moduleParents}}', 'Buffer' => $Text]));
+{{/if}}
+{{#if dataflowIsWSClient}}
+        $this->SendDataToParent(json_encode(['DataID' => '{{moduleParents}}', 'Buffer' => $Text]));
+{{/if}}
+    }
+
+{{#if moduleIsStrict}}
+    /**
+     * This function is called by IP-Symcon and processes sent data and, if necessary, forwards it to
+     * all child instances. Data can be sent using the SendDataToChildren function.
+     *
+     * @param string $json Data package in JSON format
+     *
+     * @return string Optional response to the parent instance
+     */
+    public function ReceiveData(string $json): string
+{{else}}
+    /**
+     * This function is called by IP-Symcon and processes sent data and, if necessary, forwards it to
+     * all child instances. Data can be sent using the SendDataToChildren function.
+     *
+     * @param string $json Data package in JSON format
+     */
+    public function ReceiveData($json)
+{{/if}}
+    {
+        $data = json_decode($json);
+{{#if dataflowIsHID}}
+        IPS_LogMessage('Device RECV', utf8_decode($data->Buffer . ' - ' . $data->EventID));
+{{/if}}
+{{#if dataflowIsHTTPClient}}
+        IPS_LogMessage('Device RECV', utf8_decode($data->Buffer . ' - ' . $data->RequestMethod . ' - ' . $data->RequestURL . ' - ' . $data->RequestData . ' - ' . $data->Timeout));
+{{/if}}
+{{#if dataflowIsServerSocket}}
+        IPS_LogMessage('Device RECV', utf8_decode($data->Buffer . ' - ' . $data->ClientIP . ' - ' . $data->ClientPort));
+{{/if}}
+{{#if dataflowIsUDPSocket}}
+        IPS_LogMessage('Device RECV', utf8_decode($data->Buffer . ' - ' . $data->ClientIP . ' - ' . $data->ClientPort));
+{{/if}}
+{{#if dataflowIsMulticast}}
+        IPS_LogMessage('Device RECV', utf8_decode($data->Buffer . ' - ' . $data->ClientIP . ' - ' . $data->ClientPort));
+{{/if}}
+{{#if dataflowIsClientSocket}}
+        IPS_LogMessage('Device RECV', utf8_decode($data->Buffer));
+{{/if}}
+{{#if dataflowIsSerialPort}}
+        IPS_LogMessage('Device RECV', utf8_decode($data->Buffer));
+{{/if}}
+{{#if dataflowIsSSEClient}}
+        IPS_LogMessage('Device RECV', utf8_decode($data->Buffer));
+{{/if}}
+{{#if dataflowIsVirtualIO}}
+        IPS_LogMessage('Device RECV', utf8_decode($data->Buffer));
+{{/if}}
+{{#if dataflowIsWSClient}}
+        IPS_LogMessage('Device RECV', utf8_decode($data->Buffer));
+{{/if}}
+{{/if}}
+{{/if}}
+
+{{#if codingMessageSink}}
+{{#if moduleIsStrict}}
+    /**
+     * The content of the function can be overwritten in order to carry out own reactions to certain messages.
+     * The function is only called for registered MessageIDs/SenderIDs combinations.
+     *
+     * data[0] = new value
+     * data[1] = value changed?
+     * data[2] = old value
+     * data[3] = timestamp.
+     *
+     * @param int   $timestamp Continuous counter timestamp
+     * @param int   $sender    Sender ID
+     * @param int   $message   ID of the message
+     * @param array{0:mixed,1:bool,2:mixed,3:int} $data Data of the message
+     *
+     * @return void
+     */
+    public function MessageSink(int $timestamp, int $sender, int $message, array $data): void
+{{else}}
+    /**
+     * The content of the function can be overwritten in order to carry out own reactions to certain messages.
+     * The function is only called for registered MessageIDs/SenderIDs combinations.
+     *
+     * data[0] = new value
+     * data[1] = value changed?
+     * data[2] = old value
+     * data[3] = timestamp.
+     *
+     * @param int   $timestamp Continuous counter timestamp
+     * @param int   $sender    Sender ID
+     * @param int   $message   ID of the message
+     * @param array{0:mixed,1:bool,2:mixed,3:int} $data Data of the message
+     */
+    public function MessageSink($timestamp, $sender, $message, $data)
+{{/if}}
+    {
+        // check if state really changed ?
+        if ($data[1] != true) {
+            return;
+        }
+
+        if ($message === VM_UPDATE) {
+            $this->SendDebug(__FUNCTION__, "Update of $sender = $data[0]", 0);
+            // TODO: Add your programming logic here
+        }
+    }
+{{/if}}
+
+{{#if codingRequestAction}}
+{{#if moduleIsStrict}}
+    /**
+     * Is called when, for example, a button is clicked in the visualization.
+     *
+     * @param string $ident Ident of the variable
+     * @param mixed $value The value to be set
+     *
+     * @return void
+     */
+    public function RequestAction(string $ident, mixed $value): void
+{{else}}
+    /**
+     * Is called when, for example, a button is clicked in the visualization.
+     *
+     * @param string $ident Ident of the variable
+     * @param mixed $value The value to be set
+     */
+    public function RequestAction($ident, $value)
+{{/if}}
+    {
+        // Debug output
+        $this->SendDebug(__FUNCTION__, $ident . ' => ' . $value, 0);
+        // TODO: Replace identifier
+        switch ($ident) {
+            case 'OnXxxxxYyyyy':
+                break;
+            default:
+                $this->SendDebug(__FUNCTION__, 'There was no reaction to the action.', 0);
+        }
+{{#if codingVisuSupport}}
+        // Send a complete update message to the display, as parameters may have changed
+        // $this->UpdateVisualizationValue($this->GetFullUpdateMessage());
+{{/if}}
+        return;
+    }
+{{/if}}
+
+{{#if codingVisuSupport}}
+{{#if moduleIsStrict}}
+    /**
+     * If the HTML-SDK is to be used, this function must be overwritten in order to return the HTML content.
+     *
+     * @return string Initial display of a representation via HTML SDK
+     */
+    public function GetVisualizationTile(): string
+{{else}}
+    /**
+     * If the HTML-SDK is to be used, this function must be overwritten in order to return the HTML content.
+     */
+    public function GetVisualizationTile()
+{{/if}}
+    {
+        // Add a script to set the values when loading, analogous to changes at runtime
+        // Although the return from GetFullUpdateMessage is already JSON-encoded, json_encode is still executed a second time
+        // This adds quotation marks to the string and any quotation marks within it are escaped correctly
+        $handling = '<script>handleMessage(' . json_encode($this->GetFullUpdateMessage()) . ');</script>';
+        // Add static HTML from file
+        $module = file_get_contents(__DIR__ . '/module.html');
+        // Important: $initialHandling at the end, as the handleMessage function is only defined in the HTML
+        return $module . $handling;
+    }
+
+{{#if moduleIsStrict}}
+    /**
+     * Generate a message that updates all elements in the HTML display.
+     *
+     * @return string JSON encoded message information
+     */
+    private function GetFullUpdateMessage(): string
+{{else}}
+    /**
+     * Generate a message that updates all elements in the HTML display.
+     */
+    private function GetFullUpdateMessage()
+{{/if}}
+    {
+        // Fill resultset
+        $result = [];
+        $result['text'] = "Here's the text!";
+        $result['bgcolor'] = $this->ReadPropertyInteger('PriceFont');
+        $this->SendDebug(__FUNCTION__, print_r($result, true), 0);
+        // send it
+        return json_encode($result);
+    }
+{{#if codingVisuColor}}
+
+{{#if moduleIsStrict}}
+    /**
+     * Get HTML rgb formated color.
+     *
+     * @param int $color Color value or -1 for transparency
+     *
+     * @return string HTML coded color or empty string
+     */
+    private function GetColorFormatted(int $color): string
+{{else}}
+    /**
+     * Get HTML rgb formated color.
+     *
+     * @param int $color Color value or -1 for transparency
+     */
+    private function GetColorFormatted($color)
+{{/if}}
+    {
+        if ($color != '-1') {
+            return '#' . sprintf('%06X', $color);
+        } else {
+            return '';
+        }
+    }
+
+{{#if moduleIsStrict}}
+    /**
+     * Converts a hex color string (#RRGGBB or RRGGBB) to an integer.
+     * Returns -1 if the input is empty, null, or invalid.
+     *
+     * Examples:
+     *   colorHexToInt('#FF00AA') → 16711850
+     *   colorHexToInt('FF00AA')  → 16711850
+     *   colorHexToInt('')        → -1
+     *   colorHexToInt(null)      → -1
+     *   colorHexToInt('#XYZ123') → -1
+     *
+     * @param string|null $hex Hex color string with or without leading '#'
+     *
+     * @return int RGB integer representation or -1 on error
+     */
+    private function GetColorUnformatted(?string $hex): int
+{{else}}
+    /**
+     * Converts a hex color string (#RRGGBB or RRGGBB) to an integer.
+     * Returns -1 if the input is empty, null, or invalid.
+     *
+     * Examples:
+     *   colorHexToInt('#FF00AA') → 16711850
+     *   colorHexToInt('FF00AA')  → 16711850
+     *   colorHexToInt('')        → -1
+     *   colorHexToInt(null)      → -1
+     *   colorHexToInt('#XYZ123') → -1
+     *
+     * @param string $hex Hex color string with or without leading '#'
+     */
+    private function GetColorUnformatted($hex)
+{{/if}}
+    {
+        // Empty or null input → return -1
+        if (empty($hex)) {
+            return -1;
+        }
+        // Remove leading '#' if present
+        $hex = ltrim($hex, '#');
+        // Validate hex format (must be 6 hex digits)
+        if (!preg_match('/^[0-9A-Fa-f]{6}$/', $hex)) {
+            return -1;
+        }
+        // Convert to integer
+        return hexdec($hex);
+    }
+{{/if}}
+{{#if codingVisuMedia}}
+
+{{#if moduleIsStrict}}
+    /**
+     * Get media type
+     *
+     * @param string $ext File extention
+     *
+     * @return string Media type data prefix
+     */
+    private function GetMediaType(string $ext): string
+{{else}}
+    /**
+     * Get media type
+     *
+     * @param string $ext File extention
+     */
+    private function GetMediaType($ext)
+{{/if}}
+    {
+        $type = '';
+        switch ($ext) {
+            case 'bmp':
+                $type = 'data:image/bmp;base64,';
+                break;
+            case 'jpg':
+            case 'jpeg':
+                $type = 'data:image/jpeg;base64,';
+                break;
+            case 'gif':
+                $type = 'data:image/gif;base64,';
+                break;
+            case 'png':
+                $type = 'data:image/png;base64,';
+                break;
+            case 'ico':
+                $type = 'data:image/x-icon;base64,';
+                break;
+            case 'webp':
+                $type = 'data:image/webp;base64,';
+                break;
+        }
+        return $type;
+    }
+
+{{#if moduleIsStrict}}
+    /**
+     * Returns a media object as base 64 image.
+     *
+     * @param int $media Media ID
+     *
+     * @return string Base64 coded image data
+     */
+    private function GetBase64Image(int $media): string
+{{else}}
+    /**
+     * Returns a media object as base 64 image.
+     *
+     * @param int $media Media ID
+     */
+    private function GetBase64Image($media)
+{{/if}}
+    {
+        $data = '';
+        if (IPS_MediaExists($media)) {
+            $image = IPS_GetMedia($media);
+            if ($image['MediaType'] === MEDIATYPE_IMAGE) {
+                $file = explode('.', $image['MediaFile']);
+                $data = $this->GetMediaType(end($file));
+                // Only continue if content has been set. Otherwise, the image is not a supported file type.
+                if ($data) {
+                    // Append base64-encoded content of the image
+                    $data .= IPS_GetMediaContent($media);
+                }
+            }
+        }
+        return $data;
+    }
+{{/if}}
+{{/if}}
+{{#if codingEchoMessage}}
+
+{{#if moduleIsStrict}}
+   /**
+     * Show message via popup
+     *
+     * @param string $caption echo message
+     *
+     * @return void
+     */
+    private function EchoMessage(string $caption): void
+{{else}}
+   /**
+     * Show message via popup
+     *
+     * @param string $caption echo message
+     */
+    private function EchoMessage(string $caption): void
+{{/if}}
+    {
+        $this->UpdateFormField('EchoMessage', 'caption', $this->Translate($caption));
+        $this->UpdateFormField('EchoPopup', 'visible', true);
+    }
+{{/if}}
+}

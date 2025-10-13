@@ -57,8 +57,8 @@ export function registerAddTranslation(context: vscode.ExtensionContext) {
             try {
                 await fs.promises.writeFile(localePath, JSON.stringify(locale, null, 4), 'utf-8');
                 vscode.window.showInformationMessage(vscode.l10n.t('Translation for \"{0}\" has been added.', selectedText));
-            } catch (err: any) {
-                vscode.window.showErrorMessage(vscode.l10n.t('Error writing locale.json: {0}', err.message));
+            } catch (e: any) {
+                vscode.window.showErrorMessage(vscode.l10n.t('Error writing locale.json: {0}', e.message));
             }
         })
     );

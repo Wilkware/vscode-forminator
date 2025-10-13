@@ -1,19 +1,6 @@
 import * as vscode from 'vscode';
 import { loadThemes } from './themes';
 
-/**
- * getWorkspaceName - Name of the first (and only) workspace folder
- *
- * @return string
- */
-export function getWorkspaceName(): string | undefined {
-  const workspaceFolders = vscode.workspace.workspaceFolders;
-  if (workspaceFolders && workspaceFolders.length > 0) {
-    return workspaceFolders[0].name;
-  }
-  return undefined;
-}
-
  /**
   * getBaseTag - Full blown base tag
   *

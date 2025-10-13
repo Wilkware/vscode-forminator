@@ -1,5 +1,15 @@
 # Changelog
 
+## [3.0.0] - Release (2025-10-13)
+
+- **NEW**: Create a new Symcon library project using an interactive wizard (Library generator wizard).
+- **NEW**: Add new modules to an existing Symcon library project with guided input (Modul generator wizard).
+- **NEW**: Added command and context menu to update `library.json` build metadata.
+- **NEW**: Added command and context menu to assign splitter GUIDs to `module.json`.
+- **NEW**: Reworked and extended settings structure (General, Project, Form, and Preview sections).
+- **FIX**: Update extension icon for better visual consistency.
+- **FIX**: Optimized translations and cleaned up wording across all supported languages.
+
 ## [2.1.0] - Feature (2025-09-01)
 
 - **NEW**: Seperate Form elemets and properties in real two views, better decider and scrollbar behaivior

@@ -1,0 +1,20 @@
+parameters:
+    level: 6
+    phpVersion: {{projectPHPVersion}}
+
+    # Dein Modulverzeichnis analysieren
+    paths:
+        - ./
+
+    # Stubs mit IPS-Funktionen
+    scanDirectories:
+        - {{projectSymconStubs}}
+
+    excludePaths:
+        analyse:
+            - {{projectSymconStubs}}/*
+
+    ignoreErrors:
+
+    # Supress ignore Errors
+    reportUnmatchedIgnoredErrors: false

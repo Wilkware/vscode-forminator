@@ -1,0 +1,182 @@
+{
+    "elements": [
+{{#if codingEchoMessage}}
+        {
+            "name": "EchoPopup",
+            "type": "PopupAlert",
+            "visible": false,
+            "popup": {
+                "items": [
+                    {
+                        "type": "Label",
+                        "name": "EchoMessage",
+                        "caption": ""
+                    }
+                ]
+            }
+        }
+{{/if}}
+    ],
+    "actions": [
+{{#if dataflowIsClientSocket}}
+        {
+            "name": "Text",
+            "type": "ValidationTextBox",
+            "caption": "Text"
+        },
+        {
+            "type": "Button",
+            "caption": "Send",
+            "onClick": "{{modulePrefix}}_Send($id, $Text);"
+        }
+{{/if}}
+{{#if dataflowIsSerialPort}}
+        {
+            "name": "Text",
+            "type": "ValidationTextBox",
+            "caption": "Text"
+        },
+        {
+            "type": "Button",
+            "caption": "Send",
+            "onClick": "{{modulePrefix}}_Send($id, $Text);"
+        }
+{{/if}}
+{{#if dataflowIsVirtualIO}}
+        {
+            "name": "Text",
+            "type": "ValidationTextBox",
+            "caption": "Text"
+        },
+        {
+            "type": "Button",
+            "caption": "Send",
+            "onClick": "{{modulePrefix}}_Send($id, $Text);"
+        }
+{{/if}}
+{{#if dataflowIsWSClient}}
+        {
+            "name": "Text",
+            "type": "ValidationTextBox",
+            "caption": "Text"
+        },
+        {
+            "type": "Button",
+            "caption": "Send",
+            "onClick": "{{modulePrefix}}_Send($id, $Text);"
+        }
+{{/if}}
+{{#if dataflowIsHID}}
+        {
+            "name": "EventID",
+            "type": "NumberSpinner",
+            "caption": "Event ID"
+        },
+        {
+            "name": "Text",
+            "type": "ValidationTextBox",
+            "caption": "Text"
+        },
+        {
+            "type": "Button",
+            "caption": "Send",
+            "onClick": "PIO_Send($id, $Text, $EventID);"
+        }
+{{/if}}
+{{#if dataflowIsHTTPClient}}
+        {
+            "name": "RequestMethod",
+            "type": "ValidationTextBox",
+            "caption": "Reques Method"
+        },
+        {
+            "name": "RequestURL",
+            "type": "ValidationTextBox",
+            "caption": "Request URL"
+        },
+        {
+            "name": "RequestData",
+            "type": "ValidationTextBox",
+            "caption": "Request Data"
+        },
+        {
+            "name": "Timeout",
+            "type": "NumberSpinner",
+            "caption": "Timeout"
+        },
+        {
+            "type": "Button",
+            "caption": "Send",
+            "onClick": "{{modulePrefix}}_Send($id, $RequestMethod, $RequestURL, $RequestData, $Timeout);"
+        }
+{{/if}}
+{{#if dataflowIsServerSocket}}
+        { 
+            "name": "ClientIP",
+            "type": "ValidationTextBox",
+            "caption": "Client IP"
+        },
+        {
+            "name": "ClientPort",
+            "type": "NumberSpinner",
+            "caption": "Client Port"
+        },
+        {
+            "name": "Text",
+            "type": "ValidationTextBox",
+            "caption": "Text" 
+        },
+        {
+            "type": "Button",
+            "caption": "Send",
+            "onClick": {{modulePrefix}}_Send($id, $Text, $ClientIP, $ClientPort);"
+        }
+{{/if}}
+{{#if dataflowIsUDPSocket}}
+        { 
+            "name": "ClientIP",
+            "type": "ValidationTextBox",
+            "caption": "Client IP"
+        },
+        {
+            "name": "ClientPort",
+            "type": "NumberSpinner",
+            "caption": "Client Port"
+        },
+        {
+            "name": "Text",
+            "type": "ValidationTextBox",
+            "caption": "Text" 
+        },
+        {
+            "type": "Button",
+            "caption": "Send",
+            "onClick": {{modulePrefix}}_Send($id, $Text, $ClientIP, $ClientPort);"
+        }
+{{/if}}
+{{#if dataflowIsMulticast}}
+        { 
+            "name": "ClientIP",
+            "type": "ValidationTextBox",
+            "caption": "Client IP"
+        },
+        {
+            "name": "ClientPort",
+            "type": "NumberSpinner",
+            "caption": "Client Port"
+        },
+        {
+            "name": "Text",
+            "type": "ValidationTextBox",
+            "caption": "Text" 
+        },
+        {
+            "type": "Button",
+            "caption": "Send",
+            "onClick": {{modulePrefix}}_Send($id, $Text, $ClientIP, $ClientPort);"
+        }
+{{/if}}
+    ],
+    "status": [
+    ]
+}

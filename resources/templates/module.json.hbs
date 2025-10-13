@@ -1,0 +1,28 @@
+{
+    "id": "{{moduleId}}",
+    "name": "{{moduleName}}",
+    "url": "{{moduleUrl}}",
+    "type": {{moduleTypeId}},
+    "vendor": "{{moduleVendor}}",
+    "aliases": [
+{{#each moduleAliases}}
+        "{{this}}"{{#if @last}}{{else}},{{/if}}
+{{/each}}
+    ],
+    "parentRequirements": [
+{{#each moduleParents}}
+        "{{this}}"{{#if @last}}{{else}},{{/if}}
+{{/each}}
+    ],
+    "childRequirements": [
+{{#each moduleChilds}}
+        "{{this}}"{{#if @last}}{{else}},{{/if}}
+{{/each}}
+    ],
+    "implemented": [
+{{#each moduleImplements}}
+        "{{this}}"{{#if @last}}{{else}},{{/if}}
+{{/each}}
+    ],
+    "prefix": "{{modulePrefix}}"
+}

@@ -2,7 +2,7 @@
     "name": "forminator",
     "displayName": "%displayName%",
     "description": "%description%",
-    "version": "2.1.0",
+    "version": "3.0.0",
     "publisher": "wilkware-vscode",
     "author": {
         "name": "Heiko Wilknitz",
@@ -36,7 +36,7 @@
         "php"
     ],
     "engines": {
-        "vscode": "^1.73.0"
+        "vscode": "^1.103.0"
     },
     "activationEvents": [
         "onStartupFinished",
@@ -62,7 +62,6 @@
                     "id": "symconForm.elements",
                     "name": "%sidebar.elementsName%",
                     "icon": "resources/sidebar.svg"
-
                 },
                 {
                     "type": "webview",
@@ -84,13 +83,33 @@
                 "category": "Symcon"
             },
             {
+                "command": "insertGuidAtPosition",
+                "title": "%command.insertGUIDTitle%",
+                "category": "Symcon"
+            },
+            {
+                "command": "assignSplitterToModule",
+                "title": "%command.assignSplitterTitle%",
+                "category": "Symcon"
+            },
+            {
+                "command": "updateBuildInfo",
+                "title": "%command.updateBuildTitle%",
+                "category": "Symcon"
+            },
+            {
                 "command": "openPreviewVisualisation",
                 "title": "%command.openPreviewTitle%",
                 "category": "Symcon"
             },
             {
-                "command": "insertGuidAtPosition",
-                "title": "%config.insertGUIDTitle%",
+                "command": "startLibraryWizard",
+                "title": "%command.createLibraryTitle%",
+                "category": "Symcon"
+            },
+            {
+                "command": "startModuleWizard",
+                "title": "%command.addModuleTitle%",
                 "category": "Symcon"
             }
         ],
@@ -107,65 +126,192 @@
                     "group": "navigation"
                 },
                 {
+                    "command": "insertGuidAtPosition",
+                    "when": "editorLangId == json || editorLangId == php",
+                    "group": "navigation"
+                },
+                {
+                    "command": "assignSplitterToModule",
+                    "when": "resourceFilename == module.json",
+                    "group": "navigation"
+                },
+                {
                     "command": "openPreviewVisualisation",
                     "when": "resourceFilename == module.html",
                     "group": "navigation"
                 },
                 {
-                    "command": "insertGuidAtPosition",
-                    "when": "editorLangId == json || editorLangId == php",
+                    "command": "updateBuildInfo",
+                    "when": "resourceFilename == library.json",
                     "group": "navigation"
                 }
             ]
         },
-        "configuration": {
-            "title": "%displayName%",
-            "properties": {
-                "symcon.form.alwaysIncludes": {
-                    "title": "%config.alwaysIncludesTitle%",
-                    "type": "string",
-                    "default": "name,caption",
-                    "description": "%config.alwaysIncludesDesc%"
-                },
-                "symcon.form.emptyValues": {
-                    "title": "%config.emptyValuesTitle%",
-                    "type": "boolean",
-                    "default": true,
-                    "description": "%config.emptyValuesDesc%"
-                },
-                "symcon.form.deleteDefaults": {
-                    "title": "%config.deleteDefaultsTitle%",
-                    "type": "boolean",
-                    "default": false,
-                    "description": "%config.deleteDefaultsDesc%"
-                },
-                "symcon.form.defaultWidth": {
-                    "title": "%config.defaultWidthTitle%",
-                    "type": "string",
-                    "default": "",
-                    "description": "%config.defaultWidthDesc%"
-                },
-                "symcon.preview.serverIP": {
-                    "title": "%config.serverIPTitle%",
-                    "type": "string",
-                    "default": "127.0.0.1",
-                    "description": "%config.serverIPDesc%"
-                },
-                "symcon.preview.serverPort": {
-                    "title": "%config.serverPortTitle%",
-                    "type": "string",
-                    "default": "3777",
-                    "description": "%config.serverPortDesc%"
-                },
-                "symcon.preview.themes": {
-                    "title": "%config.themesTitle%",
-                    "type": "string",
-                    "editPresentation": "multilineText",
-                    "default": "light: #111C2D, #00CDAB, #FFFFFF, #000000\ndark: #000000, #00CDAB, #333438, #FFFFFF",
-                    "description": "%config.themesDesc%"
+        "configuration": [
+            {
+                "title": "%config.generalTitle%",
+                "order": 1,
+                "type": "object",
+                "properties": {
+                    "symcon.general.author": {
+                        "order": 1,
+                        "title": "%config.generalAuthorTitle%",
+                        "type": "string",
+                        "default": "",
+                        "description": "%config.generalAuthorDesc%"
+                    },
+                    "symcon.general.homepage": {
+                        "order": 2,
+                        "title": "%config.generalHomepageTitle%",
+                        "type": "string",
+                        "default": "https://symcon.de",
+                        "format": "uri",
+                        "description": "%config.generalHomepageDesc%"
+                    },
+                    "symcon.general.version": {
+                        "order": 3,
+                        "title": "%config.generalVersionTitle%",
+                        "type": "string",
+                        "default": "1.0",
+                        "description": "%config.generalVersionDesc%"
+                    },
+                    "symcon.general.build": {
+                        "order": 4,
+                        "title": "%config.generalBuildTitle%",
+                        "type": "string",
+                        "default": "%Y%m%d%H%M",
+                        "description": "%config.generalBuildDesc%"
+                    }
+                }
+            },
+            {
+                "title": "%config.projectTitle%",
+                "order": 2,
+                "type": "object",
+                "properties": {
+                    "symcon.project.workspace": {
+                        "order": 1,
+                        "title": "%config.projectWorkspaceTitle%",
+                        "type": "string",
+                        "default": "",
+                        "description": "%config.projectWorkspaceDesc%"
+                    },
+                    "symcon.project.templates": {
+                        "order": 2,
+                        "title": "%config.projectTemplateTitle%",
+                        "type": "string",
+                        "default": "",
+                        "description": "%config.projectTemplateDesc%"
+                    },
+                    "symcon.project.additionalResources": {
+                        "order": 3,
+                        "title": "%config.projectCopyTitle%",
+                        "type": "string",
+                        "default": "",
+                        "description": "%config.projectCopyDesc%"
+                    },
+                    "symcon.project.codeStyle": {
+                        "order": 4,
+                        "title": "%config.projectStylesTitle%",
+                        "type": "string",
+                        "default": "https://github.com/symcon/StylePHP.git",
+                        "anyOf": [
+                            {
+                                "format": "uri"
+                            },
+                            {
+                                "enum": [
+                                    ""
+                                ]
+                            }
+                        ],
+                        "description": "%config.projectStylesDesc%"
+                    },
+                    "symcon.project.symconStubs": {
+                        "order": 5,
+                        "title": "%config.projectStubsTitle%",
+                        "type": "string",
+                        "default": "https://github.com/symcon/SymconStubs.git",
+                        "anyOf": [
+                            {
+                                "format": "uri"
+                            },
+                            {
+                                "enum": [
+                                    ""
+                                ]
+                            }
+                        ],
+                        "description": "%config.projectStubsDesc%"
+                    }
+                }
+            },
+            {
+                "title": "%config.formTitle%",
+                "order": 3,
+                "type": "object",
+                "properties": {
+                    "symcon.form.alwaysIncludes": {
+                        "order": 1,
+                        "title": "%config.alwaysIncludesTitle%",
+                        "type": "string",
+                        "default": "name,caption",
+                        "description": "%config.alwaysIncludesDesc%"
+                    },
+                    "symcon.form.emptyValues": {
+                        "order": 2,
+                        "title": "%config.emptyValuesTitle%",
+                        "type": "boolean",
+                        "default": true,
+                        "description": "%config.emptyValuesDesc%"
+                    },
+                    "symcon.form.deleteDefaults": {
+                        "order": 3,
+                        "title": "%config.deleteDefaultsTitle%",
+                        "type": "boolean",
+                        "default": false,
+                        "description": "%config.deleteDefaultsDesc%"
+                    },
+                    "symcon.form.defaultWidth": {
+                        "order": 4,
+                        "title": "%config.defaultWidthTitle%",
+                        "type": "string",
+                        "default": "",
+                        "description": "%config.defaultWidthDesc%"
+                    }
+                }
+            },
+            {
+                "title": "%config.previewTitle%",
+                "order": 4,
+                "type": "object",
+                "properties": {
+                    "symcon.preview.serverIP": {
+                        "order": 1,
+                        "title": "%config.serverIPTitle%",
+                        "type": "string",
+                        "default": "127.0.0.1",
+                        "format": "ipv4",
+                        "description": "%config.serverIPDesc%"
+                    },
+                    "symcon.preview.serverPort": {
+                        "order": 2,
+                        "title": "%config.serverPortTitle%",
+                        "type": "string",
+                        "default": "3777",
+                        "description": "%config.serverPortDesc%"
+                    },
+                    "symcon.preview.themes": {
+                        "order": 3,
+                        "title": "%config.themesTitle%",
+                        "type": "string",
+                        "editPresentation": "multilineText",
+                        "default": "light: #111C2D, #00CDAB, #FFFFFF, #000000\ndark: #000000, #00CDAB, #333438, #FFFFFF",
+                        "description": "%config.themesDesc%"
+                    }
                 }
             }
-        }
+        ]
     },
     "scripts": {
         "vscode:prepublish": "tsc -p ./",
@@ -176,15 +322,17 @@
         "postinstall": "node scripts/build-elements-lite-css.js && node scripts/build-codicons-css.js"
     },
     "devDependencies": {
-        "@types/node": "^24.1.0",
-        "@types/vscode": "^1.72.0",
+        "@types/node": "^24.3.0",
+        "@types/vscode": "^1.103.0",
         "@vscode/l10n-dev": "^0.0.35",
         "@vscode/test-electron": "^2.2.3",
-        "typescript": "^5.3.3"
+        "typescript": "^5.9.2"
     },
     "dependencies": {
-        "@vscode-elements/elements-lite": "^0.3.0",
-        "@vscode/codicons": "^0.0.36",
-        "@vscode/l10n": "^0.0.18"
+        "@redhat-developer/vscode-wizard": "^0.3.1",
+        "@vscode-elements/elements-lite": "^0.4.0",
+        "@vscode/codicons": "^0.0.39",
+        "@vscode/l10n": "^0.0.18",
+        "handlebars": "^4.7.8"
     }
 }

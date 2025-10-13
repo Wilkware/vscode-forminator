@@ -41,8 +41,8 @@ export function registerInsertProperties(context: vscode.ExtensionContext) {
                 let formJson: any;
                 try {
                     formJson = JSON.parse(jsonText);
-                } catch (err: any) {
-                    vscode.window.showErrorMessage(vscode.l10n.t('Could not parse form json: ') + err.message);
+                } catch (e: any) {
+                    vscode.window.showErrorMessage(vscode.l10n.t('Could not parse form json: ') + e.message);
                     return;
                 }
 
@@ -60,9 +60,9 @@ export function registerInsertProperties(context: vscode.ExtensionContext) {
                 } else {
                     vscode.window.showInformationMessage(vscode.l10n.t('No new RegisterProperty calls inserted (all already present).'));
                 }
-            } catch (err: any) {
-                vscode.window.showErrorMessage(vscode.l10n.t('Unexpected error: ') + err.message);
-                console.error(err);
+            } catch (e: any) {
+                vscode.window.showErrorMessage(vscode.l10n.t('Unexpected error: ') + e.message);
+                console.error(e);
             }
         })
     );

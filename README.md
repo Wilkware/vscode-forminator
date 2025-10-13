@@ -1,7 +1,7 @@
-# ⚙️ Symcon Modul Helfer (Symcon Module Helper)
+# 🧩 Symcon Modul Helfer (Symcon Module Helper)
 
 [![Publisher](https://img.shields.io/badge/Publisher-Wilkware-orange?style=flat-square)](https://marketplace.visualstudio.com/publishers/wilkware-vscode)
-[![Version](https://img.shields.io/badge/Version-2.0.0-yellow.svg?style=flat-square)](https://github.com/Wilkware/vscode-forminator)
+[![Version](https://img.shields.io/badge/Version-3.0.0-yellow.svg?style=flat-square)](https://github.com/Wilkware/vscode-forminator)
 [![Installs](https://img.shields.io/visual-studio-marketplace/i/wilkware-vscode.forminator?color=green&label=Installs&style=flat-square)](https://marketplace.visualstudio.com/items?itemName=wilkware-vscode.forminator)
 [![License](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-green.svg?style=flat-square)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 [![German](https://img.shields.io/badge/Deutsch-DE-blueviolet.svg?style=flat-square)](#deutsch-de)
@@ -11,37 +11,90 @@
 
 ### Symcon Modul Helfer
 
-Der Symcon Module Helper ist eine Visual Studio Code Extension für Symcon-Modulentwicklung, die das Erstellen, Testen und Pflegen von form.json-Konfigurationen massiv beschleunigt. Sie bietet: schnelles Einfügen von Formular-Elementen und automatisch generierte JSON-Snippets mit korrekter Syntax, eine Sidebar zur Anzeige und Bearbeitung aller Eigenschaften eines ausgewählten Elements, Unterstützung der Standard-Elementtypen des Symcon PHP-SDK sowie komfortables Handling der Formulardaten (Live-Bearbeitung ohne viel Tipparbeit).
+Der **Symcon Modul Helfer** ist eine umfassende Visual Studio Code Extension zur komfortablen **Entwicklung von Symcon-Modulen** und Bibliotheken.  
+Er beschleunigt das **Erstellen, Testen und Pflegen** von *form.json*-Konfigurationen und vereint Code-Generator, Formular-Editor, Projekt-Wizard und Live-Preview in einer einzigen Oberfläche. Mit nur wenigen Klicks können komplette **Symcon-Bibliotheken** oder **Module** generiert, bestehende Projekte gepflegt und automatisch mit GUIDs, Build-Informationen und Dokumentation versehen werden.
 
-Zusätzlich enthält der Symcon Modul Helfer eine Echtzeit-Vorschau (Live Preview) – Theme, Größe, HTML und Payload werden sofort in einem eingebetteten Webview aktualisiert — inklusive persistenter Preview-Einstellungen pro Workspace, Inline-Patch des Module-HTMLs und sicherer CSP-/Ressourcensteuerung.
+### ✨ Hauptfunktionen
 
-Ergänzende Features: Kontextmenü-Erweiterung zum Übersetzten von Texten aus form.json in locale.json, ein Kommando zum Auslesen und Registrieren aller Property-Variablen in der Create()-Methode der module.php, sowie einfache Speicherung und Wiederherstellung von Preview-JSON.
+#### Wizards & Generatoren
+- **Library Generator Wizard** → Erstellt neue Symcon-Bibliotheksprojekte  
+- **Module Generator Wizard** → Fügt neue Module zu bestehenden Bibliotheken hinzu  
+- **Benutzerdefinierte Templates**: eigener Vorlagen-Ordner konfigurierbar  
+- **Readme-Patching** → erweitert Dokumentationslisten beim Hinzufügen neuer Module  
+- Intelligentes Feld-Mapping, Modul-Validierung und automatische GUID-Vergabe  
 
-### Hauptfunktionen
+#### Formular- und Editor-Funktionen
+- Schnelles Einfügen von **Symcon Formular-Elementen** per Klick  
+- Automatisch erzeugte, **korrekt formatierte JSON-Snippets**  
+- **Sidebar-Editor** zur Anzeige und Bearbeitung aller Eigenschaften  
+- Unterstützung aller **Standard-Elementtypen** des Symcon PHP-SDK  
 
-- Schnelles Einfügen von Symcon Formular-Elementen per Klick
-- Automatisch erzeugte, korrekt formatierte JSON-Snippets
-- Sidebar-Editor: alle Eigenschaften eines Elements anzeigen & bearbeiten
-- Unterstützung aller Standard-Elementtypen des Symcon PHP-SDK
-- Live Preview: sofortige Visualisierung von HTML, JSON, Theme und Größe im Webview
-- Persistente Preview-Einstellungen (Theme, Breite, Höhe) pro Workspace
-- Preview-JSON speichern/laden, live an das iFrame senden (postMessage)
-- Kontextmenü zum Übersetzen direkt aus form.json in locale.json
-- Kommando zum Extrahieren von Property-Variablen und Registrieren in Create()
+#### Live Preview
+- Echtzeit-Vorschau (HTML, JSON, Theme, Größe) im eingebetteten Webview  
+- **Persistente Einstellungen** (Theme, Breite, Höhe) pro Workspace  
+- Preview-JSON speichern, laden und direkt an das iFrame senden  
 
-### Installation
+#### Hilfs- und Analysefunktionen
+- **Build Info Command** → Aktualisiert *library.json* (Buildnummer + Datum)  
+- **Splitter GUID Command** → Weist gültige GUIDs in *module.json* zu  
+- **Übersetzen** von *form.json* → *locale.json*  
+- **Extraktion und Registrierung** von Property-Variablen in *Create()*  
+
+### 🧰 Installation
 
 - Verfügbar im Visual Studio Marketplace  
-- Alternativ: Manuelle Installation der `.vsix` Datei via `Extensions: Install from VSIX...`
+    1. Öffne **Visual Studio Code**  
+    2. Gehe zu **Erweiterungen (CTRL + SHIFT + X)**  
+    3. Suche nach **"Symcon Modul Helfer"**  
+    4. Klicke auf **Installieren**
+- Alternativ: Manuelle Installation der `.vsix` Datei via `Extensions: Install from VSIX...`  
 
-### Verwendung
+### 💡 Verwendung
 
-1. [Formulare](#user-content-1-formulare)
-2. [Übersetzungen](#user-content-2-übersetzungen)
-3. [Registrierungen](#user-content-3-registrierungen)
-4. [Live Vorschau](#user-content-4-live-vorschau)
+1. [Assitenten](#user-content-1-assitenten)
+2. [Formulare](#user-content-2-formulare)
+3. [Live Vorschau](#user-content-3-live-vorschau)
+4. [Funktionen](#user-content-4-funktionen)
 
-#### 1. Formulare
+#### 1. Assitenten
+
+##### 1.1. Neues Projekt
+
+* Über die Befehlspalette ... (Strg + Umschalt + P)  
+* `Neues Projekt für eine Modulbibliothek erstellen (über Assistent)` auswählen  
+* Der **Projekt Assizent** wird geöffent ...  
+
+   ![Projekt Assitent](./media/new-project-page.png)  
+   <!-- Screenshot: Neues Projekt Assistent -->
+
+* Nimm die entsprechenden Einstellungen vor und drücke auf `Weiter`  
+* Die **Bibliotheks-Seite** wird geöffnet ...  
+
+   ![Neue Bibliothek](./media/new-library-page.png)  
+   <!-- Screenshot: Neue Bibliothek Seite -->
+
+* Nimm die entsprechenden Einstellungen vor und drücke auf `Erstellen und öffnen`  
+* Ferig — VSCode öffent automatisch das neu Projekt!  
+
+##### 1.2. Neues Modul
+
+* Über die Befehlspalette ... (Strg + Umschalt + P)  
+* `Neues Modul hinzufügen (über Assistent)` auswählen  
+* Der **Modul Assizent** wird geöffent ...  
+
+   ![Modul Assitent](./media/new-module-page.png)  
+   <!-- Screenshot: Neues Modul Assistent -->
+
+* Nimm die entsprechenden Einstellungen vor und drücke auf `Weiter`  
+* Die **Programmierungs-Seite** wird geöffnet ...  
+
+   ![Programmierung](./media/new-code-page.png)  
+   <!-- Screenshot: Programmierung Seite -->
+
+* Nimm die entsprechenden Einstellungen vor und drücke auf `Hinzufügen`  
+* Ferig — das neue Modul wird dem aktuellen Projekt (Bibliothek) hinzugefügt!  
+
+#### 2. Formulare
 
 * Öffne eine `forms.json` Datei im Projekt  
 * Die Symcon Form Sidebar wird automatisch angezeigt  
@@ -60,63 +113,93 @@ Ergänzende Features: Kontextmenü-Erweiterung zum Übersetzten von Texten aus f
 
 * Klicke auf „Element einfügen“  
 
-* Fertig — das Element wird korrekt und formatiert im JSON eingefügt  
+* Fertig — das Element wird korrekt und formatiert im JSON eingefügt!  
 
    ![Eingefügtes Element](./media/inserted-element.png)  
    <!-- Screenshot: Beispiel JSON nach dem Einfügen -->
 
-#### 2. Übersetzungen
+#### 3. Live Vorschau
+
+* Öffne die Erweiterungseinstellungen nimm die entsprechenden Einstellungen vor  
+
+   ![Settings Preview](./media/settings-preview.png)  
+   <!-- Screenshot: Settings for live preview -->
+
+* Wechseln zur Datei „module.html“ und drücken (Strg + Umschalt + P) ...  
+
+   ![Command Preview](./media/command-preview.png)  
+   <!-- Screenshot: Call up the command palette -->
+
+* Oder öffnen Sie das Kontextmenü (Rechtsklick)  
+
+   ![Context Preview](./media/context-preview.png)  
+   <!-- Screenshot: Context menu -->
+
+* Fertig – die Symcon-Live-Vorschau wird angezeigt!  
+
+   ![Live Preview](./media/vscode-preview.png)  
+   <!-- Screenshot: Live preview -->
+
+#### 4. Funktionen
+
+##### 4.1. Übersetzungen
 
 * Markiere den zu übersetzenden Text in der form.json Datei und aktiviere das Kontext-Menü (rechte Maustaste)  
 
    ![Kontext Menu](./media/context-menu.png)  
    <!-- Screenshot: Context Menü für Übersetzung -->
 
-* Klicke auf "Übersetzung zur locale.json hinzufügen"  
+* Klicke auf "Übersetzung zur `locale.json` hinzufügen"  
 
-* Gib deine Übersetzung in den Dialog ein ...
+* Gib deine Übersetzung in den Dialog ein ...  
 
    ![Eingabe Feld](./media/input-box.png)  
    <!-- Screenshot: Eingabe der Übersewtzung -->
 
-* Fertig — eine neue Zeile wurde zur locale.json hinzugefügt!
+* Fertig — eine neue Zeile wurde zur `locale.json`  hinzugefügt!  
 
-#### 3. Registrierungen
+##### 4.2. Registrierungen
 
-* Wechseln in die module.php Datei und drücke (Strg + Umschalt + P)
+* Wechseln in die `module.php` Datei und drücke (Strg + Umschalt + P) ...  
 
    ![Kommando Register](./media/command-register.png)  
    <!-- Screenshot: Aufruf Befehlspalette -->
 
 * Wähle "Füge RegisterProperty-Aufrufe in Create() ein." aus!  
 
-* Fertig – für alle in form.json definierten Eigenschaften wird ein RegisterProperty-Aufruf in die create-Methode von module.php eingefügt!
+* Fertig – für alle in form.json definierten Eigenschaften wird ein RegisterProperty-Aufruf in die create-Methode von module.php eingefügt!  
 
-#### 4. Live Vorschau
+##### 4.3. Build Informationen
 
-* Öffne die Erweiterungseinstellungen nimm die entsprechenden Einstellungen vor
+* Wechseln in die `libaray.json` Datei und drücke (Strg + Umschalt + P) oder rechte Maustaste ...  
 
-   ![Settings Preview](./media/settings-preview.png)  
-   <!-- Screenshot: Settings for live preview -->
+   ![Kommando BuildInfo](./media/command-build-info.png)  
+   <!-- Screenshot: Aufruf Befehlspalette -->
 
-* Wechseln zur Datei „module.html“ und drücken (Strg + Umschalt + P).
+* Wähle "Build-Informationen aktualisieren" aus!  
 
-   ![Command Preview](./media/command-preview.png)  
-   <!-- Screenshot: Call up the command palette -->
+* Gib einen möglichen Versatz an Tagen ein (falls nicht aktueller Tag herangezogen werden soll) ...  
 
-* Oder öffnen Sie das Kontextmenü (Rechtsklick)
+   ![Eingabe Versatz](./media/input-days.png)  
+   <!-- Screenshot: Eingabe des Versatzes in Tagen -->
 
-   ![Context Preview](./media/context-preview.png)  
-   <!-- Screenshot: Context menu -->
+* Fertig – die Attribute `build` und `date` haben einen aktualisierten Wert!  
 
-* Fertig – die Symcon-Live-Vorschau wird angezeigt.
+##### 4.4. Splitter zuweisen
 
-   ![Live Preview](./media/vscode-preview.png)  
-   <!-- Screenshot: Live preview -->
+* Wechseln in die `module.json` Datei und drücke (Strg + Umschalt + P) oder rechte Maustaste ...  
 
-### Zielgruppe
+   ![Kommando Splitter](./media/command-splitter.png)  
+   <!-- Screenshot: Aufruf Befehlspalette -->
 
-Diese Extension richtet sich an Entwickler von Symcon Modulen, die das PHP SDK nutzen.
+* Wähle "Splitter zu Modul zuweisen" aus!  
+
+* Wähle einen der aufgelisteten Splitter aus der Liste aus ...  
+
+   ![Auswahl Splitter](./media/input-splitter.png)  
+   <!-- Screenshot: Lister der verfügbaren Splitter -->
+
+* Fertig – die entsprechenden GUIDs werden zur `module.json` hinzugefügt!  
 
 ---
 
@@ -124,39 +207,90 @@ Diese Extension richtet sich an Entwickler von Symcon Modulen, die das PHP SDK n
 
 ### Symcon Module Helper
 
-The Symcon Module Helper is a Visual Studio Code extension for Symcon module development that makes creating, testing, and maintaining form.json configuration files faster and more convenient.
-It allows you to quickly insert form elements with a single click, generates correctly formatted JSON snippets automatically, and provides a sidebar editor to view and edit the properties of any selected element.
+The **Symcon Module Helper** is a comprehensive Visual Studio Code extension for convenient **development of Symcon modules** and libraries.  
+It speeds up the **creation, testing and maintenance** of *form.json* configurations and combines a code generator, form editor, project wizard and live preview in a single interface. With just a few clicks, you can generate complete **Symcon libraries** or **modules**, maintain existing projects and automatically add GUIDs, build information and documentation.
 
-It supports all standard element types from the Symcon PHP SDK and simplifies handling form data without tedious manual typing.
-The Symcon Module Helper also includes a real-time live preview — instantly updating your Webview as you modify HTML, JSON, themes, or dimensions. Preview settings (theme, width, height) are saved per workspace for a consistent workflow.
+### ✨ Main features
 
-Additional features include inline HTML patching with secure CSP handling, context menu integration to translate texts from form.json to locale.json, and commands to extract and register property variables in the Create() method of your module.php.
+#### Wizards & generators
+- **Library Generator Wizard** → Creates new Symcon library projects  
+- **Module Generator Wizard** → Adds new modules to existing libraries
+- **Custom templates**: configurable template folder
+- **Readme patching** → Extends documentation lists when adding new modules
+- Intelligent field mapping, module validation, and automatic GUID assignment  
 
-### Main Features
+#### Form and editor functions
+- Quick insertion of **Symcon form elements** with a single click  
+- Automatically generated, **correctly formatted JSON snippets**  
+- **Sidebar editor** for displaying and editing all properties  
+- Support for all **standard element types** of the Symcon PHP SDK  
 
-- One-click insertion of Symcon form elements
-- Automatically generated and properly formatted JSON snippets
-- Sidebar editor to view and modify all properties of selected elements
-- Full support for all standard element types from the Symcon PHP SDK
-- Live Preview: real-time visualization of HTML, JSON, theme, and dimensions in the Webview
-- Persistent preview settings (theme, width, height) stored per workspace
-- Save and load preview payloads, with instant postMessage updates to the preview frame
-- Context menu option to translate text from form.json into locale.json
-- Command to extract property variables and register them in the Create() method
+#### Live preview
+- Real-time preview (HTML, JSON, theme, size) in embedded web view  
+- **Persistent settings** (theme, width, height) per workspace  
+- Save, load and send preview JSON directly to the iFrame  
 
-### Installation
+#### Help and analysis functions
+- **Build Info Command** → Updates *library.json* (build number + date)  
+- **Splitter GUID Command** → Assigns valid GUIDs in *module.json*  
+- **Translate** from *form.json* → *locale.json*  
+- **Extraction and registration** of property variables in *Create()*  
 
-- Available on the Visual Studio Marketplace  
-- Alternatively, install manually from the `.vsix` file using `Extensions: Install from VSIX...`
+### 🧰 Installation
 
-### Usage
+- Available in the Visual Studio Marketplace  
+    1. Open **Visual Studio Code**
+    2. Go to **Extensions (CTRL + SHIFT + X)**
+    3. Search for **‘Symcon Module Helper’**
+    4. Click **Install**
+- Alternatively: Manually install the `.vsix` file via `Extensions: Install from VSIX...`  
 
-1. [Forms](#user-content-1-forms)
-2. [Translation](#user-content-2-translation)
-3. [Registration](#user-content-3-registration)
-4. [Live Preview](#user-content-4-live-preview)
+### 💡 Usage
 
-#### 1. Forms
+1. [Wizards](#user-content-1-wizards)
+2. [Forms](#user-content-2-forms)
+3. [Live Preview](#user-content-3-live-preview)
+4. [Functions](#user-content-4-functions)
+
+#### 1. Wizards
+
+##### 1.1. New Project
+
+* Via the command palette (Ctrl + Shift + P) ...  
+* Select `Create new project for a module library (via wizard)`  
+* The **Project Wizard** opens ...  
+
+   ![Project Wizard](./media/new-project-page.png)  
+   <!-- Screenshot: New Project Wizard -->
+
+* Make the appropriate settings and press `Next`  
+* The **Library page** opens ...  
+
+   ![New library](./media/new-library-page.png)  
+   <!-- Screenshot: New library page -->
+
+* Make the appropriate settings and press `Create and open`  
+* Done — VSCode automatically opens the new project!  
+
+##### 1.2. New Module
+
+* Via the command palette (Ctrl + Shift + P) ...  
+* Select `Add New Module (via Wizard)`  
+* The **Module Wizard** will open ...  
+
+   ![Module Wizard](./media/new-module-page.png)  
+   <!-- Screenshot: New Module Wizard -->
+
+* Make the appropriate settings and click `Next`  
+* The `Code` page opens ...  
+
+   ![Code](./media/new-code-page.png)  
+   <!-- Screenshot: Code page -->
+
+* Make the appropriate settings and click on ‘Add’.  
+* Done – the new module is added to the current project (library)!  
+
+#### 2. Forms
 
 * Open a `forms.json` file in your project  
 * The Symcon form sidebar appears automatically  
@@ -180,31 +314,7 @@ Additional features include inline HTML patching with secure CSP handling, conte
    ![Inserted Element](./media/inserted-element.png)  
    <!-- Screenshot: Example JSON after insertion -->
 
-#### 2. Translation
-
-* Select the text you want to translate in the form.json file and open the context menu (right-click)  
-
-   ![Context Menu](./media/context-menu.png)  
-   <!-- Screenshot: Context menu -->
-
-
-* Click on "Add translation to locale.json"  
-
-* Enter your translation in the input dialog ...
-
-   ![Input Box](./media/input-box.png)  
-   <!-- Screenshot: Enter translation text -->
-
-* Done — a new line has been added to locale.json!  
-
-#### 3. Registration
-
-* Switch to the module.php file and press (Ctrl + Shift + P).
-
-   ![Command Register](./media/command-register.png)  
-   <!-- Screenshot: Call up the command palette -->
-
-#### 4. Live Preview
+#### 3. Live Preview
 
 * Open the extension settings and configure the appropriate settings.
 
@@ -226,14 +336,76 @@ Additional features include inline HTML patching with secure CSP handling, conte
    ![Live Preview](./media/vscode-preview.png)  
    <!-- Screenshot: Live preview -->
 
+#### 4. Functions
 
-### Target Audience
+##### 4.1. Translation
+
+* Select the text you want to translate in the form.json file and open the context menu (right-click)  
+
+   ![Context Menu](./media/context-menu.png)  
+   <!-- Screenshot: Context menu -->
+
+* Click on "Add translation to locale.json"  
+
+* Enter your translation in the input dialog ...
+
+   ![Input Box](./media/input-box.png)  
+   <!-- Screenshot: Enter translation text -->
+
+* Done — a new line has been added to locale.json!  
+
+##### 4.2. Registration
+
+* Switch to the module.php file and press (Ctrl + Shift + P).
+
+   ![Command Register](./media/command-register.png)  
+   <!-- Screenshot: Call up the command palette -->
+
+* Select "Insert RegisterProperty calls into Create()." ...
+
+* Done – for all properties defined in `form.json`, a RegisterProperty call is inserted into the create method of `module.php`!
+
+##### 4.3. Build Information
+
+* Switch to the `libaray.json` file and press (Ctrl + Shift + P) or right-click ...
+
+   ![Command BuildInfo](./media/command-build-info.png)  
+   <!-- Screenshot: Call up the command palette -->
+
+* Select ‘Update build information’!  
+
+* Enter a possible offset in days (if the current day is not to be used) ...
+
+   ![Input Offset](./media/input-days.png)  
+   <!-- Screenshot: Input offset in days -->
+
+* Done – the attributes `build` and `date` have an updated value!
+
+##### 4.4. Assign splitter
+
+* Switch to the `module.json` file and press (Ctrl + Shift + P) or right-click ...
+
+   ![Command Splitter](./media/command-splitter.png)  
+   <!-- Screenshot: Call up the command palette -->
+
+* Select `Assign splitter to module`!  
+
+* Select one of the listed splitters from the list...
+
+   ![Select Splitter](./media/input-splitter.png)  
+   <!-- Screenshot: List of available splitters -->
+
+* Done – the corresponding GUIDs are added to `module.json`!
+
+---
+
+### 🧑‍💻 Target Audience
 
 This extension is targeted at developers of Symcon modules using the PHP SDK.
 
 ---
 
-## Feedback & Contributions
+## 📌 Feedback & Contributions
 
 Contributions and feedback are very welcome! Feel free to open issues or pull requests on the [GitHub repository](https://github.com/Wilkware/vscode-forminator).
 

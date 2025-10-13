@@ -1,14 +1,18 @@
 {
     "Translation for \"{0}\" has been added.": "Übersetzung für \"{0}\" wurde eingetragen.",
     "Error writing locale.json: {0}": "Fehler beim Schreiben der locale.json: {0}",
+    "Error writing library.json: {0}": "Fehler beim Schreiben der library.json: {0}",
     "Translation for \"{0}\"": "Übersetzung für \"{0}\"",
     "e.g. My label": "z. B. Meine Beschriftung",
     "No active editor.": "Kein aktiver Editor.",
     "Please select some text!": "Bitte einen Text markieren!",
     "No workspace open.": "Kein Arbeitsbereich geöffnet.",
+    "No library.json found in workspace.": "Keine library.json im Workspace gefunden.",
+    "library.json is not a valid JSON file.": "library.json ist keine gültige JSON-Datei.",
     "Please open the form JSON file (form.json) before adding an element.": "Bitte öffnen Sie die JSON-Formulardatei des Moduls (form.json), bevor Sie eine Element einführen.",
     "Please open the module PHP file (module.php) before running this command.": "Bitte öffnen Sie die PHP-Datei des Moduls (module.php), bevor Sie diesen Befehl ausführen.",
     "Please open the module HTML file (module.html) before running this command.": "Bitte öffnen Sie die HTML-Datei des Moduls (module.html), bevor Sie diesen Befehl ausführen.",
+    "Please open the module JSON file (module.json) before running this command.": "Bitte öffnen Sie die JSON-Datei des Moduls (module.json), bevor Sie diesen Befehl ausführen.",
     "No form.json found in the same folder as the PHP module.": "Keine Datei form.json im selben Ordner wie das PHP-Modul gefunden.",
     "Could not parse form json: ": "Formular-JSON konnte nicht geparst werden:",
     "No valid array found at the cursor position.": "Kein gültiges Array an der Cursor-Position gefunden.",
@@ -16,7 +20,9 @@
     "No RegisterProperty calls generated from form.json.": "Keine RegisterProperty-Aufrufe aus form.json generiert.",
     "Inserted {0} RegisterProperty call(s) into Create().": "{0} RegisterProperty-Aufruf(e) in Create() eingefügt.",
     "No new RegisterProperty calls inserted (all already present).": "Keine neuen RegisterProperty-Aufrufe eingefügt (alle bereits vorhanden).",
+    "Which splitter instance type would you like to store?": "Welchen Splitter-Instanz-Typ möchtest du hinterlegen?",
     "Unexpected error: ": "Unerwarteter Fehler:",
+    "Error: {0}": "Fehler: {0}",
     "Preview Tile Visualisation": "Vorschau Kachel Visualisierung",
     "Enlarge tile": "Kachel vergrößern",
     "Save": "Speichern",
@@ -26,5 +32,8 @@
     "Theme": "Design",
     "Just a dummy ;-)": "Nur Attrappe ;-)",
     "❌ Save failed: ": "❌ Speichern fehlgeschlagen: ",
-    "💾 Saved.": "💾 Gespeichert."
+    "💾 Saved.": "💾 Gespeichert.",
+    "Offset in days (+/-):": "Versatz in Tagen (+/-):",
+    "Please enter a number!": "Bitte eine Zahl eingeben!",
+    "Splitter '{0}' entered in {1}.": "Splitter '{0}' in {1} eingegeben."
 }

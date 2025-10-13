@@ -4,8 +4,10 @@ import * as vscode from 'vscode';
 import { registerFormSidebar } from './forms';
 import { registerAddTranslation } from './locales';
 import { registerPreviewPanel } from './previews';
+import { registerAssignSplitter } from './splitter';
 import { registerInsertProperties } from './properties';
-import { registerInsertGuid} from './util';
+import { registerInsertGuid, registerUpdateBuild} from './util';
+import { registerModuleWizard, registerLibraryWizard } from './wizard';
 
  /**
   * activate - This method is called when your extension is activated
@@ -30,6 +32,18 @@ export function activate(context: vscode.ExtensionContext) {
 
     // Command:registerInsertGuid initialise
     registerInsertGuid(context);
+
+    // Menu & Command:registerAssignSplitter initialise
+    registerAssignSplitter(context);
+
+    // Command:updateBuildInfo initialise
+    registerUpdateBuild(context);
+    
+    // Command:startLibraryWizard initialise
+    registerLibraryWizard(context);
+
+    // Command:startModuleWizard initialise
+    registerModuleWizard(context);
 }
 
  /**
