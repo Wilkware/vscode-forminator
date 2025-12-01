@@ -380,6 +380,9 @@ class {{moduleClass}} extends {{codingClass}}
 {{#if dataflowIsWSClient}}
     public function Send(string $Text): void
 {{/if}}
+{{#if dataflowIsCustom}}
+    public function Send(string $Text): void
+{{/if}}
 {{else}}
 {{#if dataflowIsHID}}
     public function Send(string $Text, int $EventID)
@@ -409,6 +412,9 @@ class {{moduleClass}} extends {{codingClass}}
     public function Send(string $Text)
 {{/if}}
 {{#if dataflowIsWSClient}}
+    public function Send(string $Text)
+{{/if}}
+{{#if dataflowIsCustom}}
     public function Send(string $Text)
 {{/if}}
 {{/if}}
@@ -441,6 +447,9 @@ class {{moduleClass}} extends {{codingClass}}
         $this->SendDataToParent(json_encode(['DataID' => '{{moduleParents}}', 'Buffer' => $Text]));
 {{/if}}
 {{#if dataflowIsWSClient}}
+        $this->SendDataToParent(json_encode(['DataID' => '{{moduleParents}}', 'Buffer' => $Text]));
+{{/if}}
+{{#if dataflowIsCustom}}
         $this->SendDataToParent(json_encode(['DataID' => '{{moduleParents}}', 'Buffer' => $Text]));
 {{/if}}
     }
@@ -496,6 +505,10 @@ class {{moduleClass}} extends {{codingClass}}
 {{#if dataflowIsWSClient}}
         IPS_LogMessage('Device RECV', utf8_decode($data->Buffer));
 {{/if}}
+{{#if dataflowIsCustom}}
+        IPS_LogMessage('Device RECV', utf8_decode($data->Buffer));
+{{/if}}
+    }
 {{/if}}
 {{/if}}
 

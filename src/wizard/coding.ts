@@ -30,7 +30,7 @@ export const CodingPage: WizardPageDefinition = {
                 },
                 {
                     id: "codingMessageSink",
-                    label: "<i>NessageSink</i> hinzufügen",
+                    label: "<i>MessageSink</i> hinzufügen",
                     type: "checkbox",
                     description: "Hilfreich wenn man auf Wert-Änderungen von ausgewählten Variablen reagieren möchte",
                 },

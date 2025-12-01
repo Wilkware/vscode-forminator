@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.0.2] - Patch (2025-12-01)
+
+- **FIX**: Code generation for devices with custom I/O or splitters now works correctly.
+
+## [3.0.1] - Patch (2025-10-16)
+
+- **FIX**: Dependencies are now installed correctly
+
 ## [3.0.0] - Release (2025-10-13)
 
 - **NEW**: Create a new Symcon library project using an interactive wizard (Library generator wizard).
