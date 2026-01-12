@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.0.3] - Patch (2026-01-12)
+
+- **NEW**: Added compatibility for Symcon version 8.2
+- **NEW**: Several checks for the new Symcon version 8.2
+- **NEW**: _GetCompatibleParents_ added to the selection
+- **FIX**: Allow *.code-workspace file in a new project directory
+- **FIX**: Several bug fixes and improvements in the module template
+
 ## [3.0.2] - Patch (2025-12-01)
 
 - **FIX**: Code generation for devices with custom I/O or splitters now works correctly.

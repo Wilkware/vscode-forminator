@@ -54,7 +54,7 @@ export const LibraryPage: WizardPageDefinition = {
             id: "libraryCompatibility",
             label: "Kompatibilität",
             type: "select",
-            properties: { options: ["6.4", "7.0", "7.1", "7.2", "8.0", "8.1"] },
+            properties: { options: ["6.4", "7.0", "7.1", "7.2", "8.0", "8.1", "8.2"] },
             initialValue: "8.1"
         },
         {

@@ -41,6 +41,12 @@ export const CodingPage: WizardPageDefinition = {
                     description: "Hilfreich wenn man auf ausgewählte Aktionen reagieren möchte",
                 },
                 {
+                    id: "codingGetCompatibleParents",
+                    label: "<i>GetCompatibleParents</i> hinzufügen",
+                    type: "checkbox",
+                    description: "Hilfreich für das Verbinden mit kompatiblen Elterninstanzen.",
+                },
+                {
                     id: "codingEchoMessage",
                     label: "<i>EchoMessage</i> hinzufügen",
                     type: "checkbox",

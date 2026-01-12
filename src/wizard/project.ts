@@ -84,11 +84,11 @@ export const ProjectPage: WizardPageDefinition = {
             items.push(createValidationItem(SEVERITY.ERROR, "projectWorkspace", "Der angegebene Pfad ist kein Verzeichnis"));
         } else {
             const contents = fs.readdirSync(workspace);
-            // erlaubte "leere Repo"-Dateien
-            const allowed = ["readme.md", "license", ".git", ".gitignore"];
+            // erlaubte "leere Repo"-Dateien + *.code-workspace Dateien
+            const allowed = ["readme.md", "license", ".git", ".gitignore", ".gitattributes"];
             const disallowed = contents.filter((name: string) => {
                 const lower = name.toLowerCase();
-                return !allowed.includes(lower);
+                return (!allowed.includes(lower) && !lower.endsWith(".code-workspace"));
             });
 
             if (disallowed.length > 0) {
