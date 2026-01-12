@@ -2,7 +2,7 @@
     "name": "forminator",
     "displayName": "%displayName%",
     "description": "%description%",
-    "version": "3.0.3",
+    "version": "3.1.0",
     "publisher": "wilkware-vscode",
     "author": {
         "name": "Heiko Wilknitz",
@@ -73,6 +73,11 @@
         },
         "commands": [
             {
+                "command": "openSidebar",
+                "title": "%command.openSidebarTitle%",
+                "category": "Symcon"
+            },
+            {
                 "command": "addTranslationToLocale",
                 "title": "%command.addTranslationTitle%",
                 "category": "Symcon"
@@ -114,36 +119,78 @@
             }
         ],
         "menus": {
-            "editor/context": [
+            "explorer/context": [
+                {
+                    "command": "openSidebar",
+                    "when": "resourceFilename == form.json",
+                    "group": "1_development@10"
+                },
                 {
                     "command": "addTranslationToLocale",
                     "when": "resourceFilename == form.json",
-                    "group": "navigation"
+                    "group": "1_development@20"
                 },
                 {
                     "command": "insertRegisterProperties",
                     "when": "resourceFilename == module.php",
-                    "group": "navigation"
-                },
-                {
-                    "command": "insertGuidAtPosition",
-                    "when": "editorLangId == json || editorLangId == php",
-                    "group": "navigation"
+                    "group": "1_development@10"
                 },
                 {
                     "command": "assignSplitterToModule",
                     "when": "resourceFilename == module.json",
-                    "group": "navigation"
+                    "group": "1_development@10"
                 },
                 {
                     "command": "openPreviewVisualisation",
                     "when": "resourceFilename == module.html",
-                    "group": "navigation"
+                    "group": "1_development@10"
                 },
                 {
                     "command": "updateBuildInfo",
                     "when": "resourceFilename == library.json",
-                    "group": "navigation"
+                    "group": "1_development@10"
+                },
+                {
+                    "command": "insertGuidAtPosition",
+                    "when": "resourceLangId == json || resourceLangId == php",
+                    "group": "1_development@30"
+                }
+            ],
+            "editor/context": [
+                {
+                    "command": "openSidebar",
+                    "when": "resourceFilename == form.json",
+                    "group": "1_development@10"
+                },
+                {
+                    "command": "addTranslationToLocale",
+                    "when": "resourceFilename == form.json",
+                    "group": "1_development@20"
+                },
+                {
+                    "command": "insertRegisterProperties",
+                    "when": "resourceFilename == module.php",
+                    "group": "1_development@10"
+                },
+                {
+                    "command": "assignSplitterToModule",
+                    "when": "resourceFilename == module.json",
+                    "group": "1_development@10"
+                },
+                {
+                    "command": "openPreviewVisualisation",
+                    "when": "resourceFilename == module.html",
+                    "group": "1_development@10"
+                },
+                {
+                    "command": "updateBuildInfo",
+                    "when": "resourceFilename == library.json",
+                    "group": "1_development@10"
+                },
+                {
+                    "command": "insertGuidAtPosition",
+                    "when": "editorLangId == json || editorLangId == php",
+                    "group": "1_development@30"
                 }
             ]
         },

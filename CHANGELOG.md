@@ -1,6 +1,13 @@
 # Changelog
 
-## [3.0.3] - Patch (2026-01-12)
+## [3.1.0] - Feature (2026-01-12)
+
+- **NEW**: All commands accessible via explorer and context menu
+- **NEW**: All menu items now in their own section (development)
+- **FIX**: Form sidebar no longer opens automatically
+- **FIX**: Translations standardised
+
+## [3.0.3] - Patch (2026-01-11)
 
 - **NEW**: Added compatibility for Symcon version 8.2
 - **NEW**: Several checks for the new Symcon version 8.2

@@ -1,7 +1,7 @@
 # 🧩 Symcon Modul Helfer (Symcon Module Helper)
 
 [![Publisher](https://img.shields.io/badge/Publisher-Wilkware-orange?style=flat-square)](https://marketplace.visualstudio.com/publishers/wilkware-vscode)
-[![Version](https://img.shields.io/badge/Version-3.0.2-yellow.svg?style=flat-square)](https://github.com/Wilkware/vscode-forminator)
+[![Version](https://img.shields.io/badge/Version-3.1.0-yellow.svg?style=flat-square)](https://github.com/Wilkware/vscode-forminator)
 [![Installs](https://img.shields.io/visual-studio-marketplace/i/wilkware-vscode.forminator?color=green&label=Installs&style=flat-square)](https://marketplace.visualstudio.com/items?itemName=wilkware-vscode.forminator)
 [![License](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-green.svg?style=flat-square)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 [![German](https://img.shields.io/badge/Deutsch-DE-blueviolet.svg?style=flat-square)](#deutsch-de)

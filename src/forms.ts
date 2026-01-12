@@ -13,6 +13,11 @@ let propertiesWebview: vscode.WebviewView | null = null;
  * @param context VS Code Extension Context
  */
 export function registerFormSidebar(context: vscode.ExtensionContext) {
+    context.subscriptions.push(
+        vscode.commands.registerCommand('openSidebar', () => {
+            vscode.commands.executeCommand('workbench.view.extension.symconForm');
+        })
+    );
     // View 1: Elements
     context.subscriptions.push(
         vscode.window.registerWebviewViewProvider('symconForm.elements', {
@@ -35,7 +40,7 @@ export function registerFormSidebar(context: vscode.ExtensionContext) {
                             }
                             break;
                         default:
-                            console.warn(`View 1 received unknown command: ${message.command}`);
+                            console.warn(`Elements panel received unknown command: ${message.command}`);
                             break;
                     }
                 });
@@ -68,24 +73,13 @@ export function registerFormSidebar(context: vscode.ExtensionContext) {
                             insertElement(editor, rendered);
                             break;
                         default:
-                            console.warn(`View 2 received unknown command: ${message.command}`);
+                            console.warn(`Properties panel received unknown command: ${message.command}`);
                             break;
                     }
                 });
             }
         })
     );
-
-    vscode.workspace.onDidOpenTextDocument((doc) => {
-        if (doc.fileName.endsWith("form.json")) {
-            vscode.commands.executeCommand("workbench.view.extension.symconForm");
-        }
-    });
-
-    const activeFile = vscode.window.activeTextEditor?.document.fileName;
-    if (activeFile && activeFile.endsWith("form.json")) {
-        vscode.commands.executeCommand("workbench.view.extension.symconForm");
-    }
 }
 
 /**
