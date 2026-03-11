@@ -200,7 +200,7 @@ function getWebviewElementsContent(webview: vscode.Webview, extensionUri: vscode
         .map(key => {
             const title = t[key] || key;
             const icon = icons[key] ?? "question"; // fallback for unknown keys
-            return `<button class="vscode-button card" onclick="selectItem('${key}')" title="${title}"><i class="codicon codicon-${icon}"></i>${key}</button>`;
+            return `<button class="vscode-button card" data-name="${key}" onclick="selectItem('${key}')" title="${title}"><i class="codicon codicon-${icon}"></i>${key}</button>`;
         }).join('\n');
 
     return `
@@ -215,6 +215,12 @@ function getWebviewElementsContent(webview: vscode.Webview, extensionUri: vscode
 <body>
     <div id="container">
         <div id="toolbar">
+            <label>
+                <div class="vscode-textfield filter-box">
+                    <input type="text" id="filter" placeholder="${t.filter}" />
+                    <span id="clear" title="${t.clear}">✕</span>
+                </div>
+            </label>
             ${buttonsHtml}
         </div>
     </div>
@@ -225,6 +231,32 @@ function getWebviewElementsContent(webview: vscode.Webview, extensionUri: vscode
             // Renderer vom Backend anfordern
             vscode.postMessage({ command: 'requestSettings', item: key });
         }
+        const filterInput = document.getElementById('filter');
+        const filterClear = document.getElementById('clear');
+
+        filterInput.addEventListener('input', () => {
+            const search = filterInput.value.toLowerCase();
+            const buttons = document.querySelectorAll('button.card');
+
+            buttons.forEach(btn => {
+                const text = btn.textContent.toLowerCase();
+                btn.style.display = text.includes(search) ? '' : 'none';
+            });
+
+            filterClear.style.display = filterInput.value ? 'block' : 'none';
+        });
+
+        filterClear.addEventListener('click', () => {
+            filterInput.value = '';
+            filterInput.dispatchEvent(new Event('input'));
+            filterInput.focus();
+        });
+
+        filterInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                filterClear.click();
+            }
+        });
     </script>
 </body>
 </html>

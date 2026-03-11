@@ -43,3 +43,12 @@ export function loadThemes(): Record<string, ThemeColors> {
     return themes;
 }
 
+export function loadTitles(): Record<string, number> {
+
+    // Predefined titles with their corresponding heights
+    return {
+        "Big": 60,
+        "Medium": 46.6,
+        "Small": 33.3
+    };
+}

@@ -1,5 +1,11 @@
 # Changelog
 
+## [3.2.0] - Feature (2026-03-11)
+
+- **NEW**: Added a filter option for form elements (clearable via button or Esc)
+- **NEW**: Rebuilt the preview configuration panel (now includes grid and title size)
+- **FIX**: Corrected the length of fields in the settings form
+
 ## [3.1.0] - Feature (2026-01-12)
 
 - **NEW**: All commands accessible via explorer and context menu

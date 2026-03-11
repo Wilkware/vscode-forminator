@@ -659,7 +659,6 @@
 /* select\select.css */
 .vscode-select {
   position: relative;
-  width: 320px;
 }
 
 .vscode-select select {
@@ -825,7 +824,6 @@
   font-weight: var(--vscode-font-weight);
   height: 40px;
   position: relative;
-  width: 320px;
 }
 
 .vscode-textarea:invalid,
@@ -910,7 +908,6 @@ div.vscode-textfield {
   max-width: 100%;
   outline: none;
   position: relative;
-  width: 320px;
 }
 
 input.vscode-textfield {

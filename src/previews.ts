@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import * as fs from 'fs/promises';
 import * as html from './preview/html';
-import { loadThemes } from './preview/themes';
+import { loadThemes,loadTitles } from './preview/themes';
 import { getWorkspaceName} from './util';
 
 /**
@@ -31,8 +31,10 @@ export function registerPreviewPanel(context: vscode.ExtensionContext) {
 
 const DEFAULT_VALUES = {
     theme:  'light',
-    width:  244,
-    height: 244
+    title:  'Big',
+    grid:   12,
+    width:  6,
+    height: 6
 }
 
 const STATE_KEYS = {
@@ -46,6 +48,7 @@ const STATE_KEYS = {
  */
 interface UpdateFrameOptions {
   themeKey?: string;
+  titleSize?: string;
   moduleFile?: string;
   docText?: string;
 }
@@ -55,6 +58,8 @@ interface UpdateFrameOptions {
  */
 interface PreviewSettings {
     theme: string;
+    title: string;
+    grid: number;
     width: number;
     height: number;
 }
@@ -108,8 +113,12 @@ class PreviewPanel {
         const webview = this.panel.webview;
         const nonce = html.getNonce();
 
-        const stylesUri = webview.asWebviewUri(
+        const previewCssUri = webview.asWebviewUri(
             vscode.Uri.joinPath(this.ctx.extensionUri, 'resources', 'preview.css')
+        );
+
+        const elementsCssUri = webview.asWebviewUri(
+            vscode.Uri.joinPath(this.ctx.extensionUri, 'resources', 'elements-lite.css')
         );
 
         // Card title
@@ -125,6 +134,8 @@ class PreviewPanel {
         // Theme config data
         const themes = loadThemes();
         console.log('Themes: ', themes);
+        const titles = loadTitles();
+        console.log('Titles: ', titles);
 
         // Preview settings
         const preview = await this.loadPreview();
@@ -150,7 +161,7 @@ class PreviewPanel {
         }
         body {
             font-size: 14px;
-            margin-top: 60px;
+            margin-top: ${titles[preview.title]}px;
             margin-left: 20px;
             margin-right: 20px;
             margin-bottom: 15px;
@@ -178,22 +189,27 @@ class PreviewPanel {
             connect-src ${webview.cspSource};
             frame-src 'self' data:;">
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="stylesheet" href="${stylesUri}">
+    <link rel="stylesheet" href="${previewCssUri}">
+    <link rel="stylesheet" href="${elementsCssUri}" />
+
     <title>Symcon TileVisu Preview</title>
 </head>
 <body>
-    <h2>Symcon TileVisu Preview</h2>
-    <form>
-        ${html.getThemeSelectHTML(vscode.l10n.t('Theme'), 'theme', preview.theme)}
-        ${html.getSizeSelectHTML(vscode.l10n.t('Height'), 'height', preview.height)}
-        ${html.getSizeSelectHTML(vscode.l10n.t('Width'), 'width', preview.width)}
-        ${html.getButtonHTML(vscode.l10n.t('Update'), 'update')}
-    </form>
+
+    <div class="config-panel">
+        ${html.getThemeSelectHTML(vscode.l10n.t('THEME'), 'theme', preview.theme)}
+        ${html.getSizeSelectHTML(vscode.l10n.t('GRID'), 'grid', 24, preview.grid)}
+    </div>
+    <div class="config-panel">
+        ${html.getTitleSelectHTML(vscode.l10n.t('TITLE'), 'title', preview.title)}
+        ${html.getSizeSelectHTML(vscode.l10n.t('HEIGHT'), 'height', preview.grid, preview.height)}
+        ${html.getSizeSelectHTML(vscode.l10n.t('WIDTH'), 'width', preview.grid, preview.width)}
+    </div>
 
     <div id="tile" class="card">
         <div id="header">${title}</div>
         <div id="expand" title="${vscode.l10n.t('Enlarge tile')}">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="12px" height="12px" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <!-- Pfeil nach rechts oben -->
                 <line x1="14" y1="10" x2="20" y2="4" />
                 <polyline points="14,4 20,4 20,10" />
@@ -209,38 +225,61 @@ class PreviewPanel {
 
     <div id="json" class="edit">
         <pre id="code" contenteditable="true"></pre>
-        ${html.getButtonHTML(vscode.l10n.t('Save'), 'save')}
+        ${html.getButtonHTML(vscode.l10n.t('SAVE'), 'save')}
     </div>
 
     <script nonce="${nonce}">
         const vscode = acquireVsCodeApi();
         const THEMES = ${JSON.stringify(themes)};
+        const TITLES = ${JSON.stringify(titles)};
         const root = document.documentElement;
 
         const iframe = document.getElementById('preview');
         const code = document.getElementById('code');
 
         let currentTheme = '${preview.theme}';
+        let currentTitle = '${preview.title}';
         root.style.setProperty('--bg-color', THEMES[currentTheme].bg);
         root.style.setProperty('--accent-color', THEMES[currentTheme].accent);
         root.style.setProperty('--text-color', THEMES[currentTheme].content);
         root.style.setProperty('--card-color', THEMES[currentTheme].card);
-        root.style.setProperty('--card-width', '${preview.width}px');
-        root.style.setProperty('--card-height', '${preview.height}px');
 
         window.addEventListener('DOMContentLoaded', ()=>{
             document.getElementById('expand')?.addEventListener('click', () => {
                 showMessage('${vscode.l10n.t('Just a dummy ;-)')}');
             });
-            document.getElementById('update')?.addEventListener('click', ()=> {
-                updateCard();
-            });
             document.getElementById('save')?.addEventListener('click', ()=>{
                 vscode.postMessage({cmd:'save', data:document.getElementById('code').textContent||''});
+            });
+            // Selects
+            document.getElementById('theme')?.addEventListener('change', ()=> {
+                updateCard();
+            });
+            document.getElementById('title')?.addEventListener('change', ()=> {
+                updateCard();
+            });
+            // Slides
+            document.getElementById('grid-range').addEventListener('input', e => {
+                gridSize = parseInt(e.target.value);
+                document.getElementById('grid-value').textContent = gridSize;
+                updateCard();
+            });
+            document.getElementById('width-range').addEventListener('input', e => {
+                widthSize = parseInt(e.target.value);
+                document.getElementById('width-value').textContent = widthSize;
+                updateCard();
+            });
+            document.getElementById('height-range').addEventListener('input', e => {
+                heightSize = parseInt(e.target.value);
+                document.getElementById('height-value').textContent = heightSize;
+                updateCard();
             });
 
             // loadready-Event to extension
             vscode.postMessage({ cmd: 'load' });
+
+            // Initial update card
+            updateCard();
         });
 
         window.addEventListener('message', ev=>{
@@ -286,24 +325,68 @@ class PreviewPanel {
         });
 
         function updateCard() {
+            const BASE_WIDTH = 1000;
+
             const root = document.documentElement;
-            const width = parseInt(document.getElementById('width')?.value || '${DEFAULT_VALUES.width}', 10); 
-            const height = parseInt(document.getElementById('height')?.value || '${DEFAULT_VALUES.height}', 10);
             const theme = document.getElementById('theme')?.value || ${DEFAULT_VALUES.theme};
+            const title = document.getElementById('title')?.value || ${DEFAULT_VALUES.title};
 
-            root.style.setProperty('--card-width', width + 'px');
-            root.style.setProperty('--card-height', height + 'px');
+            const grid = parseInt(document.getElementById('grid-range')?.value || '${DEFAULT_VALUES.grid}', 10); 
+            const gridUnit = BASE_WIDTH / grid;
 
-            const changed = currentTheme !== theme;
+            const widthSlider = document.getElementById('width-range');
+            const heightSlider = document.getElementById('height-range');
+
+            // Max Werte setzen
+            widthSlider.max = grid;
+            heightSlider.max = grid;
+
+            // Slider Werte lesen
+            let width = parseInt(widthSlider.value || '${DEFAULT_VALUES.width}', 10); 
+            let height = parseInt(heightSlider.value || '${DEFAULT_VALUES.height}', 10);
+
+            // Clamp Werte
+            width = Math.max(1, Math.min(width, grid));
+            height = Math.max(1, Math.min(height, grid));
+
+            // Slider korrigieren falls nötig
+            widthSlider.value = width;
+            heightSlider.value = height;
+            // und Valueanzeige korrigieren falls nötig
+            const widthValue = document.getElementById('width-value');
+            const heightValue = document.getElementById('height-value');
+            widthValue.textContent = width;
+            heightValue.textContent = height;
+
+            // Pixel berechnen
+            const widthUnit = width * gridUnit;
+            const heightUnit = height * gridUnit;
+
+            console.log('Update card with', {
+                theme, title,
+                grid, gridUnit,
+                width, widthUnit,
+                height, heightUnit
+            });
+
+            root.style.setProperty('--card-width', widthUnit + 'px');
+            root.style.setProperty('--card-height', heightUnit + 'px');
+
+            const changedTheme = currentTheme !== theme;
+            const changedTitle = currentTitle !== title;
+            const changed = changedTheme || changedTitle;
 
             vscode.postMessage({
                     cmd:'preview', 
-                    theme: changed ? theme : '',
+                    changed: changed,
+                    theme: theme,
+                    title: title,
+                    grid: grid,
                     width: width,
                     height: height
             });
 
-            if (changed) {
+            if (changedTheme) {
                 const entry = THEMES[theme];
                 if (!entry) return;
 
@@ -313,6 +396,9 @@ class PreviewPanel {
                 root.style.setProperty('--text-color', entry.content);
 
                 currentTheme = theme;
+            }
+            if (changedTitle) {
+                currentTitle = title;
             }
         }
 
@@ -359,9 +445,9 @@ class PreviewPanel {
                     await this.savePreload(msg.data); 
                     break;
                 case 'preview': 
-                    await this.savePreview({ theme: msg.theme, width: msg.width, height: msg.height });
-                    if (msg.theme != '') {
-                        await this.updateFrame({ themeKey: msg.theme });
+                    await this.savePreview({ theme: msg.theme, title: msg.title, grid: msg.grid, width: msg.width, height: msg.height });
+                    if (msg.changed) {
+                        await this.updateFrame({ themeKey: msg.theme, titleSize: msg.title });
                     }
                     break;
             }
@@ -379,7 +465,8 @@ class PreviewPanel {
         // Theme
         const themes = loadThemes();
         const theme = options.themeKey || (await this.loadPreview()).theme;
-
+        const titles = loadTitles();
+        const title = options.titleSize || (await this.loadPreview()).title;
         // HTML laden
         let moduleHtml: string;
         if (options.docText) {
@@ -408,7 +495,7 @@ class PreviewPanel {
         }
         body {
             font-size: 14px;
-            margin-top: 60px;
+            margin-top: ${titles[title]}px;
             margin-left: 20px;
             margin-right: 20px;
             margin-bottom: 15px;
@@ -454,9 +541,9 @@ class PreviewPanel {
     }
 
     private async loadPreview(): Promise<PreviewSettings> {
-        const defaults: PreviewSettings = { theme: DEFAULT_VALUES.theme, width: DEFAULT_VALUES.width, height: DEFAULT_VALUES.height };
+        const defaults: PreviewSettings = { theme: DEFAULT_VALUES.theme, title: DEFAULT_VALUES.title, grid: DEFAULT_VALUES.grid, width: DEFAULT_VALUES.width, height: DEFAULT_VALUES.height };
         const stored = this.ctx.workspaceState.get<PreviewSettings>(STATE_KEYS.previewSettings);
-        return { theme: DEFAULT_VALUES.theme, width: DEFAULT_VALUES.width, height: DEFAULT_VALUES.height, ...stored }; // fallback to defaults
+        return { theme: DEFAULT_VALUES.theme, title: DEFAULT_VALUES.title, grid: DEFAULT_VALUES.grid, width: DEFAULT_VALUES.width, height: DEFAULT_VALUES.height, ...stored }; // fallback to defaults
     }
 
     private async savePreview(settings: Partial<PreviewSettings>) {
@@ -465,6 +552,12 @@ class PreviewPanel {
 
         if (settings.theme !== undefined && settings.theme !== '') {
             updated.theme = settings.theme;
+        }
+        if (settings.title !== undefined && settings.title !== '') {
+            updated.title = settings.title;
+        }
+        if (settings.grid !== undefined && !isNaN(settings.grid) && settings.grid >= 1 && settings.grid <= 24) {
+            updated.grid = settings.grid;
         }
         if (settings.width !== undefined) updated.width = settings.width;
         if (settings.height !== undefined) updated.height = settings.height;

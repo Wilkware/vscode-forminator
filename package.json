@@ -2,7 +2,7 @@
     "name": "forminator",
     "displayName": "%displayName%",
     "description": "%description%",
-    "version": "3.1.0",
+    "version": "3.2.0",
     "publisher": "wilkware-vscode",
     "author": {
         "name": "Heiko Wilknitz",
