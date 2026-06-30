@@ -5,29 +5,64 @@
     <title>{{moduleName}}</title>
     <meta charset="UTF-8" />
     <style>
-        /* Hier kann ich den margin vom Body überschreibe oder die background-color setzen usw. */
-        /* Die Root-Variablen --accent-color, --content-color und --card-color sind immer vordefiniert. */
-        /* Kann aber auch eigene Variablen definieren. Gute Technik um nicht direkt das CSS zu manipulieren zu müssen */
+        /* ────────────────────────────────────────────────────────────────── */
+        /* Die folgenden Root-Variablen sind immer vordefiniert:              */
+        /*    --accent-color, --content-color und --card-color                */
+        /* Über die Initialisierungs-Funktion werden zusätzlich die von der   */
+        /* TileVisu berechneten Ränder (margins) bereitgestellt:              */
+        /*    --margin-top, --margin-side und --margin-bottom                 */
+        /* Zusätzlich können aber auch eigene Variablen definiert werden.     */
+        /* Gute Technik um nicht direkt das CSS manipulieren zu müssen.       */
+        /* ────────────────────────────────────────────────────────────────── */
 
         :root {
             --bg-color: #208a74;
         }
 
-        html,
-        body {
-            height: 100%;
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
             overflow: hidden;
         }
 
-        body {
-            margin-left: 10px;
-            /* Standard 20px */
-            margin-right: 10px;
-            /* Standard 20px */
+        ::-webkit-scrollbar {
+            width: 4px;
         }
 
+        ::-webkit-scrollbar-thumb {
+            background: transparent;
+            border-radius: 10px;
+        }
+
+        html,
+        body {
+            margin: 0px;
+            height: 100%;
+            width: 100%;
+        }
+
+        #card {
+            width: 100%;
+            height: 100%;
+            padding: var(--margin-top) var(--margin-side) var(--margin-bottom);
+        }
+
+        #content {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* ────────────────────────────────────────────────────────────────── */
+        /* Ab hier sollten die Modulspezifischen Stylsheet-Definitionen       */
+        /* erfolgen. Die divs #card und #content stellen dabei den immer      */
+        /* maximalen Inhaltsrahmen zur Verfügung.                             */
+        /* ────────────────────────────────────────────────────────────────── */
+
         #container {
-            height: calc(100% - 75px);
+            height: 100%;
             background-color: var(--bg-color);
             display: flex;
             justify-content: center;
@@ -37,8 +72,37 @@
             box-sizing: border-box;
         }
     </style>
+</head>
+
+<body>
+
+    <div id="card">
+        <div id="content">
+
+            <!-- START: modulspezifische Elemente -->
+            <div id="container">
+                <span id="text">Vordefinierter Text</span>
+            </div>
+            <!-- ENDE: modulspezifische Elemente -->
+
+        </div>
+    </div>
+
     <script>
-        // Hier werden die Daten vom Modul verarbeitet.
+        /* ── Init: Set Root/Syle Variables ───────────────────────────────── */
+        const p = new URLSearchParams(location.search);
+        const r = document.documentElement;
+        const m = {
+            margintop: ['--margin-top'],
+            marginside: ['--margin-side'],
+            marginbottom: ['--margin-bottom']
+        };
+        for (const k in m) {
+            const v = p.get(k);
+            if (!v) continue; m[k].forEach(c => r.style.setProperty(c, v));
+        }
+
+        /* ── Hier werden die Daten vom Modul verarbeitet. ────────────────── */
         function handleMessage(data) {
             //console.log('Rohdaten empfangen:', data);
             const decodedData = JSON.parse(data);
@@ -61,13 +125,12 @@
                 }
             }
         }
-    </script>
-</head>
 
-<body>
-    <div id="container">
-        <span id="text">Vordefinierter Text</span>
-    </div>
+        /* ── Ab hier können weitere Anweidungen hinterlegt werden. ───────── */
+        document.getElementById('text').innerText = translate('Text');
+
+    </script>
+
 </body>
 
 </html>

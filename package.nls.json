@@ -7,6 +7,7 @@
     "command.openSidebarTitle": "Open Symcon Form",
     "command.addTranslationTitle": "Add translation (locale.json)",
     "command.insertRegisterTitle": "Insert RegisterProperty calls (Create method)",
+    "command.createTileVisualization": "Create Tile Visualization",
     "command.openPreviewTitle": "Open preview of visualisation",
     "command.addModuleTitle": "Add new module (via Wizard)",
     "command.createLibraryTitle": "Create new module library project (via Wizard)",

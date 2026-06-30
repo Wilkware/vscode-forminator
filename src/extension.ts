@@ -3,12 +3,13 @@ import * as vscode from 'vscode';
 // Import the module and reference it with the alias vscode in your code below
 import { registerFormSidebar } from './forms';
 import { registerAddTranslation } from './locales';
+import { registerTileVisualization } from './tile';
 import { registerPreviewPanel } from './previews';
 import { registerAssignSplitter } from './splitter';
 import { registerInsertProperties } from './properties';
 import { registerInsertGuid, registerUpdateBuild} from './util';
 import { registerModuleWizard, registerLibraryWizard } from './wizard';
-
+import { initTemplateEngine } from "./template/engine.instance";
  /**
   * activate - This method is called when your extension is activated
   * your extension is activated the very first time the command is executed
@@ -16,13 +17,17 @@ import { registerModuleWizard, registerLibraryWizard } from './wizard';
   * @param context: vscode.ExtensionContext
   */
 export function activate(context: vscode.ExtensionContext) {
-    console.log('Symcon Modul Helper Extension aktiviert.');
+    // Init Template Engine
+    initTemplateEngine(context.extensionPath);
 
     // Sidebar initialise
     registerFormSidebar(context);
 
     // Menu & Command:registerAddTranslation initialise
     registerAddTranslation(context);
+
+    // Command:PreviewPanel initialise
+    registerTileVisualization(context);
 
     // Command:PreviewPanel initialise
     registerPreviewPanel(context);
@@ -44,6 +49,9 @@ export function activate(context: vscode.ExtensionContext) {
 
     // Command:startModuleWizard initialise
     registerModuleWizard(context);
+
+    // Logging
+    console.log('Symcon Modul Helper Extension aktiviert.');
 }
 
  /**

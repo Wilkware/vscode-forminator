@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import * as fs from 'fs/promises';
+import * as path from 'path';
 import * as html from './preview/html';
 import { loadThemes,loadTitles } from './preview/themes';
 import { getWorkspaceName} from './util';
@@ -127,8 +128,28 @@ class PreviewPanel {
         // Load actual editor content
         const editor = vscode.window.activeTextEditor;
         let moduleHtml = '';
-        if (editor && editor.document.fileName === this.module) {
+        let localeJson = '';
+
+        if (editor) {
+            const moduleUri = editor.document.uri;
+
+            // module.html (aktueller Editor)
             moduleHtml = editor.document.getText();
+            /*
+            if (editor && editor.document.fileName === this.module) {
+                moduleHtml = editor.document.getText();
+            }
+            */
+           
+            // Pfad zur locale.json im selben Ordner
+            const localeUri = vscode.Uri.file(
+                path.join(path.dirname(moduleUri.fsPath), 'locale.json')
+            );
+
+            // Datei lesen
+            const localeBytes = await vscode.workspace.fs.readFile(localeUri);
+            const localeText = Buffer.from(localeBytes).toString('utf8');
+            localeJson = JSON.parse(localeText);
         }
 
         // Theme config data
@@ -149,7 +170,7 @@ class PreviewPanel {
 <base href="${baseTag}/">
 <script src='html-sdk.js'></script>
 <script>
-    var locale = { translations: {} };
+    var locale = ${JSON.stringify(localeJson)};
   (function(){
     const style = document.createElement('style');
     document.head.appendChild(style);
@@ -158,6 +179,9 @@ class PreviewPanel {
             --accent-color: ${themes[preview.theme]['accent']};
             --card-color: ${themes[preview.theme]['card']};
             --content-color: ${themes[preview.theme]['content']};
+            --margin-top: ${titles[preview.title]}px;
+            --margin-side: 20px;
+            --margin-bottom: 15px;
         }
         body {
             font-size: 14px;
@@ -475,6 +499,18 @@ class PreviewPanel {
             const file = options.moduleFile || this.module;
             moduleHtml = await fs.readFile(file, 'utf8');
         }
+        // Translation laden
+        let localeJson = { translations: {} };
+
+        try {
+            const moduleDir = path.dirname(options.moduleFile || this.module);
+            const localePath = path.join(moduleDir, 'locale.json');
+
+            const localeText = await fs.readFile(localePath, 'utf8');
+            localeJson = JSON.parse(localeText);
+        } catch (err) {
+            // fallback: keine locale.json vorhanden
+        }
 
         // Patch <head>
         moduleHtml = moduleHtml.replace(
@@ -483,7 +519,7 @@ class PreviewPanel {
     <base href="${baseTag}/">
     <script src='html-sdk.js'></script>
     <script>
-    var locale = { translations: {} };
+    var locale = ${JSON.stringify(localeJson)};
     (function(){
         const style = document.createElement('style');
         document.head.appendChild(style);
@@ -492,6 +528,9 @@ class PreviewPanel {
             --accent-color: ${themes[theme]['accent']};
             --card-color: ${themes[theme]['card']};
             --content-color: ${themes[theme]['content']};
+            --margin-top: ${titles[title]}px;
+            --margin-side: 20px;
+            --margin-bottom: 15px;
         }
         body {
             font-size: 14px;

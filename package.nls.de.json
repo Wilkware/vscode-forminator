@@ -8,6 +8,7 @@
     "command.addTranslationTitle": "Übersetzung hinzufügen (locale.json)",
     "command.insertRegisterTitle": "RegisterProperty-Aufrufe einfügen (Create-Methode)",
     "command.assignSplitterTitle": "Splitter zu Module zuweisen",
+    "command.createTileVisualization": "Kachelvisualisierung anlegen",
     "command.openPreviewTitle": "Vorschau der Visualisierung öffnen",
     "command.addModuleTitle": "Neues Modul hinzufügen (über Assistent)",
     "command.createLibraryTitle": "Neues Projekt für eine Modulbibliothek erstellen (über Assistent)",

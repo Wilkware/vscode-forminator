@@ -1,0 +1,27 @@
+    /**
+    * Generate a message that updates all elements in the HTML display.
+    *
+    * @return string JSON encoded message information
+    */
+    private function GetFullUpdateMessage(): string
+    {
+        // Fill resultset
+        $result = [];
+        $result['stocktext'] = $this->ReadPropertyString('StockLabel');
+        $result['stockfont'] = $this->ReadPropertyInteger('StockFont');
+        $result['trendtext'] = $this->ReadPropertyFormatted('TrendVariable');
+        $result['trendfont'] = $this->ReadPropertyInteger('TrendFont');
+        $result['trendpositive'] = $this->GetColorFormatted($this->ReadPropertyInteger('TrendPositive'));
+        $result['trendnegative'] = $this->GetColorFormatted($this->ReadPropertyInteger('TrendNegative'));
+        $result['chartline'] = $this->GetColorFormatted($this->ReadPropertyInteger('ChartLine'));
+        $result['chartperiod'] = $this->Translate(self::TWSW_MAP_PERIOD[$this->ReadPropertyInteger('ChartData')]);
+        $result['chartsmooth'] = $this->ReadPropertyBoolean('ChartSmooth');
+        $result['chartfill'] = $this->ReadPropertyBoolean('ChartFill');
+        $result['chartoffset'] = $this->ReadPropertyInteger('ChartOffset');
+        $result['chartdata'] = $this->ReadCacheArray();
+        $result['pricetext'] = $this->ReadPropertyFormatted('PriceVariable');
+        $result['pricefont'] = $this->ReadPropertyInteger('PriceFont');
+        $this->LogDebug(__FUNCTION__, $result);
+        // send it
+        return json_encode($result);
+    }

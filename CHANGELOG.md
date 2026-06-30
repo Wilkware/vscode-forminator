@@ -1,5 +1,14 @@
 # Changelog
 
+## [3.3.0] - Feature (2026-06-29)
+
+- **NEW**: New command for retroactive activation/implementation of tile visualisation
+- **NEW**: The Preview module passes the tile margins as root variables
+- **NEW**: The translations from locale.json are now also passed to the preview.
+- **FIX**: Positioning of tile titles and arrows corrected
+- **FIX**: The module.html template revised
+- **FIX**: Internal configuration mismatches
+
 ## [3.2.0] - Feature (2026-03-11)
 
 - **NEW**: Added a filter option for form elements (clearable via button or Esc)

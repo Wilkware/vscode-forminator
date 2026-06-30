@@ -2,7 +2,7 @@
     "name": "forminator",
     "displayName": "%displayName%",
     "description": "%description%",
-    "version": "3.2.0",
+    "version": "3.3.0",
     "publisher": "wilkware-vscode",
     "author": {
         "name": "Heiko Wilknitz",
@@ -103,6 +103,11 @@
                 "category": "Symcon"
             },
             {
+                "command": "createTileVisualization",
+                "title": "%command.createTileVisualization%",
+                "category": "Symcon"
+            },
+            {
                 "command": "openPreviewVisualisation",
                 "title": "%command.openPreviewTitle%",
                 "category": "Symcon"
@@ -138,6 +143,11 @@
                 {
                     "command": "assignSplitterToModule",
                     "when": "resourceFilename == module.json",
+                    "group": "1_development@10"
+                },
+                {
+                    "command": "createTileVisualization",
+                    "when": "explorerResourceIsFolder",
                     "group": "1_development@10"
                 },
                 {
@@ -369,7 +379,7 @@
         "postinstall": "node scripts/build-elements-lite-css.js && node scripts/build-codicons-css.js"
     },
     "devDependencies": {
-        "@types/node": "^24.3.0",
+        "@types/node": "^24.13.2",
         "@types/vscode": "^1.103.0",
         "@vscode/l10n-dev": "^0.0.35",
         "@vscode/test-electron": "^2.2.3",

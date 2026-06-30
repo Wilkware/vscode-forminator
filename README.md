@@ -1,7 +1,7 @@
 # 🧩 Symcon Modul Helfer (Symcon Module Helper)
 
 [![Publisher](https://img.shields.io/badge/Publisher-Wilkware-orange?style=flat-square)](https://marketplace.visualstudio.com/publishers/wilkware-vscode)
-[![Version](https://img.shields.io/badge/Version-3.2.0-yellow.svg?style=flat-square)](https://github.com/Wilkware/vscode-forminator)
+[![Version](https://img.shields.io/badge/Version-3.3.0-yellow.svg?style=flat-square)](https://github.com/Wilkware/vscode-forminator)
 [![Installs](https://img.shields.io/visual-studio-marketplace/i/wilkware-vscode.forminator?color=green&label=Installs&style=flat-square)](https://marketplace.visualstudio.com/items?itemName=wilkware-vscode.forminator)
 [![License](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-green.svg?style=flat-square)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 [![German](https://img.shields.io/badge/Deutsch-DE-blueviolet.svg?style=flat-square)](#deutsch-de)
@@ -21,7 +21,8 @@ Er beschleunigt das **Erstellen, Testen und Pflegen** von *form.json*-Konfigurat
 - **Module Generator Wizard** → Fügt neue Module zu bestehenden Bibliotheken hinzu  
 - **Benutzerdefinierte Templates**: eigener Vorlagen-Ordner konfigurierbar  
 - **Readme-Patching** → erweitert Dokumentationslisten beim Hinzufügen neuer Module  
-- Intelligentes Feld-Mapping, Modul-Validierung und automatische GUID-Vergabe  
+- Intelligentes Feld-Mapping, Modul-Validierung und automatische GUID-Vergabe
+- **Kachelvisualisierung** → erweitert Nachträglich um Funktionen für Tile Visu (module.html Template)
 
 #### Formular- und Editor-Funktionen
 - Schnelles Einfügen von **Symcon Formular-Elementen** per Klick  
@@ -201,6 +202,20 @@ Er beschleunigt das **Erstellen, Testen und Pflegen** von *form.json*-Konfigurat
 
 * Fertig – die entsprechenden GUIDs werden zur `module.json` hinzugefügt!  
 
+##### 4.5. Kachelvisualisierung anlegen
+
+* Auswahl des Modul-Ordners, welcher die `module.php` Datei enthält und noch keine `module.html` Datei und drücke (Strg + Umschalt + P) oder rechte Maustaste ...  
+
+   ![Kommando TileVisu](./media/command-tilevisu.png)  
+   <!-- Screenshot: Aufruf Befehlspalette -->
+
+   ![Auswahl TileVisu](./media/context-tilevisu.png)  
+   <!-- Screenshot: Context-Menu -->
+
+* Wähle "Kachelvisualisierung anlegen" aus!  
+
+* Fertig – die entsprechenden Funktionen werden der `module.php`hinzugefügt und ein neue `module.html` wird erzeugt.
+
 ---
 
 ## English EN
@@ -218,6 +233,7 @@ It speeds up the **creation, testing and maintenance** of *form.json* configurat
 - **Custom templates**: configurable template folder
 - **Readme patching** → Extends documentation lists when adding new modules
 - Intelligent field mapping, module validation, and automatic GUID assignment  
+- **Tile visualization** → subsequently extended with functions for tile visualization (module.html template)
 
 #### Form and editor functions
 - Quick insertion of **Symcon form elements** with a single click  
@@ -396,6 +412,20 @@ It speeds up the **creation, testing and maintenance** of *form.json* configurat
    <!-- Screenshot: List of available splitters -->
 
 * Done – the corresponding GUIDs are added to `module.json`!
+
+##### 4.5. Creating a Tile Visualization
+
+* Select the module folder containing the `module.php` file (but not yet a `module.html` file) and press (Ctrl + Shift + P) or right-click...
+
+    ![TileVisu command](./media/command-tilevisu.png)
+    <!-- Screenshot: Invoking the command palette -->
+
+    ![TileVisu selection](./media/context-tilevisu.png)
+    <!-- Screenshot: Context menu -->
+
+* Select "Create Tile Visualization"!
+
+* Done – the relevant functions are added to `module.php` and a new `module.html` file is created.
 
 ---
 
